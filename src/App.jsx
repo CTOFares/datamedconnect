@@ -2,13 +2,14 @@ import { useState } from 'react'
 
 import './App.css'
 import Constraction from './Components/Constraction'
+import AppRoutes from './Routes/AppRoutes'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Constraction/>
+      <AppRoutes/>
     </>
   )
 }

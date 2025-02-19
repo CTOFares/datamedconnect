@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="sm:mx-4 bg-gradient-to-b from-[#205198] items-center pt-6 sm:p-9 flex flex-col sm: to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px]">
-      <div className="sm:flex space-y-8 sm:space-y-0 sm:items-center sm:justify-between sm:w-full ">
-        <div className="">
-          <img src={assets.logowhite} alt="" />
+    <div className="bg-gradient-to-b from-[#205198] to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px] w-full">
+      <div className="sm:mx-4 items-center pt-6 sm:p-9 flex flex-col sm:flex-row sm:justify-between">
+        <div>
+          <img src={assets.logowhite} alt="Logo" />
         </div>
-        <div className="flex justify-center md:justify-start gap-4">
+        <div className="flex justify-center md:justify-start gap-4 mt-4 sm:mt-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -54,8 +54,8 @@ const Footer = () => {
           </svg>
         </div>
       </div>
-      <div className="sm:flex flex-col mt-9   w-full">
-        <h1 className="text-white   text-center sm:text-start font-montserrat text-[40px] font-medium">
+      <div className="sm:flex flex-col mt-9 w-full">
+        <h1 className="text-white text-center sm:text-start font-montserrat text-[40px] font-medium">
           Contact
         </h1>
         <div className="text-center sm:flex space-y-9 sm:space-y-0 sm:justify-between">

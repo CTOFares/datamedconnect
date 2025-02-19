@@ -3,8 +3,14 @@ import Nav from "../../Components/Nav";
 import LeftSide from "../../Components/LeftSide";
 import { assets } from "../../assets/assets";
 import Footer from "../../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Details = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/Verification");
+  };
   return (
     <div className="">
       <Nav />
@@ -26,6 +32,7 @@ const Details = () => {
             <div className="space-y-2">
               <label htmlFor="Téléphone">Téléphone*</label>
               <input
+                type="tel"
                 className="flex w-full  sm:w-[641px] p-[18px_30px] items-start gap-2 h-[45px]  rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="+33 25 556  8855"
                 alt="Téléphone"
@@ -68,7 +75,10 @@ const Details = () => {
                 d’utilisation
               </label>
             </div>
-            <button className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]">
+            <button
+              onClick={handleClick}
+              className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
+            >
               Envoyer
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +99,7 @@ const Details = () => {
           </form>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

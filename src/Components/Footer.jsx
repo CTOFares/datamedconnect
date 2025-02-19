@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-b from-[#205198] items-center pt-6 sm:p-9 flex flex-col sm: to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px]">
+    <div className="sm:mx-4 bg-gradient-to-b from-[#205198] items-center pt-6 sm:p-9 flex flex-col sm: to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px]">
       <div className="sm:flex space-y-8 sm:space-y-0 sm:items-center sm:justify-between sm:w-full ">
         <div className="">
           <img src={assets.logowhite} alt="" />

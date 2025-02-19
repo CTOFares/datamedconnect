@@ -17,17 +17,17 @@ const Lien = () => {
             <div className="space-y-4">
               <label htmlFor="Malt">Malt*</label>
               <input
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="Fares"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://www.malt.fr/profile/username"
                 alt="Malt"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="Site Perso">Site Perso*</label>
+              <label htmlFor="SitePerso">Site Perso*</label>
               <input
                 type="text"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="Site Perso"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://www.yoursite.com"
                 alt="Site Perso"
               />
             </div>
@@ -35,43 +35,43 @@ const Lien = () => {
               <label htmlFor="LinkedIn">LinkedIn*</label>
               <input
                 type="text"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="LinkedIn"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://www.linkedin.com/in/username"
                 alt="LinkedIn"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="Github">Github*</label>
+              <label htmlFor="Github">GitHub*</label>
               <input
                 type="text"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="Github"
-                alt="Github"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://github.com/username"
+                alt="GitHub"
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="Behance">Behance*</label>
               <input
                 type="text"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="Behance"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://www.behance.net/username"
                 alt="Behance"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="Dribble">Dribble*</label>
+              <label htmlFor="Dribbble">Dribbble*</label>
               <input
                 type="text"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="Dribble"
-                alt="Dribble"
+                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                placeholder="Ex: https://dribbble.com/username"
+                alt="Dribbble"
               />
             </div>
             <button
               type="submit"
               className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
             >
-              Envoyer
+              Continuer
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

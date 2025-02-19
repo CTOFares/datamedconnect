@@ -31,6 +31,8 @@ const VerificationEmail = () => {
           Eu ac integer aliquet sit libero morbi. Pulvinar varius maecenas
           egestas ante quam nunc sapien leo. <br /> Leo porttitor viverra purus
           et viverra ullamcorper.
+          <br />
+          Pour le Test : 55555
         </p>
         <div className="flex   pt-8 pb-8 items-center justify-center gap-5 mt-8 mb-8">
           {[...Array(5)].map((_, index) => (

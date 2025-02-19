@@ -71,7 +71,7 @@ const Info = () => {
                 onClick={handleClick}
                 className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
               >
-                Envoyer
+                Continuer
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"

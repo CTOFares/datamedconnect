@@ -7,6 +7,7 @@ import ScrollToTop from "../Utils/ScrollToTop";
 import Info from "../pages/Info/Info";
 import Mission from "../pages/Mission/Mission";
 import Lien from "../pages/Liens/Lien";
+import Expertise from "../pages/Expertise/Expertise";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Route path="/Verification" element={<VerificationEmail />} />
         <Route path="/Info" element={<Info />} />
         <Route path="/Mission" element={<Mission />} />
+        <Route path="/Expertise" element={<Expertise />} />
         <Route path="/Liens" element={<Lien />} />
       </Routes>
     </div>

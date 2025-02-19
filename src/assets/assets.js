@@ -4,10 +4,12 @@ import client2 from "./client2.png";
 import client3 from "./client3.png";
 import client4 from "./client4.png";
 import logowhite from "./logowhite.png";
+import iconpdf from "./iconpdf.svg";
 // Export assets
 export const assets = {
   logo,
-  logowhite
+  logowhite,
+  iconpdf
 };
 
 

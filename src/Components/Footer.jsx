@@ -54,7 +54,7 @@ const Footer = () => {
           </svg>
         </div>
       </div>
-      <div className="sm:flex flex-col mt-9 w-full">
+      <div className="sm:flex flex-col sm:p-9 mt-9 w-full">
         <h1 className="text-white text-center sm:text-start font-montserrat text-[40px] font-medium">
           Contact
         </h1>
@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full h-[1px] bg-white my-8"></div>
-      <div className="sm:flex sm:justify-between w-full pb-9">
+      <div className="sm:flex sm:justify-between sm:p-9 w-full pb-9">
         <p className="text-white font-montserrat text-xl font-medium leading-normal text-center md:text-left">
           © 2025 - Datamed Consulting - Site conçu par FARES SAFER
         </p>

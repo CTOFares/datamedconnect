@@ -1,7 +1,13 @@
 import React from "react";
 import { assets } from "../../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/Deposer");
+  };
   return (
     <div className="flex-col justify-center items-center">
       <div className="flex p-4 justify-center items-center border-r-2 ">
@@ -23,13 +29,19 @@ const Hero = () => {
               Connect
             </span>
           </span>
-          <p className="font-montserrat text-[20px] sm:text-[40px] mt-6">Le Tinder des ESN</p>
+          <p className="font-montserrat text-[20px] sm:text-[40px] mt-6">
+            Le{" "}
+            <span className="bg-gradient-to-b from-[#FF655C] to-[#FF3179] bg-clip-text text-transparent font-poppins text-[20px] sm:text-[45px] font-bold leading-[120.402%]">
+              Tinder
+            </span>{" "}
+            des ESN
+          </p>
         </h1>
       </div>
       <div className="h-[500px]">Faza mech aaref chniya</div>
       <div className="  justify-center items-center flex">
-        <button className="flex w-[189px] text-white p-[13px_19px]  gap-[10px] rounded-[14px] bg-[#173A6D]">
-          Contacter Nous
+        <button  onClick={handleClick} className="flex w-auto text-white p-[13px_19px]  gap-[10px] rounded-[14px] bg-[#173A6D]">
+          Deposer Votre CV
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

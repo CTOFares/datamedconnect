@@ -5,11 +5,17 @@ import client3 from "./client3.png";
 import client4 from "./client4.png";
 import logowhite from "./logowhite.png";
 import iconpdf from "./iconpdf.svg";
+import grid from "./grid.svg";
+import layers from "./layers.svg";
+import star from "./star.svg";
 // Export assets
 export const assets = {
   logo,
   logowhite,
-  iconpdf
+  iconpdf,
+  grid,
+  layers,
+  star
 };
 
 

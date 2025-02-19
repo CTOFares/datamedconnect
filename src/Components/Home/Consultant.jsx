@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { assets } from "../../assets/assets";
 
 const Consultant = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Consultant = () => {
             fill="none"
           >
             <ellipse cx="28.2869" cy="27" rx="28.2869" ry="27" fill="#D9D6FE" />
+            <image href={assets.grid} x="10" y="10" height="34" width="34" />
           </svg>
           <h1 className="text-[#1A1A1A]    font-montserrat text-[20px] font-medium tracking-[-0.361px]">
             Etape 1{" "}
@@ -48,6 +50,8 @@ const Consultant = () => {
             fill="none"
           >
             <ellipse cx="28.2869" cy="27" rx="28.2869" ry="27" fill="#D9D6FE" />
+            <image href={assets.star} x="10" y="10" height="34" width="34" />
+
           </svg>
           <h1 className="text-[#1A1A1A] font-montserrat text-[20px] font-medium tracking-[-0.361px]">
             Etape 1{" "}
@@ -66,6 +70,7 @@ const Consultant = () => {
             fill="none"
           >
             <ellipse cx="28.2869" cy="27" rx="28.2869" ry="27" fill="#D9D6FE" />
+            <image href={assets.layers} x="10" y="10" height="34" width="34" />
           </svg>
           <h1 className="text-[#1A1A1A] font-montserrat text-[20px] font-medium tracking-[-0.361px]">
             Etape 1{" "}
@@ -78,10 +83,10 @@ const Consultant = () => {
       </div>
       <div className="  sm:items-center sm:flex sm:justify-center pt-11">
         <button
-          className="flex w-[189px] text-white p-[13px_19px] gap-[10px] rounded-[14px] bg-[#173A6D]"
+          className="flex w-auto text-white p-[13px_19px] gap-[10px] rounded-[14px] bg-[#173A6D]"
           onClick={handleClick}
         >
-          Contacter Nous
+          Deposer Votre CV
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

@@ -11,7 +11,7 @@ import Expertise from "../pages/Expertise/Expertise";
 
 const AppRoutes = () => {
   return (
-    <div>
+    <div className="bg-[#FAFAFA]">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -12,7 +12,7 @@ const Consultant = () => {
     <div className="p-6 sm:p-[100px] space-y-6">
       <div className="  sm:gap-40 sm:flex space-y-4">
         <h1 className="text-[#060606] font-montserrat text-[30px] font-semibold leading-[120.402%]">
-          Ce Vous Offre DatamedConnect
+          Ce Que Vous Offre DatamedConnect
         </h1>
         <p className="text-black font-montserrat text-[18px] font-normal leading-[120.402%]  justify-center">
           Rejoignez CVTECH dès aujourd’hui ! Nous mettons en relation les

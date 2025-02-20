@@ -8,6 +8,7 @@ import iconpdf from "./iconpdf.svg";
 import grid from "./grid.svg";
 import layers from "./layers.svg";
 import star from "./star.svg";
+import macbook from "./macbook.png";
 // Export assets
 export const assets = {
   logo,
@@ -15,7 +16,8 @@ export const assets = {
   iconpdf,
   grid,
   layers,
-  star
+  star,
+  macbook
 };
 
 

@@ -8,15 +8,20 @@ const Hero = () => {
   const handleClick = () => {
     navigate("/Deposer");
   };
+
   return (
-    <div className="flex-col justify-center items-center">
-      <div className="flex p-4 justify-center items-center border-r-2 ">
-        <img src={assets.logo} alt="" className="w-[194px] h-[50px]" />
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex p-4 justify-center items-center">
+        <img
+          src={assets.logo}
+          alt="Datamed Logo"
+          className="w-[194px] h-[50px]"
+        />
       </div>
-      <div className="  pt-10 flex items-center justify-center">
-        <h1 className="mx-auto items-center text-montserrat justify-center text-center max-w-4xl font-display text-5xl  font-semibold tracking-tight text-slate-900 sm:text-7xl">
+      <div className="pt-10 flex items-center justify-center">
+        <h1 className="mx-auto text-center max-w-4xl font-display text-5xl font-semibold tracking-tight text-[#02B2E1] sm:text-7xl">
           DATAMED <br />
-          <span className="relative whitespace-nowrap text-blue-600">
+          <span className="relative whitespace-nowrap">
             <svg
               aria-hidden="true"
               viewBox="0 0 418 42"
@@ -29,7 +34,7 @@ const Hero = () => {
               Connect
             </span>
           </span>
-          <p className="font-montserrat text-[20px] sm:text-[40px] mt-6">
+          <p className="font-montserrat text-black  text-[20px] sm:text-[40px] mt-6">
             Le{" "}
             <span className="bg-gradient-to-b from-[#FF655C] to-[#FF3179] bg-clip-text text-transparent font-poppins text-[20px] sm:text-[45px] font-bold leading-[120.402%]">
               Tinder
@@ -38,10 +43,15 @@ const Hero = () => {
           </p>
         </h1>
       </div>
-      <div className="h-[500px]">Faza mech aaref chniya</div>
-      <div className="  justify-center items-center flex">
-        <button  onClick={handleClick} className="flex w-auto text-white p-[13px_19px]  gap-[10px] rounded-[14px] bg-[#173A6D]">
-          Deposer Votre CV
+      <div className="h-auto py-6 w-auto flex justify-center items-center">
+        <img src={assets.macbook} alt="Macbook" />
+      </div>
+      <div className="justify-center items-center flex">
+        <button
+          onClick={handleClick}
+          className="flex w-auto text-white p-[13px_19px] gap-[10px] rounded-[14px] bg-[#173A6D]"
+        >
+          Déposer Votre CV
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

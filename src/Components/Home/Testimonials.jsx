@@ -28,7 +28,17 @@ const testimonialsData = [
 const Testimonials = () => {
   return (
     <div className="mb-16">
-      <div className="mt-[90px] space-y-6 p-4  gap-6 items-center">
+      <div className="sm:flex sm:justify-center sm:items-center p-6 sm:p-8">
+        <p className="text-black text-start sm:text-center sm:flex font-montserrat text-4xl font-semibold leading-[120.402%] uppercase">
+          Ce que nos 
+          <p className="bg-gradient-to-r mx-2 from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-poppins text-4xl font-semibold leading-[120.402%] uppercase">
+            CONSULTANT
+          </p>
+
+           disent de nous
+        </p>
+      </div>
+      {/* <div className="mt-[90px] space-y-6 p-4  gap-6 items-center">
         <div className=" text-center sm:text-center ">
           <p className="text-black font-montserrat sm:flex text-center justify-center text-2xl sm:text-4xl font-semibold leading-[100.402%] uppercase">
             Ce que nos{" "}
@@ -38,7 +48,7 @@ const Testimonials = () => {
             disent de nous
           </p>
         </div>
-      </div>
+      </div> */}
       <div className="sm:mx-[120px] justify-between grid grid-cols-1 space-y-6 sm:space-y-0 sm:grid-cols-3 gap-4">
         {testimonialsData.map((testimonial, index) => (
           <Testimonial

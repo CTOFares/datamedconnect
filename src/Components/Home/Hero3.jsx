@@ -1,5 +1,5 @@
-import React from "react";
-import { assets } from "../../assets/assets";
+import React, { useEffect, useState, useRef } from "react";
+import { assets, carouselclient } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 
 const Hero3 = () => {
@@ -10,25 +10,28 @@ const Hero3 = () => {
   };
   return (
     <div className="sm:flex sm:pl-10">
-      <div className="p-6 sm:space-y-6 space-y-3  sm:w-1/2 flex flex-col justify-center h-auto">
-        <h1 className="text-[#02B2E1] font-montserrat text-[50px] sm:text-[90px] font-semibold leading-[120.402%] uppercase">
-          DATAMED
-        </h1>
-        <h1 className="mx-auto text-start w-full font-display text-[80px] sm:text-[120px] font-semibold tracking-tight text-[#02B2E1] sm:text-7xl">
-          <span className="relative whitespace-nowrap">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 418 42"
-              className="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70"
-              preserveAspectRatio="none"
-            >
-              <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z" />
-            </svg>
-            <span className="font-montserrat text-[60px] sm:text-[120px] font-semibold leading-[120.402%] uppercase bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
-              CONNECT
+      <div className="p-6 sm:space-y-6 space-y-3  sm:w-1/2 flex flex-col justify-center">
+        <div>
+          <h1 className="text-[#02B2E1] font-montserrat text-[50px] sm:text-[90px] font-semibold leading-[120.402%] uppercase">
+            DATAMED
+          </h1>
+          <h1 className="mx-auto text-start w-full   font-display text-[80px] sm:text-[120px] font-semibold tracking-tight text-[#02B2E1] sm:text-8xl">
+            <span className="relative whitespace-nowrap">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 418 42"
+                className="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70"
+                preserveAspectRatio="none"
+              >
+                <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z" />
+              </svg>
+              <span className="font-montserrat text-[60px] sm:text-[120px] font-semibold leading-[120.402%] uppercase bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
+                CONNECT
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
+        </div>
+
         <p className="text-[#272727] flex gap-3 font-poppins text-[24px] sm:text-[45px] font-medium leading-[120.402%]">
           Le
           <span className="font-montserrat text-[24px] sm:text-[45px] font-bold leading-[120.402%] bg-gradient-to-b from-[#FF655C] to-[#FF3179] bg-clip-text text-transparent">
@@ -102,4 +105,112 @@ const Hero3 = () => {
   );
 };
 
+const Clients = () => {
+  const [translateX, setTranslateX] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const clientsRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.5 } // Adjust this threshold as needed
+    );
+
+    if (clientsRef.current) {
+      observer.observe(clientsRef.current);
+    }
+
+    return () => {
+      if (clientsRef.current) {
+        observer.unobserve(clientsRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setTranslateX(-100);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  return (
+    <div className="sm:p-[100px] my-9 sm:my-0 px-[10px]" ref={clientsRef}>
+      <div className="rounded-[15px] gap-6 sm:flex p-9 border">
+        <div className="w-full sm:w-1/5 border-[rgba(0,0,0,0.10)]">
+          <p className="font-montserrat text-[20px] sm:text-[40px] font-semibold sm:leading-[48.161px] bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
+            NOS <br />
+            CLIENTS
+          </p>
+          <p className="text-[#00B1E0] text-start font-montserrat text-[15px] font-medium leading-[18.06px]">
+            Ils nous font confiance
+          </p>
+        </div>
+
+        <div className="w-full sm:w-4/5 flex p-6 overflow-hidden">
+          <div
+            className="flex transition-all duration-[30000ms] gap-11" // Smooth transition on X-axis
+            style={{
+              transform: `translateX(${translateX}%)`, // Apply translation based on state
+            }}
+          >
+            <img
+              src={carouselclient.client1}
+              alt="client1"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client2}
+              alt="client2"
+              className="w-[200px] h-[90px]"
+            />
+            <img
+              src={carouselclient.client3}
+              alt="client3"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client4}
+              alt="client4"
+              className="w-full mx-5"
+            />
+            <img
+              src={carouselclient.client8}
+              alt="client8"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client9}
+              alt="client9"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client10}
+              alt="client10"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client11}
+              alt="client11"
+              className="w-[200px] h-[90px] mx-5"
+            />
+            <img
+              src={carouselclient.client12}
+              alt="client12"
+              className="w-[200px] h-[90px] mx-5"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default Hero3;
+export { Clients };

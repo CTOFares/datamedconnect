@@ -60,7 +60,7 @@ const Info = () => {
   return (
     <div>
       <Nav />
-      <div className="sm:flex pb-11">
+      <div className="sm:flex pb-11 min-h-screen">
         <LeftSide
           title="Qui êtes-vous ?"
           paragraphe="Quelques informations de base pour mieux cerner votre profil et vous proposer des missions en accord avec votre parcours."

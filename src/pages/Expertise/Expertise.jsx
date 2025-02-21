@@ -12,7 +12,7 @@ const Expertise = () => {
   return (
     <div>
       <Nav />
-      <div className="sm:flex pb-11">
+      <div className="sm:flex pb-11 min-h-screen">
         <LeftSide
           title="Mettez en avant votre savoir-faire !"
           paragraphe="Présentez vos expertises et expériences pour attirer les meilleures opportunités de consulting."

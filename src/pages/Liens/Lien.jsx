@@ -7,7 +7,7 @@ const Lien = () => {
   return (
     <div>
       <Nav />
-      <div className="sm:flex pb-11">
+      <div className="sm:flex pb-11 min-h-screen">
         <LeftSide
           title="Montrez votre impact !"
           paragraphe="Partagez vos profils professionnels et portfolios pour maximiser votre visibilité auprès des recruteurs."

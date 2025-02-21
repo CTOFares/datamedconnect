@@ -21,7 +21,7 @@ const VerificationEmail = () => {
   return (
     <div>
       <Nav />
-      <div className="p-6 w-full   items-center justify-center">
+      <div className="p-6 w-full items-center justify-center min-h-screen">
         <h1 className="text-center font-montserrat text-[40px] font-semibold leading-[120.402%] uppercase bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
           vérifie ton email
         </h1>

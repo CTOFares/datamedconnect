@@ -81,7 +81,7 @@ const Mission = () => {
   return (
     <div>
       <Nav />
-      <div className="sm:flex pb-11">
+      <div className="sm:flex pb-11 min-h-screen">
         <LeftSide
           title="Trouvons la mission parfaite pour vous !"
           paragraphe="Indiquez vos préférences en matière de contrat, de mission et de mobilité pour des opportunités sur mesure."

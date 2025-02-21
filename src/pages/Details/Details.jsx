@@ -69,7 +69,7 @@ const Details = () => {
   return (
     <div className="">
       <Nav />
-      <div className="sm:flex pb-11">
+      <div className="sm:flex pb-11 min-h-screen">
         <LeftSide
           title="Déposer Votre CV"
           paragraphe=" Partagez vos coordonnées et votre CV pour que nous puissions vous proposer des opportunités adaptées à votre profil."

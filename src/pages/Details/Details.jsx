@@ -9,10 +9,18 @@ import { useNavigate } from "react-router-dom";
 const Details = () => {
   const navigate = useNavigate();
   const [fileName, setFileName] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [telephoneError, setTelephoneError] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [checkboxError, setCheckboxError] = useState("");
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       setFileName(acceptedFiles[0].name);
+      setFileError("");
     }
   }, []);
 
@@ -21,8 +29,41 @@ const Details = () => {
     accept: "application/pdf",
   });
 
-  const handleClick = () => {
-    navigate("/Verification");
+  const handleClick = (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    if (!email) {
+      setEmailError("Veuillez remplir le champ Email.");
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (!telephone) {
+      setTelephoneError("Veuillez remplir le champ Téléphone.");
+      valid = false;
+    } else {
+      setTelephoneError("");
+    }
+
+    if (!fileName) {
+      setFileError("Veuillez télécharger un fichier PDF.");
+      valid = false;
+    } else {
+      setFileError("");
+    }
+
+    if (!isChecked) {
+      setCheckboxError("Veuillez accepter les termes et conditions.");
+      valid = false;
+    } else {
+      setCheckboxError("");
+    }
+
+    if (valid) {
+      navigate("/Verification");
+    }
   };
 
   return (
@@ -42,7 +83,12 @@ const Details = () => {
                 className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="Contact@consultingdatamed.com"
                 alt="Prenom"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              {emailError && (
+                <p className="text-red-500 text-sm">{emailError}</p>
+              )}
             </div>
             <div className="space-y-2">
               <label htmlFor="Téléphone">Téléphone*</label>
@@ -51,7 +97,12 @@ const Details = () => {
                 className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="+33 25 556  8855"
                 alt="Téléphone"
+                value={telephone}
+                onChange={(e) => setTelephone(e.target.value)}
               />
+              {telephoneError && (
+                <p className="text-red-500 text-sm">{telephoneError}</p>
+              )}
             </div>
             <div className="space-y-2">
               <label htmlFor="pdfUpload">Upload PDF*</label>
@@ -63,10 +114,9 @@ const Details = () => {
               >
                 <input {...getInputProps()} />
                 <img src={assets.iconpdf} alt="PDF Icon" className="h-6 w-6" />
-                <span>
-                  {fileName || "Drag & drop your PDF here"}
-                </span>
+                <span>{fileName || "Drag & drop your PDF here"}</span>
               </div>
+              {fileError && <p className="text-red-500 text-sm">{fileError}</p>}
             </div>
             <div className="flex gap-3 mb-4">
               <input
@@ -74,6 +124,8 @@ const Details = () => {
                 type="checkbox"
                 value=""
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
               />
               <label
                 htmlFor="default-checkbox"
@@ -83,6 +135,9 @@ const Details = () => {
                 d’utilisation
               </label>
             </div>
+            {checkboxError && (
+              <p className="text-red-500 text-sm">{checkboxError}</p>
+            )}
             <button
               onClick={handleClick}
               className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"

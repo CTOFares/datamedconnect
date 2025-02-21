@@ -33,11 +33,11 @@ const Clients = () => {
             }}
           >
             <img src={carouselclient.client1} alt="client1" className="w-[200px] h-[90px] mx-5" />
-            <img
+            {/* <img
               src={carouselclient.client2}
               alt="client2"
               className="w-[200px] h-[90px]"
-            />
+            /> */}
             <img src={carouselclient.client3} alt="client3"  className="w-[200px] h-[90px]  mx-5"/>
             <img
               src={carouselclient.client4}

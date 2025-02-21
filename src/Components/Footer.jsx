@@ -4,11 +4,9 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-b sm:mx-9   from-[#205198] to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px]">
-      <div className="sm:mx-4 items-center pt-6 sm:p-9 flex flex-col sm:flex-row sm:justify-between">
-        <div>
-          <img src={assets.logowhite} alt="Logo" />
-        </div>
+    <div className="bg-gradient-to-b sm:mx-9 from-[#205198] border-sky-200 to-[#0B1B32] text-white rounded-tl-[45px] rounded-tr-[45px]">
+      <div className="sm:mx-4 items-center sm:p-4   flex flex-col sm:flex-row sm:justify-between">
+        <img src={assets.logowhite} alt="Logo" />
         <div className="flex justify-center md:justify-start gap-4 mt-4 sm:mt-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +52,7 @@ const Footer = () => {
           </svg>
         </div>
       </div>
-      <div className="sm:flex flex-col sm:p-9 mt-9 w-full">
+      <div className="sm:flex flex-col sm:px-9   w-full">
         <h1 className="text-white text-center sm:text-start font-montserrat text-[40px] font-medium">
           Contact
         </h1>
@@ -70,10 +68,10 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="w-full h-[1px] bg-white my-8"></div>
+      <div className="w-full mx-6 h-[1px] bg-white my-8 "></div>
       <div className="sm:flex sm:justify-between sm:p-9 w-full pb-9">
         <p className="text-white font-montserrat text-xl font-medium leading-normal text-center md:text-left">
-          © 2025 - Datamed Consulting - Site conçu par FARES SAFER
+          © 2025 - Datamed Consulting
         </p>
         <div className="flex flex-col text-center md:flex-row gap-3 justify-center md:justify-center">
           <NavLink

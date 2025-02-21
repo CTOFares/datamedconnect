@@ -105,7 +105,7 @@ const Details = () => {
               )}
             </div>
             <div className="space-y-2">
-              <label htmlFor="pdfUpload">Upload PDF*</label>
+              <label htmlFor="pdfUpload">Télécharger le PDF*</label>
               <div
                 {...getRootProps()}
                 className={`flex items-center justify-center w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white cursor-pointer ${
@@ -114,7 +114,7 @@ const Details = () => {
               >
                 <input {...getInputProps()} />
                 <img src={assets.iconpdf} alt="PDF Icon" className="h-6 w-6" />
-                <span>{fileName || "Drag & drop your PDF here"}</span>
+                <span>{fileName || "Glisser et déposer Votre PDF"}</span>
               </div>
               {fileError && <p className="text-red-500 text-sm">{fileError}</p>}
             </div>

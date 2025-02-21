@@ -32,41 +32,41 @@ const Clients = () => {
               transform: `translateX(${translateX}%)`, // Apply translation based on state
             }}
           >
-            <img src={carouselclient.client1} alt="client1" className="w-[200px] h-[90px]" />
+            <img src={carouselclient.client1} alt="client1" className="w-[200px] h-[90px] mx-5" />
             <img
               src={carouselclient.client2}
               alt="client2"
               className="w-[200px] h-[90px]"
             />
-            <img src={carouselclient.client3} alt="client3"  className="w-[200px] h-[90px]"/>
+            <img src={carouselclient.client3} alt="client3"  className="w-[200px] h-[90px]  mx-5"/>
             <img
               src={carouselclient.client4}
               alt="client4"
-              className="w-full"
+              className="w-full mx-5"
             />
             {/* <img src={carouselclient.client5} alt="client5" className="w-[200px] h-[90px]" /> */}
             {/* <img src={carouselclient.client6} alt="client6" className="w-[200px] h-[90px]" /> */}
             {/* <img src={carouselclient.client7} alt="client7" /> */}
-            <img src={carouselclient.client8} alt="client8" />
+            <img src={carouselclient.client8} alt="client8" className="w-[200px] h-[90px]  mx-5"/>
             <img
               src={carouselclient.client9}
               alt="client9"
-              className="w-[200px] h-[90px]"
+              className="w-[200px] h-[90px]  mx-5"
             />
             <img
               src={carouselclient.client10}
               alt="client10"
-              className="w-[200px] h-[90px]"
+              className="w-[200px] h-[90px]  mx-5"
             />
             <img
               src={carouselclient.client11}
               alt="client11"
-              className="w-[200px] h-[90px]"
+              className="w-[200px] h-[90px]  mx-5"
             />
             <img
               src={carouselclient.client12}
               alt="client12"
-              className="w-[200px] h-[90px]"
+              className="w-[200px] h-[90px]  mx-5"
             />
           </div>
         </div>

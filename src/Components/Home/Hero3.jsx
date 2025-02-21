@@ -75,7 +75,7 @@ const Hero3 = () => {
             onClick={handleClick}
             className="flex w-auto text-white p-[13px_19px] gap-[10px] rounded-[14px] bg-[#173A6D]"
           >
-            Déposer Votre CV
+            Crée Votre Profile 
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import Footer from "../../Components/Footer";
 import Nav from "../../Components/Nav";
 import LeftSide from "../../Components/LeftSide";
-import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
 const Info = () => {
   const [cities, setCities] = useState([]);
+  const [prenom, setPrenom] = useState("");
+  const [nom, setNom] = useState("");
+  const [ville, setVille] = useState("");
+  const [prenomError, setPrenomError] = useState("");
+  const [nomError, setNomError] = useState("");
+  const [villeError, setVilleError] = useState("");
 
   useEffect(() => {
     // Fetch a list of French cities; adjust parameters as needed
@@ -22,9 +27,36 @@ const Info = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/Mission");
+  const handleClick = (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    if (!prenom) {
+      setPrenomError("Veuillez remplir le champ Prénom.");
+      valid = false;
+    } else {
+      setPrenomError("");
+    }
+
+    if (!nom) {
+      setNomError("Veuillez remplir le champ Nom.");
+      valid = false;
+    } else {
+      setNomError("");
+    }
+
+    if (!ville) {
+      setVilleError("Veuillez sélectionner une ville.");
+      valid = false;
+    } else {
+      setVilleError("");
+    }
+
+    if (valid) {
+      navigate("/Mission");
+    }
   };
+
   return (
     <div>
       <Nav />
@@ -39,25 +71,35 @@ const Info = () => {
               <div className="space-y-4">
                 <label htmlFor="Prenom">Prénom*</label>
                 <input
-                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
+                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
                   placeholder="Fares"
                   alt="Prénom"
+                  value={prenom}
+                  onChange={(e) => setPrenom(e.target.value)}
                 />
+                {prenomError && (
+                  <p className="text-red-500 text-sm">{prenomError}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label htmlFor="Nom">Nom*</label>
                 <input
                   type="text"
-                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px]  rounded-[14px] border-[1px] border-[#000] bg-white"
+                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
                   placeholder="Safer"
                   alt="Nom"
+                  value={nom}
+                  onChange={(e) => setNom(e.target.value)}
                 />
+                {nomError && <p className="text-red-500 text-sm">{nomError}</p>}
               </div>
               <div className="space-y-2">
                 <label htmlFor="ville">Ville de Residence*</label>
                 <select
                   id="ville"
                   className="flex w-full sm:w-[641px] p-[15px_15px] items-start gap-2 h-[55px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                  value={ville}
+                  onChange={(e) => setVille(e.target.value)}
                 >
                   <option value="">Sélectionnez une ville</option>
                   {cities.map((city, index) => (
@@ -66,6 +108,9 @@ const Info = () => {
                     </option>
                   ))}
                 </select>
+                {villeError && (
+                  <p className="text-red-500 text-sm">{villeError}</p>
+                )}
               </div>
               <button
                 onClick={handleClick}

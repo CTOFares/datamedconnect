@@ -12,6 +12,8 @@ import client10 from "./clients/client10.png";
 import client11 from "./clients/client11.png";
 import client12 from "./clients/client12.png";
 import Profile from "./Profile.png";
+import pdf from "./pdp.jpg";
+
 
 import logowhite from "./logowhite.png";
 import iconpdf from "./iconpdf.svg";
@@ -28,7 +30,8 @@ export const assets = {
   layers,
   star,
   macbook,
-  Profile
+  Profile,
+  pdf
 };
 
 export const carouselclient = {

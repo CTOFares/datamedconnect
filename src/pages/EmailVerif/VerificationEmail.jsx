@@ -1,20 +1,49 @@
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Nav from "../../Components/Nav";
 import Footer from "../../Components/Footer";
 
 const VerificationEmail = () => {
   const inputRefs = useRef([]);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email || "";
+
+  // Check if email is received correctly
+  useEffect(() => {
+    console.log("Email received:", email); // Log email for debugging
+  }, [email]);
 
   const handleInputChange = (e, index) => {
     if (e.target.value.length === 1 && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1].focus();
     }
+  };
 
-    const inputValues = inputRefs.current.map((input) => input.value).join("");
-    if (inputValues === "55555") {
-      navigate("/Info");
+  const handleSubmit = async () => {
+    const otp = inputRefs.current.map((input) => input.value).join("");
+    
+    if (!email) {
+      setError("Email non fourni. Veuillez réessayer.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://datamedconnectbackend.onrender.com/api/otp/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        navigate("/Info");
+      } else {
+        setError(data.message || "Code incorrect. Veuillez réessayer.");
+      }
+    } catch (error) {
+      setError("Une erreur est survenue. Veuillez réessayer.");
     }
   };
 
@@ -26,29 +55,27 @@ const VerificationEmail = () => {
           vérifie ton email
         </h1>
         <p className="text-black text-center font-montserrat text-[16px] font-normal leading-[120.402%]">
-          Lorem ipsum dolor sit amet consectetur. Pretium lectus natoque morbi
-          proin varius ullamcorper quam lacus in. <br />
-          Eu ac integer aliquet sit libero morbi. Pulvinar varius maecenas
-          egestas ante quam nunc sapien leo. <br /> Leo porttitor viverra purus
-          et viverra ullamcorper.
-          <br />
-          Pour le Test : 55555
+          Un code de vérification a été envoyé à ton email. Entrez-le ci-dessous pour continuer.
         </p>
-        <div className="flex   pt-8 pb-8 items-center justify-center gap-5 mt-8 mb-8">
-          {[...Array(5)].map((_, index) => (
+        <div className="flex pt-8 pb-8 items-center justify-center gap-5 mt-8 mb-8">
+          {[...Array(6)].map((_, index) => (
             <input
               key={index}
               type="tel"
-              className="flex w-[49px] sm:w-[60px] p-[15px] sm:h-[60px] justify-between items-center border border-black bg-white rounded-[14px] text-center font-poppins text-[16px] font-normal leading-[120.402%]"
+              className="w-[49px] sm:w-[60px] p-[15px] sm:h-[60px] border border-black bg-white rounded-[14px] text-center font-poppins text-[16px]"
               maxLength="1"
               ref={(el) => (inputRefs.current[index] = el)}
               onChange={(e) => handleInputChange(e, index)}
             />
           ))}
         </div>
-        <p className="text-[#FD7979] text-center font-montserrat text-[16px] font-normal leading-[120.402%]">
-          Vous Pouvez Renvoyer pendant 01:30
-        </p>
+        {error && <p className="text-[#FD7979] text-center">{error}</p>}
+        <button
+          onClick={handleSubmit}
+          className="block mx-auto mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+        >
+          Vérifier
+        </button>
       </div>
       <Footer />
     </div>

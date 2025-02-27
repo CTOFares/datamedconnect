@@ -16,6 +16,7 @@ const Details = () => {
   const [telephoneError, setTelephoneError] = useState("");
   const [fileError, setFileError] = useState("");
   const [checkboxError, setCheckboxError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
@@ -29,40 +30,60 @@ const Details = () => {
     accept: "application/pdf",
   });
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     let valid = true;
 
+    // Reset previous errors
+    setEmailError("");
+    setTelephoneError("");
+    setFileError("");
+    setCheckboxError("");
+
+    // Validate fields
     if (!email) {
       setEmailError("Veuillez remplir le champ Email.");
       valid = false;
-    } else {
-      setEmailError("");
     }
-
     if (!telephone) {
       setTelephoneError("Veuillez remplir le champ Téléphone.");
       valid = false;
-    } else {
-      setTelephoneError("");
     }
-
     if (!fileName) {
       setFileError("Veuillez télécharger un fichier PDF.");
       valid = false;
-    } else {
-      setFileError("");
     }
-
     if (!isChecked) {
       setCheckboxError("Veuillez accepter les termes et conditions.");
       valid = false;
-    } else {
-      setCheckboxError("");
     }
 
-    if (valid) {
-      navigate("/Verification");
+    if (!valid) return;
+
+    setLoading(true); // Disable button during API request
+
+    try {
+      const response = await fetch(
+        "https://datamedconnectbackend.onrender.com/api/otp/send",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("verificationEmail", email);
+        navigate(`/Verification`, { state: { email } }); // Pass email to the navigation page
+      } else {
+        setEmailError(data.message || "Une erreur s'est produite.");
+      }
+    } catch (error) {
+      setEmailError("Impossible d'envoyer le code OTP. Vérifiez votre connexion.");
+    } finally {
+      setLoading(false); // Re-enable button
     }
   };
 
@@ -77,26 +98,22 @@ const Details = () => {
         <div className="p-5">
           <form action="" className="space-y-4">
             <div className="space-y-4">
-              <label htmlFor="Prenom">Email*</label>
+              <label htmlFor="email">Email*</label>
               <input
                 type="email"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                className="flex w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="Contact@consultingdatamed.com"
-                alt="Prenom"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {emailError && (
-                <p className="text-red-500 text-sm">{emailError}</p>
-              )}
+              {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             </div>
             <div className="space-y-2">
-              <label htmlFor="Téléphone">Téléphone*</label>
+              <label htmlFor="telephone">Téléphone*</label>
               <input
                 type="tel"
-                className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                className="flex w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="+33 25 556  8855"
-                alt="Téléphone"
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
               />
@@ -120,29 +137,27 @@ const Details = () => {
             </div>
             <div className="flex gap-3 mb-4">
               <input
-                id="default-checkbox"
+                id="terms-checkbox"
                 type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
                 checked={isChecked}
                 onChange={(e) => setIsChecked(e.target.checked)}
               />
               <label
-                htmlFor="default-checkbox"
+                htmlFor="terms-checkbox"
                 className="text-[16px] font-montserrat font-normal leading-[28px] text-black"
               >
                 J’accepte les termes et conditions. Voir les Conditions
                 d’utilisation
               </label>
             </div>
-            {checkboxError && (
-              <p className="text-red-500 text-sm">{checkboxError}</p>
-            )}
+            {checkboxError && <p className="text-red-500 text-sm">{checkboxError}</p>}
             <button
               onClick={handleClick}
-              className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
+              className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D] disabled:opacity-50"
+              disabled={loading}
             >
-              Continuer
+              {loading ? "Envoi en cours..." : "Continuer"}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

@@ -117,7 +117,7 @@ const Mission = () => {
               )}
               {contractType === "FreeLance" && (
                 <div className="gap-4 flex justify-start">
-                  <div className="flex gap-3 mb-4 border-2 items-center">
+                  <div className="flex gap-3 mb-4   items-center">
                     <input
                       id="portage-checkbox"
                       type="checkbox"
@@ -132,7 +132,7 @@ const Mission = () => {
                       Portage
                     </label>
                   </div>
-                  <div className="flex gap-3 mb-4 border-2 items-center">
+                  <div className="flex gap-3 mb-4   items-center">
                     <input
                       id="auto-entrepreneur-checkbox"
                       type="checkbox"

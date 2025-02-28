@@ -62,7 +62,7 @@ const VerificationEmail = () => {
           pour continuer.
         </p>
         <div className="flex pt-8 pb-8 items-center justify-center gap-5 mt-8 mb-8">
-          {[...Array(6)].map((_, index) => (
+          {[...Array(5)].map((_, index) => (
             <input
               key={index}
               type="tel"

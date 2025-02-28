@@ -9,7 +9,8 @@ import { useCVData } from "../../Context/CVDataContext"; // Import the useCVData
 
 const Details = () => {
   const navigate = useNavigate();
-  const { setEmail, setNumero, setFile, setProfileData } = useCVData(); // Destructure setters from the context
+  const { setEmail, setNumero, setFile, setProfileData } = useCVData(); // Context functions
+  const [file, setFileState] = useState(null);
   const [fileName, setFileName] = useState("");
   const [email, setEmailState] = useState("");
   const [telephone, setTelephone] = useState("");
@@ -22,7 +23,9 @@ const Details = () => {
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
-      setFileName(acceptedFiles[0].name);
+      const uploadedFile = acceptedFiles[0];
+      setFileState(uploadedFile);
+      setFileName(uploadedFile.name);
       setFileError("");
     }
   }, []);
@@ -36,13 +39,13 @@ const Details = () => {
     e.preventDefault();
     let valid = true;
 
-    // Reset previous errors
+    // Reset errors
     setEmailError("");
     setTelephoneError("");
     setFileError("");
     setCheckboxError("");
 
-    // Validate fields
+    // Validation
     if (!email) {
       setEmailError("Veuillez remplir le champ Email.");
       valid = false;
@@ -51,7 +54,7 @@ const Details = () => {
       setTelephoneError("Veuillez remplir le champ Téléphone.");
       valid = false;
     }
-    if (!fileName) {
+    if (!file) {
       setFileError("Veuillez télécharger un fichier PDF.");
       valid = false;
     }
@@ -62,20 +65,16 @@ const Details = () => {
 
     if (!valid) return;
 
-    setLoading(true); // Disable button during API request
+    setLoading(true);
 
-    // Update context with the user input data
+    // Update context with user input
     setEmail(email);
     setNumero(telephone);
     setFile(fileName);
-    setProfileData({
-      email,
-      telephone,
-      file: fileName,
-    });
 
     try {
-      const response = await fetch(
+      // 1. Send email verification request
+      const otpResponse = await fetch(
         "https://datamedconnectbackend.onrender.com/api/otp/send",
         {
           method: "POST",
@@ -84,18 +83,25 @@ const Details = () => {
         }
       );
 
-      const data = await response.json();
+      const otpData = await otpResponse.json();
 
-      if (response.ok) {
-        localStorage.setItem("verificationEmail", email);
-        navigate(`/Verification`, { state: { email } }); // Pass email to the navigation page
-      } else {
-        setEmailError(data.message || "Une erreur s'est produite.");
+      if (!otpResponse.ok) {
+        setEmailError(otpData.message || "Une erreur s'est produite.");
+        setLoading(false);
+        return;
       }
+
+      localStorage.setItem("verificationEmail", email);
+
+      // 2. After successfully sending OTP, navigate to /Verification
+      navigate(`/Verification`, { state: { email } });
+
     } catch (error) {
-      setEmailError("Impossible d'envoyer le code OTP. Vérifiez votre connexion.");
+      setEmailError(
+        "Impossible d'envoyer le code OTP. Vérifiez votre connexion."
+      );
     } finally {
-      setLoading(false); // Re-enable button
+      setLoading(false);
     }
   };
 
@@ -108,7 +114,7 @@ const Details = () => {
           paragraphe=" Partagez vos coordonnées et votre CV pour que nous puissions vous proposer des opportunités adaptées à votre profil."
         />
         <div className="p-5">
-          <form action="" className="space-y-4">
+          <form className="space-y-4">
             <div className="space-y-4">
               <label htmlFor="email">Email*</label>
               <input
@@ -118,7 +124,9 @@ const Details = () => {
                 value={email}
                 onChange={(e) => setEmailState(e.target.value)}
               />
-              {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+              {emailError && (
+                <p className="text-red-500 text-sm">{emailError}</p>
+              )}
             </div>
             <div className="space-y-2">
               <label htmlFor="telephone">Téléphone*</label>
@@ -163,28 +171,15 @@ const Details = () => {
                 d’utilisation
               </label>
             </div>
-            {checkboxError && <p className="text-red-500 text-sm">{checkboxError}</p>}
+            {checkboxError && (
+              <p className="text-red-500 text-sm">{checkboxError}</p>
+            )}
             <button
               onClick={handleClick}
               className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D] disabled:opacity-50"
               disabled={loading}
             >
               {loading ? "Envoi en cours..." : "Continuer"}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M5.83331 14.1666L14.1666 5.83325M14.1666 5.83325H5.83331M14.1666 5.83325V14.1666"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
             </button>
           </form>
         </div>

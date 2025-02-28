@@ -17,10 +17,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Deposer" element={<Details />} />
         <Route path="/Verification" element={<VerificationEmail />} />
-        <Route path="/Info" element={<Info />} />
         <Route path="/Mission" element={<Mission />} />
-        <Route path="/Expertise" element={<Expertise />} />
-        <Route path="/Liens" element={<Lien />} />
       </Routes>
     </div>
   );

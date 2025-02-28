@@ -8,18 +8,14 @@ const Mission = () => {
   const navigate = useNavigate();
 
   const [contractType, setContractType] = useState("");
-  const [workLocation, setWorkLocation] = useState("");
   const [experience, setExperience] = useState("");
   const [pretentionSalariale, setPretentionSalariale] = useState("");
-  const [tjmLongue, setTjmLongue] = useState("");
-  const [tjmCourte, setTjmCourte] = useState("");
+  const [tjm, setTjm] = useState("");
 
   const [contractTypeError, setContractTypeError] = useState("");
-  const [workLocationError, setWorkLocationError] = useState("");
   const [experienceError, setExperienceError] = useState("");
   const [pretentionSalarialeError, setPretentionSalarialeError] = useState("");
-  const [tjmLongueError, setTjmLongueError] = useState("");
-  const [tjmCourteError, setTjmCourteError] = useState("");
+  const [tjmError, setTjmError] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -32,13 +28,6 @@ const Mission = () => {
       setContractTypeError("");
     }
 
-    if (!workLocation) {
-      setWorkLocationError("Veuillez sélectionner une localisation.");
-      valid = false;
-    } else {
-      setWorkLocationError("");
-    }
-
     if (!experience) {
       setExperienceError("Veuillez remplir le champ Expérience.");
       valid = false;
@@ -46,7 +35,7 @@ const Mission = () => {
       setExperienceError("");
     }
 
-    if (contractType === "CDI" || contractType === "Both") {
+    if (contractType === "CDI") {
       if (!pretentionSalariale) {
         setPretentionSalarialeError(
           "Veuillez sélectionner une prétention salariale."
@@ -57,19 +46,12 @@ const Mission = () => {
       }
     }
 
-    if (contractType === "FreeLance" || contractType === "Both") {
-      if (!tjmLongue) {
-        setTjmLongueError("Veuillez remplir le champ TJM mission longue.");
+    if (contractType === "FreeLance") {
+      if (!tjm) {
+        setTjmError("Veuillez remplir le champ TJM mission.");
         valid = false;
       } else {
-        setTjmLongueError("");
-      }
-
-      if (!tjmCourte) {
-        setTjmCourteError("Veuillez remplir le champ TJM mission courte.");
-        valid = false;
-      } else {
-        setTjmCourteError("");
+        setTjmError("");
       }
     }
 
@@ -102,33 +84,9 @@ const Mission = () => {
                 </option>
                 <option value="CDI">CDI</option>
                 <option value="FreeLance">Freelance</option>
-                <option value="Both">CDI & Freelance</option>
               </select>
               {contractTypeError && (
                 <p className="text-red-500 text-sm">{contractTypeError}</p>
-              )}
-            </div>
-
-            {/* Work Location Selection */}
-            <div className="space-y-2">
-              <label htmlFor="workLocation">
-                Type de Contrat (Localisation)*
-              </label>
-              <select
-                id="workLocation"
-                onChange={(e) => setWorkLocation(e.target.value)}
-                value={workLocation}
-                className="flex w-full sm:w-[641px] p-[15px_20px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
-              >
-                <option value="" disabled hidden>
-                  Ex: Télétravail, Hybride
-                </option>
-                <option value="SurSite">Sur Site</option>
-                <option value="Hybride">Hybride</option>
-                <option value="FullRemote">Full Remote</option>
-              </select>
-              {workLocationError && (
-                <p className="text-red-500 text-sm">{workLocationError}</p>
               )}
             </div>
 
@@ -149,7 +107,7 @@ const Mission = () => {
             </div>
 
             {/* Conditionally render fields based on contractType */}
-            {(contractType === "CDI" || contractType === "Both") && (
+            {contractType === "CDI" && (
               <div className="space-y-2">
                 <label htmlFor="pretentionSalariale">
                   Prétention Salariale*
@@ -176,37 +134,19 @@ const Mission = () => {
               </div>
             )}
 
-            {(contractType === "FreeLance" || contractType === "Both") && (
-              <>
-                <div className="space-y-2">
-                  <label htmlFor="tjmLongue">TJM mission longue*</label>
-                  <input
-                    id="tjmLongue"
-                    type="tel"
-                    className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
-                    placeholder="Ex: 500€/jour"
-                    value={tjmLongue}
-                    onChange={(e) => setTjmLongue(e.target.value)}
-                  />
-                  {tjmLongueError && (
-                    <p className="text-red-500 text-sm">{tjmLongueError}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="tjmCourte">TJM mission courte*</label>
-                  <input
-                    id="tjmCourte"
-                    type="tel"
-                    className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
-                    placeholder="Ex: 600€/jour"
-                    value={tjmCourte}
-                    onChange={(e) => setTjmCourte(e.target.value)}
-                  />
-                  {tjmCourteError && (
-                    <p className="text-red-500 text-sm">{tjmCourteError}</p>
-                  )}
-                </div>
-              </>
+            {contractType === "FreeLance" && (
+              <div className="space-y-2">
+                <label htmlFor="tjm">TJM mission*</label>
+                <input
+                  id="tjm"
+                  type="tel"
+                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
+                  placeholder="Ex: 600€/jour"
+                  value={tjm}
+                  onChange={(e) => setTjm(e.target.value)}
+                />
+                {tjmError && <p className="text-red-500 text-sm">{tjmError}</p>}
+              </div>
             )}
 
             <button

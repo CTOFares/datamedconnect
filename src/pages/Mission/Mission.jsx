@@ -3,19 +3,31 @@ import Nav from "../../Components/Nav";
 import Footer from "../../Components/Footer";
 import LeftSide from "../../Components/LeftSide";
 import { useNavigate } from "react-router-dom";
+import { useCVData } from "../../Context/CVDataContext";
 
 const Mission = () => {
   const navigate = useNavigate();
+  const {
+    setMission,
+    setExperience,
+    setPretentionSalariale,
+    setPortage,
+    setAutoEntrepreuneur,
+    setTjm,
+  } = useCVData(); // Get the setters from context
 
   const [contractType, setContractType] = useState("");
-  const [experience, setExperience] = useState("");
-  const [pretentionSalariale, setPretentionSalariale] = useState("");
-  const [tjm, setTjm] = useState("");
+  const [experience, setExperienceLocal] = useState("");
+  const [pretentionSalariale, setPretentionSalarialeLocal] = useState("");
+  const [tjm, setTjmLocal] = useState("");
+  const [portage, setPortageLocal] = useState(false);
+  const [autoEntrepreneur, setAutoEntrepreneurLocal] = useState(false);
 
   const [contractTypeError, setContractTypeError] = useState("");
   const [experienceError, setExperienceError] = useState("");
   const [pretentionSalarialeError, setPretentionSalarialeError] = useState("");
   const [tjmError, setTjmError] = useState("");
+  const [checkboxError, setCheckboxError] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -53,10 +65,25 @@ const Mission = () => {
       } else {
         setTjmError("");
       }
+
+      if (!portage && !autoEntrepreneur) {
+        setCheckboxError("Veuillez sélectionner au moins une option.");
+        valid = false;
+      } else {
+        setCheckboxError("");
+      }
     }
 
     if (valid) {
-      navigate("/Expertise");
+      setMission(contractType);
+      setExperience(experience);
+
+      setPretentionSalariale(pretentionSalariale || "0");
+      setTjm(tjm || "0");
+      setPortage(portage || false);
+      setAutoEntrepreuneur(autoEntrepreneur || false);
+
+      navigate("/Profile");
     }
   };
 
@@ -88,6 +115,45 @@ const Mission = () => {
               {contractTypeError && (
                 <p className="text-red-500 text-sm">{contractTypeError}</p>
               )}
+              {contractType === "FreeLance" && (
+                <div className="gap-4 flex justify-start">
+                  <div className="flex gap-3 mb-4 border-2 items-center">
+                    <input
+                      id="portage-checkbox"
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                      checked={portage}
+                      onChange={(e) => setPortageLocal(e.target.checked)}
+                    />
+                    <label
+                      htmlFor="portage-checkbox"
+                      className="text-[16px] font-montserrat font-normal leading-[28px] text-black"
+                    >
+                      Portage
+                    </label>
+                  </div>
+                  <div className="flex gap-3 mb-4 border-2 items-center">
+                    <input
+                      id="auto-entrepreneur-checkbox"
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                      checked={autoEntrepreneur}
+                      onChange={(e) =>
+                        setAutoEntrepreneurLocal(e.target.checked)
+                      }
+                    />
+                    <label
+                      htmlFor="auto-entrepreneur-checkbox"
+                      className="text-[16px] font-montserrat font-normal leading-[28px] text-black"
+                    >
+                      Auto Entrepreuneur
+                    </label>
+                  </div>
+                </div>
+              )}
+              {checkboxError && (
+                <p className="text-red-500 text-sm">{checkboxError}</p>
+              )}
             </div>
 
             {/* Experience Input */}
@@ -99,7 +165,7 @@ const Mission = () => {
                 className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
                 placeholder="Ex: 2 ans"
                 value={experience}
-                onChange={(e) => setExperience(e.target.value)}
+                onChange={(e) => setExperienceLocal(e.target.value)}
               />
               {experienceError && (
                 <p className="text-red-500 text-sm">{experienceError}</p>
@@ -114,7 +180,7 @@ const Mission = () => {
                 </label>
                 <select
                   id="pretentionSalariale"
-                  onChange={(e) => setPretentionSalariale(e.target.value)}
+                  onChange={(e) => setPretentionSalarialeLocal(e.target.value)}
                   value={pretentionSalariale}
                   className="flex w-full sm:w-[641px] p-[15px_20px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
                 >
@@ -143,7 +209,7 @@ const Mission = () => {
                   className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
                   placeholder="Ex: 600€/jour"
                   value={tjm}
-                  onChange={(e) => setTjm(e.target.value)}
+                  onChange={(e) => setTjmLocal(e.target.value)}
                 />
                 {tjmError && <p className="text-red-500 text-sm">{tjmError}</p>}
               </div>
@@ -151,7 +217,7 @@ const Mission = () => {
 
             <button
               onClick={handleClick}
-              type="submit"
+              type="button" // Change from type="submit" to type="button"
               className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
             >
               Continuer

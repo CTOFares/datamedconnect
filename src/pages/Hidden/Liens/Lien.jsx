@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "../../Components/Nav";
-import Footer from "../../Components/Footer";
-import LeftSide from "../../Components/LeftSide";
+import Nav from "../../../Components/Nav";
+import Footer from "../../../Components/Footer";
+import LeftSide from "../../../Components/LeftSide";
 
 const Lien = () => {
   return (

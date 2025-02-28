@@ -4,10 +4,8 @@ import Home from "../pages/Home/Home";
 import Details from "../pages/Details/Details";
 import VerificationEmail from "../pages/EmailVerif/VerificationEmail";
 import ScrollToTop from "../Utils/ScrollToTop";
-import Info from "../pages/Info/Info";
 import Mission from "../pages/Mission/Mission";
-import Lien from "../pages/Liens/Lien";
-import Expertise from "../pages/Expertise/Expertise";
+import Profile from "../pages/Profile/Profile";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +16,7 @@ const AppRoutes = () => {
         <Route path="/Deposer" element={<Details />} />
         <Route path="/Verification" element={<VerificationEmail />} />
         <Route path="/Mission" element={<Mission />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </div>
   );

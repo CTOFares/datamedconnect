@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../Components/Footer";
-import Nav from "../../Components/Nav";
-import LeftSide from "../../Components/LeftSide";
+import Footer from "../../../Components/Footer";
+import Nav from "../../../Components/Nav";
+import LeftSide from "../../../Components/LeftSide";
 import { useNavigate } from "react-router-dom";
 
 const Info = () => {

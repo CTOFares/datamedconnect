@@ -13,6 +13,12 @@ import client11 from "./clients/client11.png";
 import client12 from "./clients/client12.png";
 import Profile from "./Profile.webp";
 import pdf from "./pdp.jpg";
+import pdp from "./pdp.png";
+import behance from "./behance.png";
+import dribble from "./dribble.png";
+import github from "./github.png";
+import sitePerso from "./sitePerso.png";
+import linkedIn from "./linkedIn.png";
 
 import logowhite from "./logowhite.png";
 import iconpdf from "./iconpdf.svg";
@@ -20,6 +26,15 @@ import grid from "./grid.svg";
 import layers from "./layers.svg";
 import star from "./star.svg";
 import macbook from "./macbook.png";
+import car from "./car.svg";
+import location from "./location.svg";
+import Building  from "./Building.svg";
+import graduation  from "./graduation.svg";
+import certif  from "./certif.svg";
+
+
+
+
 // Export assets
 export const assets = {
   logo,
@@ -31,8 +46,23 @@ export const assets = {
   macbook,
   Profile,
   pdf,
+  pdp
 };
 
+export const links ={
+  behance,
+  linkedIn,
+  dribble,
+  github,
+  sitePerso
+}
+export const icon ={
+  car,
+  location,
+  Building,
+  graduation,
+  certif
+}
 export const carouselclient = {
   client1,
   client2,

@@ -5,11 +5,13 @@ import LeftSide from "../../Components/LeftSide";
 import { assets } from "../../assets/assets";
 import Footer from "../../Components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useCVData } from "../../Context/CVDataContext"; // Import the useCVData hook
 
 const Details = () => {
   const navigate = useNavigate();
+  const { setEmail, setNumero, setFile, setProfileData } = useCVData(); // Destructure setters from the context
   const [fileName, setFileName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmailState] = useState("");
   const [telephone, setTelephone] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -62,6 +64,16 @@ const Details = () => {
 
     setLoading(true); // Disable button during API request
 
+    // Update context with the user input data
+    setEmail(email);
+    setNumero(telephone);
+    setFile(fileName);
+    setProfileData({
+      email,
+      telephone,
+      file: fileName,
+    });
+
     try {
       const response = await fetch(
         "https://datamedconnectbackend.onrender.com/api/otp/send",
@@ -104,7 +116,7 @@ const Details = () => {
                 className="flex w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
                 placeholder="Contact@consultingdatamed.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmailState(e.target.value)}
               />
               {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             </div>

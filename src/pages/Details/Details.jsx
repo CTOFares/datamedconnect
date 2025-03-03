@@ -5,11 +5,11 @@ import LeftSide from "../../Components/LeftSide";
 import { assets } from "../../assets/assets";
 import Footer from "../../Components/Footer";
 import { useNavigate } from "react-router-dom";
-import { useCVData } from "../../Context/CVDataContext"; // Import the useCVData hook
+import { useCVData } from "../../Context/CVDataContext";
 
 const Details = () => {
   const navigate = useNavigate();
-  const { setEmail, setNumero, setFile, setProfileData } = useCVData(); // Context functions
+  const { setEmail, setNumero, setFile, setProfileData } = useCVData();
   const [file, setFileState] = useState(null);
   const [fileName, setFileName] = useState("");
   const [email, setEmailState] = useState("");
@@ -39,13 +39,11 @@ const Details = () => {
     e.preventDefault();
     let valid = true;
 
-    // Reset errors
     setEmailError("");
     setTelephoneError("");
     setFileError("");
     setCheckboxError("");
 
-    // Validation
     if (!email) {
       setEmailError("Veuillez remplir le champ Email.");
       valid = false;
@@ -67,13 +65,18 @@ const Details = () => {
 
     setLoading(true);
 
-    // Update context with user input
+    // Clear previous context data explicitly
+    setEmail("");
+    setNumero("");
+    setFile("");
+    setProfileData(null); // Reset profileData before setting new data
+
+    // Update context with new user input
     setEmail(email);
     setNumero(telephone);
     setFile(fileName);
 
     try {
-      // 1. Send email verification request
       const otpResponse = await fetch(
         "https://datamedconnectbackend.onrender.com/api/otp/send",
         {
@@ -93,13 +96,35 @@ const Details = () => {
 
       localStorage.setItem("verificationEmail", email);
 
-      // 2. After successfully sending OTP, navigate to /Verification
-      navigate(`/Verification`, { state: { email } });
+      const formData = new FormData();
+      formData.append("cv", file);
+      formData.append("prompt", "Extract Data From CV");
 
-    } catch (error) {
-      setEmailError(
-        "Impossible d'envoyer le code OTP. Vérifiez votre connexion."
+      const profileResponse = await fetch(
+        "https://datamedconnectbackend.onrender.com/api/cv/Profile",
+        {
+          method: "POST",
+          body: formData,
+        }
       );
+
+      const profileData = await profileResponse.json();
+
+      if (profileResponse.ok) {
+        console.log("API Response:", profileData);
+        const extractedProfileData = JSON.parse(profileData.data);
+        console.log("Extracted Profile Data (Parsed):", extractedProfileData);
+
+        // Clear old localStorage data and set new data
+        localStorage.removeItem("profileData"); // Clear old data
+        setProfileData(extractedProfileData); // Set new data in context
+        localStorage.setItem("profileData", JSON.stringify(extractedProfileData)); // Store new data
+        console.log("Stored Successfully");
+
+        navigate(`/Verification`, { state: { email } });
+      } else {
+        setFileError(profileData.message || "Erreur lors de l'analyse du CV.");
+      }
     } finally {
       setLoading(false);
     }

@@ -12,7 +12,7 @@ export const CVDataProvider = ({ children }) => {
   const [ProfileData, setProfileData] = useState({});
   const [Mission, setMission] = useState("");
   const [Experience, setExperience] = useState("");
-  const [PretentionSalariale, setPretentionSalariale] = useState("");
+  const [PretentionSalariale, setPretentionSalariale] = useState("Null");
   const [Portage, setPortage] = useState("");
   const [AutoEntrepreuneur, setAutoEntrepreuneur] = useState("");
   const [Tjm, setTjm] = useState("");

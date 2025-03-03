@@ -5,7 +5,8 @@ const Experience = ({
   NomEntreprise,
   Date,
   Localisation,
-  paragrapheExperience,
+  Realisation,
+  context
 }) => {
   return (
     <div className="flex gap-5 ">
@@ -23,9 +24,16 @@ const Experience = ({
               {Localisation}
             </p>
           </div>
-          <div>
+          <div className="">
+            <p className="text-[#535353] font-montserrat text-[16px]  font-normal leading-[14.448px]" >Context :</p>
             <p className="text-[#535353] font-montserrat text-[14px] font-normal leading-[14.448px]">
-              {paragrapheExperience}
+              {context}
+            </p>
+          </div>
+          <div>
+          <p className="text-[#535353] font-montserrat text-[16px]  font-normal leading-[14.448px]" >Realisation :</p>
+            <p className="text-[#535353] font-montserrat text-[14px] font-normal leading-[14.448px]">
+              {Realisation}
             </p>
           </div>
         </div>

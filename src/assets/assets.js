@@ -28,12 +28,15 @@ import star from "./star.svg";
 import macbook from "./macbook.png";
 import car from "./car.svg";
 import location from "./location.svg";
-import Building  from "./Building.svg";
-import graduation  from "./graduation.svg";
-import certif  from "./certif.svg";
-
-
-
+import Building from "./Building.svg";
+import graduation from "./graduation.svg";
+import certif from "./certif.svg";
+import check from "./check.svg";
+import tinder from "./tinder.svg";
+import tv from "./tv.svg";
+import left from "./left.png";
+import right from "./right.png";
+import lock from "./lock.png";
 
 // Export assets
 export const assets = {
@@ -46,23 +49,29 @@ export const assets = {
   macbook,
   Profile,
   pdf,
-  pdp
+  pdp,
+  check,
+  tinder,
+  tv,
+  left,
+  right,
+  lock
 };
 
-export const links ={
+export const links = {
   behance,
   linkedIn,
   dribble,
   github,
-  sitePerso
-}
-export const icon ={
+  sitePerso,
+};
+export const icon = {
   car,
   location,
   Building,
   graduation,
-  certif
-}
+  certif,
+};
 export const carouselclient = {
   client1,
   client2,

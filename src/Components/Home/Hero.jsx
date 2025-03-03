@@ -10,64 +10,96 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="flex p-4 justify-center items-center">
+    <div className="relative rounded-b-[30px] min-h-screen mb-[500px] bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
+      <div className="w-full items-center justify-between flex p-9">
         <img
-          src={assets.logo}
-          alt="Datamed Logo"
-          className="w-[194px] h-[50px]"
+          src={assets.logowhite}
+          alt="Logo"
+          onClick={handleClick}
+          className="cursor-pointer"
         />
+        <div className="sm:flex hidden gap-4">
+          <a
+            href="/"
+            className="text-white font-lato text-[16px] font-normal leading-[120%]"
+          >
+            Acceuil
+          </a>
+          <a
+            href="/Apropos"
+            className="text-white font-lato text-[16px] font-normal leading-[120%]"
+          >
+            À propos de nous
+          </a>
+          <a
+            href="/ContactezNous"
+            className="text-white font-lato text-[16px] font-normal leading-[120%]"
+          >
+            Contactez Nous
+          </a>
+        </div>
       </div>
-      <div className="pt-10 flex items-center justify-center">
-        <h1 className="mx-auto text-center max-w-4xl font-display text-5xl font-semibold tracking-tight text-[#02B2E1] sm:text-7xl">
-          DATAMED <br />
-          <span className="relative whitespace-nowrap">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 418 42"
-              className="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70"
-              preserveAspectRatio="none"
-            >
-              <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z" />
-            </svg>
-            <span className="font-montserrat text-[60px] sm:text-[150px] font-semibold leading-[120.402%] uppercase bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
-              Connect
-            </span>
-          </span>
-          <p className="font-montserrat text-black  text-[20px] sm:text-[40px] mt-6">
-            Le{" "}
-            <span className="bg-gradient-to-b from-[#FF655C] to-[#FF3179] bg-clip-text text-transparent font-poppins text-[20px] sm:text-[45px] font-bold leading-[120.402%]">
+      <div className="space-y-4 p-9">
+        <div className="w-full sm:flex space-y-4 sm:space-y-0  items-center justify-center gap-4">
+          <div className="gap-4 flex items-center justify-center">
+            <img src={assets.check} alt="" />
+            <p className="text-[#A5A5A5] text-center font-montserrat text-sm font-medium leading-normal">
+              200,000 Consultant Confirmé
+            </p>
+          </div>
+          <div className="gap-4 flex items-center justify-center">
+            <img src={assets.check} alt="" />
+            <p className="text-[#A5A5A5] text-center font-montserrat text-sm font-medium leading-normal">
+              50+ Spécialité
+            </p>
+          </div>
+        </div>
+        <div>
+          <h1 className="text-[#FFF] text-center font-montserrat text-lg font-semibold leading-[21.672px]">
+            DATAMED CONNECT
+          </h1>
+        </div>
+        <div className="flex gap-4 w-full items-center justify-center">
+          <p className="text-[#FFF] font-montserrat text-[90px] font-medium leading-[108.362px]">
+            Le
+            <span className="text-[#C8EDC7] font-montserrat text-[90px] font-bold leading-[108.362px]">
               Tinder
-            </span>{" "}
+            </span>
+          </p>
+          <img src={assets.tinder} alt="" />
+          <p className="text-[#FFF] font-montserrat text-[90px] font-medium leading-[108.362px]">
             des ESN
           </p>
-        </h1>
+        </div>
+        <div>
+          <p className="text-[#FFF] text-center font-montserrat text-[18px] font-normal leading-[21.672px]">
+            Votre vitrine pour devenir visible de 2224 ESN et 923 clients finaux.
+          </p>
+        </div>
+        <div className="flex gap-4 justify-center">
+          <button className="flex w-auto h-[52px] px-[19px] py-[13px] justify-center items-center gap-[10px] rounded-[14px] bg-[#02B2E1]">
+            <p className="text-[#FFF] font-montserrat text-[16px] font-normal leading-[19.264px]">
+              Je Crée Mon Profile
+            </p>
+          </button>
+          <button className="flex w-auto h-[52px] px-[19px] py-[13px] justify-center items-center gap-[10px] rounded-[14px] bg-[#C8EDC7]">
+            <p className="flex gap-4 text-[#000] font-montserrat text-[16px] font-normal leading-[19.264px]">
+              <img src={assets.tv} alt="" />
+              Regarder le Demo
+            </p>
+          </button>
+        </div>
       </div>
-      <div className="h-auto py-6 w-auto flex justify-center items-center">
-        <img src={assets.macbook} alt="Macbook" />
-      </div>
-      <div className="justify-center items-center flex">
-        <button
-          onClick={handleClick}
-          className="flex w-auto text-white p-[13px_19px] gap-[10px] rounded-[14px] bg-[#173A6D]"
-        >
-          Déposer Votre CV
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <path
-              d="M5.83331 14.1666L14.1666 5.83325M14.1666 5.83325H5.83331M14.1666 5.83325V14.1666"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
+      <div className="absolute bottom-[-473px] left-1/2 transform -translate-x-1/2 p-14 flex gap-5 w-full">
+        <div>
+          <img src={assets.left} alt="" />
+        </div>
+        <div className="h-[560px] justify-center items-center flex w-full rounded-lg bg-[#FFF2F2]">
+          <img src={assets.lock} alt="" />
+        </div>
+        <div>
+          <img src={assets.right} alt="" />
+        </div>
       </div>
     </div>
   );

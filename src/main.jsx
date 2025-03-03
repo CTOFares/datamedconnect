@@ -6,9 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { CVDataProvider } from "./Context/CVDataContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <CVDataProvider>
+  <CVDataProvider>
+    <BrowserRouter>
       <App />
-    </CVDataProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </CVDataProvider>
 );

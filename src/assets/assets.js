@@ -17,7 +17,7 @@ import pdp from "./pdp.png";
 import behance from "./behance.png";
 import dribble from "./dribble.png";
 import github from "./github.png";
-import sitePerso from "./sitePerso.png";
+import sitePerso from "./SitePerso.png";
 import linkedIn from "./linkedIn.png";
 
 import logowhite from "./logowhite.png";

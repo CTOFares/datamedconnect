@@ -14,7 +14,7 @@ const Consultant = () => {
       <div className="sm:gap-40 sm:flex space-y-4">
         <h1 className="text-[#060606] font-montserrat text-[30px] font-semibold leading-[120.402%]">
           Ce que
-          <p className="bg-gradient-to-r mx-2 from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-poppins text-4xl font-semibold leading-[120.402%] uppercase">
+          <p className="bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-poppins text-4xl font-semibold leading-[120.402%] uppercase">
             DatamedConnect
           </p>
           vous offre

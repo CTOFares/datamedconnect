@@ -209,7 +209,7 @@ const Details = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

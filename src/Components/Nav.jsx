@@ -10,7 +10,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="w-full items-center justify-center sm:justify-start flex p-9">
+    <div className="w-full items-center justify-center sm:justify-start flex p-12">
       <img
         src={assets.logo}
         alt="Logo"

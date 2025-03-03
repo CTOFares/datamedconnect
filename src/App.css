@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* App.css */
+
+/* Apply to the root html or body element to hide scrollbar globally */
+html, body {
+    overflow-y: scroll; /* Ensures content remains scrollable */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
+  /* Hide scrollbar in Webkit browsers (Chrome, Safari, Edge) */
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Optional: Ensure the Home page container takes full height if needed */
+  #root {
+    min-height: 100vh; /* Ensures the root div stretches to full viewport height */
+  }

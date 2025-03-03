@@ -10,7 +10,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative rounded-b-[30px] min-h-screen mb-[500px] sm:mb-[500px] bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
+    <div className="relative rounded-b-[30px] min-h-screen mb-[500px] lg:mb-[500px]  bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
       <div className="w-full items-center justify-between flex sm:p-9">
         <img
           src={assets.logowhite}
@@ -81,14 +81,16 @@ const Hero = () => {
         </div>
         <div className="sm:flex   space-y-5 sm:space-y-0 items-center gap-4 justify-center">
           <div className="  flex justify-center items-center">
-            <button className="flex w-auto h-[52px] px-[19px] py-[13px] justify-center items-center gap-[10px] rounded-[14px] bg-[#02B2E1]">
+            <button
+              onClick={handleClick}
+              className="flex w-auto h-[52px] px-[19px] py-[13px] justify-center items-center gap-[10px] rounded-[14px] bg-[#02B2E1]"
+            >
               <p className="text-[#FFF] font-montserrat text-[18px] sm:text-[16px] font-normal leading-[19.264px]">
                 Je Crée Mon Profile
               </p>
             </button>
           </div>
           <div className="flex justify-center items-center">
-          
             <button className="flex w-auto h-[52px] px-[19px] py-[13px] justify-center items-center gap-[10px] rounded-[14px] bg-[#C8EDC7]">
               <p className="flex gap-4 text-[#000] font-montserrat text-[18px] font-normal leading-[19.264px]">
                 <img src={assets.tv} alt="" />
@@ -98,7 +100,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-[-500px] sm:bottom-[-473px] left-1/2 transform -translate-x-1/2 sm:p-14 flex gap-5 w-full">
+      <div className="absolute bottom-[-500px] lg:bottom-[-450px] left-1/2 transform -translate-x-1/2 sm:p-14 flex gap-5 w-full">
         <div className="hidden sm:block">
           <img src={assets.left} alt="" />
         </div>

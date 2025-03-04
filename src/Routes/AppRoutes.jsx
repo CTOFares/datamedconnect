@@ -6,10 +6,13 @@ import VerificationEmail from "../pages/EmailVerif/VerificationEmail";
 import ScrollToTop from "../Utils/ScrollToTop";
 import Mission from "../pages/Mission/Mission";
 import Profile from "../pages/Profile/Profile";
+import Policy from "../pages/Politique/Policy";
+import Cookies from "../pages/Politique/Cookies";
+import Mention from "../pages/Politique/Mention";
 
 const AppRoutes = () => {
   return (
-    <div className="bg-[#FAFAFA]">
+    <div className="bg-[#FFFFFF]">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,6 +20,9 @@ const AppRoutes = () => {
         <Route path="/Verification" element={<VerificationEmail />} />
         <Route path="/Mission" element={<Mission />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Politique" element={<Policy />} />
+        <Route path="/Mentionlegales" element={<Mention />} />
+        <Route path="/Cookies" element={<Cookies />} />
       </Routes>
     </div>
   );

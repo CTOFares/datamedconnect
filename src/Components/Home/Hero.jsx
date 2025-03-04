@@ -8,20 +8,24 @@ const Hero = () => {
   const handleClick = () => {
     navigate("/Deposer");
   };
+  const handleLogo = () => {
+    navigate("/");
+  };
+
 
   return (
-    <div className="relative rounded-b-[30px] min-h-screen mb-[500px] lg:mb-[500px]  bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
+    <div className="relative rounded-b-[10px] min-h-screen mb-[500px] lg:mb-[500px]  bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
       <div className="w-full items-center justify-between flex sm:p-9">
         <img
           src={assets.logowhite}
           alt="Logo"
-          onClick={handleClick}
+          onClick={handleLogo}
           className="cursor-pointer"
         />
-        <div className="sm:flex hidden gap-4">
+        <div className="sm:flex hidden gap-4 p-9">
           <a
             href="/"
-            className="text-white font-montserrat text-[16px] font-normal leading-[120%]"
+            className="text-white font-montserrat text-[16px] underline font-normal leading-[120%]"
           >
             Acceuil
           </a>
@@ -39,7 +43,7 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="space-y-4 p-9">
+      <div className="space-y-4 p-1">
         <div className="w-full sm:flex space-y-4 sm:space-y-0  items-center justify-center gap-4">
           <div className="gap-4 flex items-center justify-center">
             <img src={assets.check} alt="" />

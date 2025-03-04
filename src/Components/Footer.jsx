@@ -1,5 +1,5 @@
 import React from "react";
-import { assets } from "../assets/assets";
+import { assets, icon } from "../assets/assets";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
@@ -49,6 +49,7 @@ const Footer = () => {
             fill="none"
           >
             <circle cx="15" cy="15.5" r="15" fill="white" />
+            <image href={icon.twitter} x="7" y="7.5" width="16" height="16" />
           </svg>
         </div>
       </div>
@@ -75,19 +76,19 @@ const Footer = () => {
         </p>
         <div className="flex flex-col text-center md:flex-row gap-3 justify-center md:justify-center">
           <NavLink
-            to="/politiquedeconfidentialite"
+            to="/Politique"
             className="text-white font-montserrat text-[16px] font-normal leading-[28px] underline decoration-solid"
           >
             Politique de confidentialité
           </NavLink>
           <NavLink
-            to="/Mentionslegales"
+            to="/Mentionlegales"
             className="text-white font-montserrat text-[16px] font-normal leading-[28px] underline decoration-solid"
           >
             Mentions légales
           </NavLink>
           <NavLink
-            to="/politiquedecookies"
+            to="/Cookies"
             className="text-white font-montserrat text-[16px] font-normal leading-[28px] underline decoration-solid"
           >
             Politique de cookies

@@ -69,7 +69,7 @@ const Details = () => {
     setEmail("");
     setNumero("");
     setFile("");
-    setProfileData(null); // Reset profileData before setting new data
+    // setProfileData(null); // Reset profileData before setting new data
 
     // Update context with new user input
     setEmail(email);
@@ -96,35 +96,38 @@ const Details = () => {
 
       localStorage.setItem("verificationEmail", email);
 
-      const formData = new FormData();
-      formData.append("cv", file);
-      formData.append("prompt", "Extract Data From CV");
+      // const formData = new FormData();
+      // formData.append("cv", file);
+      // formData.append("prompt", "Extract Data From CV");
 
-      const profileResponse = await fetch(
-        "https://datamedconnectbackend.onrender.com/api/cv/Profile",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      // const profileResponse = await fetch(
+      //   "https://datamedconnectbackend.onrender.com/api/cv/Profile",
+      //   {
+      //     method: "POST",
+      //     body: formData,
+      //   }
+      // );
 
-      const profileData = await profileResponse.json();
+      // const profileData = await profileResponse.json();
 
-      if (profileResponse.ok) {
-        console.log("API Response:", profileData);
-        const extractedProfileData = JSON.parse(profileData.data);
-        console.log("Extracted Profile Data (Parsed):", extractedProfileData);
+      // if (profileResponse.ok) {
+      //   console.log("API Response:", profileData);
+      //   const extractedProfileData = JSON.parse(profileData.data);
+      //   console.log("Extracted Profile Data (Parsed):", extractedProfileData);
 
-        // Clear old localStorage data and set new data
-        localStorage.removeItem("profileData"); // Clear old data
-        setProfileData(extractedProfileData); // Set new data in context
-        localStorage.setItem("profileData", JSON.stringify(extractedProfileData)); // Store new data
-        console.log("Stored Successfully");
+      //   // Clear old localStorage data and set new data
+      //   localStorage.removeItem("profileData"); // Clear old data
+      //   setProfileData(extractedProfileData); // Set new data in context
+      //   localStorage.setItem(
+      //     "profileData",
+      //     JSON.stringify(extractedProfileData)
+      //   ); // Store new data
+      //   console.log("Stored Successfully");
 
         navigate(`/Verification`, { state: { email } });
-      } else {
-        setFileError(profileData.message || "Erreur lors de l'analyse du CV.");
-      }
+      // } else {
+      //   setFileError(profileData.message || "Erreur lors de l'analyse du CV.");
+      // }
     } finally {
       setLoading(false);
     }
@@ -133,7 +136,7 @@ const Details = () => {
   return (
     <div className="">
       <Nav />
-      <div className="sm:flex pb-11 min-h-screen">
+      <div className="sm:flex pb-11 ">
         <LeftSide
           title="Déposer Votre CV"
           paragraphe=" Partagez vos coordonnées et votre CV pour que nous puissions vous proposer des opportunités adaptées à votre profil."
@@ -170,14 +173,23 @@ const Details = () => {
               <label htmlFor="pdfUpload">Télécharger le PDF*</label>
               <div
                 {...getRootProps()}
-                className={`flex items-center justify-center w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white cursor-pointer ${
+                className={`items-center justify-center w-full h-full sm:w-[641px] p-[18px_30px] rounded-[14px] border-[1px]  border-dashed border-[#000] bg-white cursor-pointer ${
                   isDragActive ? "bg-gray-200" : ""
                 }`}
               >
-                <input {...getInputProps()} />
-                <img src={assets.iconpdf} alt="PDF Icon" className="h-6 w-6" />
-                <span>{fileName || "Glisser et déposer Votre PDF"}</span>
+                <div className="  w-full flex flex-col justify-center text-center items-center">
+                  <input {...getInputProps()} />
+                  <img
+                    src={assets.iconpdf}
+                    alt="PDF Icon"
+                    className="h-12 w-12 "
+                  />
+                  <span>{fileName || "Glisser et déposer Votre PDF"}</span>
+                </div>
               </div>
+              <span className="text-[#B1B1B1] text-base font-normal leading-[28px]">
+                Impoter un fichier PFD (15mo Max)
+              </span>
               {fileError && <p className="text-red-500 text-sm">{fileError}</p>}
             </div>
             <div className="flex gap-3 mb-4">
@@ -192,8 +204,14 @@ const Details = () => {
                 htmlFor="terms-checkbox"
                 className="text-[16px] font-montserrat font-normal leading-[28px] text-black"
               >
-                J’accepte les termes et conditions. Voir les Conditions
-                d’utilisation
+                J’accepte{" "}
+                <a href="/Politique" className="underline">
+                  les termes et conditions
+                </a>
+                . Voir{" "}
+                <a href="/Mentionlegales" className="underline">
+                  les Conditions d’utilisation
+                </a>
               </label>
             </div>
             {checkboxError && (

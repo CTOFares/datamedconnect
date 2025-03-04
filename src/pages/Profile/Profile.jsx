@@ -10,30 +10,71 @@ import Langue from "../../Components/Home/Profile/Langue";
 import { useCVData } from "../../Context/CVDataContext";
 
 const Profile = () => {
-  const { profileData,Tjm,PretentionSalariale   } = useCVData();
+  // const { profileData,Tjm,PretentionSalariale   } = useCVData();
+  const profileData = {
+    Name: "Fares Safer",
+    Poste: "Senior Software Engineer",
+    Location: "Paris, France",
+    Mobilité: "Full Mobility",
+    AnnéeExperience: 8,
+    Age: 30,
+    Tarif: 500,
+    Skills: ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Docker"],
+    ExperienceProfessionnelle: [
+      {
+        NomEntreprise: "TechCorp",
+        Date: "2020 - Present",
+        Localisation: "Paris, France",
+        ParagrapheExperience:
+          "Leading a team of developers to build scalable web applications using React and Node.js. Managed cloud infrastructure on AWS, and worked on containerization with Docker.",
+      },
+      {
+        NomEntreprise: "DevSolutions",
+        Date: "2016 - 2020",
+        Localisation: "Lyon, France",
+        ParagrapheExperience:
+          "Developed web applications in JavaScript and supported backend development with Node.js. Implemented automated testing and CI/CD pipelines.",
+      },
+    ],
+    Formation: [
+      {
+        Diplome: "Master's in Computer Science",
+        Ecole: "University of Lyon",
+        Année: 2016,
+      },
+    ],
+    Certifications: [
+      {
+        Certif: "AWS Certified Solutions Architect",
+        Organisme: "Amazon",
+        AnnéeCertif: 2021,
+      },
+      {
+        Certif: "Docker Certified Associate",
+        Organisme: "Docker",
+        AnnéeCertif: 2020,
+      },
+    ],
+    Langues: [
+      {
+        Intitulé: "Francais",
+        Niveau: "Trés Bien",
+      },
+      {
+        Intitulé: "Anglais",
+        Niveau: "Trés Bien",
+      },
+    ],
+    Mission: [
+      {
+        TypedeContract: "CDI",
+      },
+    ],
+  };
 
-  useEffect(() => {
-    console.log("Profile Data from Context:", profileData);
-    if (!profileData) {
-      const storedProfileData = localStorage.getItem("profileData");
-      console.log("Profile Data from localStorage:", storedProfileData);
-    }
-  }, [profileData]);
-
-  const finalProfileData =
-    profileData || JSON.parse(localStorage.getItem("profileData"));
-
-  if (!finalProfileData) {
-    return (
-      <div>
-        <Nav />
-        <div className="text-center my-11">
-          <p>Loading profile data...</p>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  // Example of how to use the mock data
+  console.log(profileData.Name); // Output: John Doe
+  console.log(profileData.Skills); // Output: ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Docker"]
 
   return (
     <div>
@@ -45,27 +86,25 @@ const Profile = () => {
           </div>
           <div className="w-full h-full space-y-1">
             <h1 className="font-montserrat text-[40px] font-semibold leading-[120.402%] uppercase bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent">
-              {finalProfileData.Name}
+              {profileData.Name}
             </h1>
             <p className="text-[#141414] font-montserrat text-[30px] font-semibold leading-[120.402%]">
-              {finalProfileData.Poste}
+              {profileData.Poste || "Fares "}
             </p>
             <div className="flex gap-4 items-center">
               <div className="flex gap-4 items-center justify-center">
                 <img src={icon.location} className="w-[16px] h-[16px]" alt="" />
-                <span>{finalProfileData.Location}</span>
+                <span>{profileData.Location || "Fares "}</span>
               </div>
               <div className="flex gap-4 items-center justify-center">
                 <img src={icon.car} className="w-[16px] h-[16px]" alt="" />
-                <span>{finalProfileData.Mobilité}</span>
+                <span>{profileData.Mobilité || "Fares "}</span>
               </div>
             </div>
             <div className="flex justify-between items-center p-[24px_19px_24px_37px] w-full bg-white rounded-[15px] shadow-[0px_403px_113px_rgba(23,58,109,0),0px_258px_103px_rgba(23,58,109,0.01),0px_145px_87px_rgba(23,58,109,0.05),0px_64px_64px_rgba(23,58,109,0.09),0px_16px_35px_rgba(23,58,109,0.10)]">
               <div>
                 <h3 className="text-[#141414] font-montserrat text-[30px] font-semibold leading-[120.402%]">
-                  {finalProfileData.Age === "Non spécifié"
-                    ? "N/A"
-                    : finalProfileData.Age}
+                  {profileData.Age === "Non spécifié" ? "N/A" : profileData.Age}
                 </h3>
                 <p className="text-[#807A7A] font-montserrat text-[16px] font-normal leading-[120.402%]">
                   Ans
@@ -73,7 +112,7 @@ const Profile = () => {
               </div>
               <div>
                 <h3 className="text-[#141414] font-montserrat text-[30px] font-semibold leading-[120.402%]">
-                  {finalProfileData.AnnéeExperience}
+                  {profileData.AnnéeExperience}
                 </h3>
                 <p className="text-[#807A7A] font-montserrat text-[16px] font-normal leading-[120.402%]">
                   Experience
@@ -81,9 +120,7 @@ const Profile = () => {
               </div>
               <div>
                 <h3 className="text-[#141414] font-montserrat text-[30px] font-semibold leading-[120.402%]">
-                  {Tjm === "Null"
-                    ? PretentionSalariale
-                    : Tjm}
+                  455
                 </h3>
                 <p className="text-[#807A7A] font-montserrat text-[16px] font-normal leading-[120.402%]">
                   Tarif
@@ -125,8 +162,8 @@ const Profile = () => {
               <h1 className="text-[#141414] font-montserrat text-[20px] font-semibold leading-[120.402%]">
                 Langues
               </h1>
-              {finalProfileData?.Langues?.length > 0 ? (
-                finalProfileData.Langues.map((lougha, index) => (
+              {profileData?.Langues?.length > 0 ? (
+                profileData.Langues.map((lougha, index) => (
                   <Langue
                     key={index}
                     Name={lougha.Langue}
@@ -144,7 +181,7 @@ const Profile = () => {
                 Compétence
               </h1>
               <div className="flex flex-wrap gap-2 w-full">
-                {finalProfileData?.Skills?.map((skill, index) => (
+                {profileData?.Skills?.map((skill, index) => (
                   <Skill key={index} skill={skill} />
                 ))}
               </div>
@@ -153,24 +190,22 @@ const Profile = () => {
               <h1 className="text-[#141414] font-montserrat text-[20px] font-semibold leading-[120.402%]">
                 Expérience
               </h1>
-              {finalProfileData?.ExperienceProfessionnelle?.map(
-                (exp, index) => (
-                  <Experience
-                    key={index}
-                    NomEntreprise={exp.NomEntreprise}
-                    Date={exp.Date}
-                    Localisation={exp.Localisation}
-                    context={exp.ParagrapheExperience}
-                    Realisation={exp.Réalisations}
-                  />
-                )
-              )}
+              {profileData?.ExperienceProfessionnelle?.map((exp, index) => (
+                <Experience
+                  key={index}
+                  NomEntreprise={exp.NomEntreprise}
+                  Date={exp.Date}
+                  Localisation={exp.Localisation}
+                  context={exp.ParagrapheExperience}
+                  Realisation={exp.Réalisations}
+                />
+              ))}
             </div>
             <div className="flex flex-col items-start gap-[10px] p-[24px_23px] rounded-[15px] bg-white shadow-[0px_403px_113px_rgba(23,58,109,0.00),0px_258px_103px_rgba(23,58,109,0.01),0px_145px_87px_rgba(23,58,109,0.05),0px_64px_64px_rgba(23,58,109,0.09),0px_16px_35px_rgba(23,58,109,0.10)]">
               <h1 className="text-[#141414] font-montserrat text-[20px] font-semibold leading-[120.402%]">
                 Formation
               </h1>
-              {finalProfileData?.Formation?.map((form, index) => (
+              {profileData?.Formation?.map((form, index) => (
                 <Formation
                   key={index}
                   Diplome={form.Diplôme}
@@ -183,8 +218,8 @@ const Profile = () => {
               <h1 className="text-[#141414] font-montserrat text-[20px] font-semibold leading-[120.402%]">
                 Certification
               </h1>
-              {finalProfileData?.Certifications?.length > 0 ? (
-                finalProfileData.Certifications.map((certif, index) => (
+              {profileData?.Certifications?.length > 0 ? (
+                profileData.Certifications.map((certif, index) => (
                   <Certification
                     key={index}
                     Certif={certif.Certif}

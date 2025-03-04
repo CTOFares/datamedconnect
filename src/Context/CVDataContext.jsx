@@ -9,7 +9,7 @@ export const CVDataProvider = ({ children }) => {
   const [Email, setEmail] = useState("");
   const [Numero, setNumero] = useState("");
   const [file, setFile] = useState("");
-  const [ProfileData, setProfileData] = useState({});
+  // const [ProfileData, setProfileData] = useState({});
   const [Mission, setMission] = useState("");
   const [Experience, setExperience] = useState("");
   const [PretentionSalariale, setPretentionSalariale] = useState("Null");
@@ -26,8 +26,8 @@ export const CVDataProvider = ({ children }) => {
         setNumero,
         file,
         setFile,
-        ProfileData,
-        setProfileData,
+        // ProfileData,
+        // setProfileData,
         Mission,
         setMission,
         Experience,

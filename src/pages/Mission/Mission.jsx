@@ -22,12 +22,15 @@ const Mission = () => {
   const [tjm, setTjmLocal] = useState("");
   const [portage, setPortageLocal] = useState(false);
   const [autoEntrepreneur, setAutoEntrepreneurLocal] = useState(false);
+  const [Mobilité,setMobilité] = useState("")
+
 
   const [contractTypeError, setContractTypeError] = useState("");
   const [experienceError, setExperienceError] = useState("");
   const [pretentionSalarialeError, setPretentionSalarialeError] = useState("");
   const [tjmError, setTjmError] = useState("");
   const [checkboxError, setCheckboxError] = useState("");
+  const [MobilitéError,setMobilitéError] = useState("")
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -87,10 +90,38 @@ const Mission = () => {
     }
   };
 
+  const [tags, setTags] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRemoveTag = (tagToRemove) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" || e.key === ",") {
+      e.preventDefault();
+      const newTag = inputValue.trim().toLowerCase();
+      if (newTag) {
+        if (tags.includes(newTag)) {
+          setError("This expertise is already added.");
+          return;
+        }
+        setTags([...tags, newTag]);
+        setInputValue("");
+        setError("");
+      }
+    }
+  };
+
   return (
     <div>
       <Nav />
-      <div className="sm:flex pb-11 min-h-screen">
+      <div className="sm:flex pb-11">
         <LeftSide
           title="Trouvons la mission parfaite pour vous !"
           paragraphe="Indiquez vos préférences en matière de contrat, de mission et de mobilité pour des opportunités sur mesure."
@@ -117,7 +148,7 @@ const Mission = () => {
               )}
               {contractType === "FreeLance" && (
                 <div className="gap-4 flex justify-start">
-                  <div className="flex gap-3 mb-4   items-center">
+                  <div className="flex gap-3   items-center">
                     <input
                       id="portage-checkbox"
                       type="checkbox"
@@ -132,7 +163,7 @@ const Mission = () => {
                       Portage
                     </label>
                   </div>
-                  <div className="flex gap-3 mb-4   items-center">
+                  <div className="flex gap-3   items-center">
                     <input
                       id="auto-entrepreneur-checkbox"
                       type="checkbox"
@@ -156,6 +187,19 @@ const Mission = () => {
               )}
             </div>
 
+
+            <div className="space-y-2">
+                <label htmlFor="tjm">Mobilité*</label>
+                <input
+                  id="Mobilité"
+                  type="text"
+                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
+                  placeholder="Ex: Pays-de-la-Loire, Bretagne, Nouvelle-Aquitaine"
+                  value={Mobilité}
+                  onChange={(e) => setMobilité(e.target.value)}
+                />
+                {tjmError && <p className="text-red-500 text-sm">{tjmError}</p>}
+              </div>
             {/* Experience Input */}
             <div className="space-y-2">
               <label htmlFor="experience">Expérience*</label>
@@ -240,7 +284,7 @@ const Mission = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -37,6 +37,7 @@ import tv from "./tv.svg";
 import left from "./left.png";
 import right from "./right.png";
 import lock from "./lock.png";
+import twitter from "./twitter.png";
 
 // Export assets
 export const assets = {
@@ -71,6 +72,7 @@ export const icon = {
   Building,
   graduation,
   certif,
+  twitter
 };
 export const carouselclient = {
   client1,

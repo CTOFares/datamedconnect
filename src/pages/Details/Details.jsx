@@ -14,7 +14,7 @@ const Details = () => {
     setNumero,
     setFile: setContextFile,
     setProfileData,
-    setId
+    setId,
   } = useCVData();
   const [file, setFileState] = useState(null);
   const [fileName, setFileName] = useState("");
@@ -133,13 +133,14 @@ const Details = () => {
 
       const consultantId = responseData.data._id; // Fix here: access the ID from responseData.data
       console.log("Created consultant ID:", consultantId);
-      setId(consultantId)
-      console.log(consultantId)
+      setId(consultantId);
+      console.log(consultantId);
       // 3. Extract CV Profile with consultant ID
       const profileFormData = new FormData();
       profileFormData.append("cv", file);
       profileFormData.append("prompt", "Extract Data From CV");
       profileFormData.append("id", consultantId);
+      navigate("/Verification", { state: { email } });
 
       const profileResponse = await fetch(
         "https://datamedconnectbackend.onrender.com/api/cv/Profile",
@@ -164,7 +165,6 @@ const Details = () => {
       setContextFile(fileName);
 
       // 4. Navigate to Verification
-      navigate("/Verification", { state: { email } });
     } catch (error) {
       console.error("Error:", error);
       setFileError(

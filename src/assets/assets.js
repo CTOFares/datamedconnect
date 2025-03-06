@@ -41,6 +41,9 @@ import twitter from "./twitter.png";
 import phonecall from "./phone-call.svg"
 import at from "./at.svg"
 import square from "./Square.svg"
+import calendar from "./calendar.svg"
+import edit from "./edit.svg"
+import trash from "./trash.svg"
 
 // Export assets
 export const assets = {
@@ -78,7 +81,10 @@ export const icon = {
   twitter,
   phonecall,
   at,
-  square
+  square,
+  calendar,
+  edit,
+  trash
 };
 export const carouselclient = {
   client1,

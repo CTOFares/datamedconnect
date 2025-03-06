@@ -38,6 +38,9 @@ import left from "./left.png";
 import right from "./right.png";
 import lock from "./lock.png";
 import twitter from "./twitter.png";
+import phonecall from "./phone-call.svg"
+import at from "./at.svg"
+import square from "./Square.svg"
 
 // Export assets
 export const assets = {
@@ -72,7 +75,10 @@ export const icon = {
   Building,
   graduation,
   certif,
-  twitter
+  twitter,
+  phonecall,
+  at,
+  square
 };
 export const carouselclient = {
   client1,

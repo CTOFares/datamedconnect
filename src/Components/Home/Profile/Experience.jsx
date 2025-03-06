@@ -9,8 +9,8 @@ const Experience = ({
   context
 }) => {
   return (
-    <div className="flex gap-5 ">
-      <img src={icon.Building} alt="" />
+    <div className="flex gap-5">
+      <img src={icon.Building} className="border-2 " alt="" />
       <div className="space-y-1">
         <h1 className="text-[#2E2E2E] font-montserrat text-[18px] font-semibold leading-[24.08px]">
           {NomEntreprise}
@@ -25,13 +25,13 @@ const Experience = ({
             </p>
           </div>
           <div className="">
-            <p className="text-[#535353] font-montserrat text-[16px]  font-normal leading-[14.448px]" >Context :</p>
+            <p className="text-[#535353] font-montserrat text-[16px]  font-semibold leading-[14.448px]" >Context :</p>
             <p className="text-[#535353] font-montserrat text-[14px] font-normal leading-[14.448px]">
               {context}
             </p>
           </div>
           <div>
-          <p className="text-[#535353] font-montserrat text-[16px]  font-normal leading-[14.448px]" >Realisation :</p>
+          <p className="text-[#535353] font-montserrat text-[16px]  font-semibold leading-[14.448px]" >Realisation :</p>
             <p className="text-[#535353] font-montserrat text-[14px] font-normal leading-[14.448px]">
               {Realisation}
             </p>

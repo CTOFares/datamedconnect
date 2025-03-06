@@ -1,33 +1,36 @@
 // CVDataContext.js
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, use } from "react";
 
 // Create Context
 const CVDataContext = createContext();
 
 // Provider Component
 export const CVDataProvider = ({ children }) => {
-  const [Email, setEmail] = useState("");
-  const [Numero, setNumero] = useState("");
+  const [id,setId] = useState("")
+  const [Email, setEmail] = useState("-");
+  const [Numero, setNumero] = useState("-");
   const [file, setFile] = useState("");
-  // const [ProfileData, setProfileData] = useState({});
+  const [ProfileData, setProfileData] = useState({});
   const [Mission, setMission] = useState("");
   const [Experience, setExperience] = useState("");
   const [PretentionSalariale, setPretentionSalariale] = useState("Null");
   const [Portage, setPortage] = useState("");
   const [AutoEntrepreuneur, setAutoEntrepreuneur] = useState("");
-  const [Tjm, setTjm] = useState("");
+  const [Tjm, setTjm] = useState("Null");
 
   return (
     <CVDataContext.Provider
       value={{
+        id,
+        setId,
         Email,
         setEmail,
         Numero,
         setNumero,
         file,
         setFile,
-        // ProfileData,
-        // setProfileData,
+        ProfileData,
+        setProfileData,
         Mission,
         setMission,
         Experience,
@@ -39,7 +42,7 @@ export const CVDataProvider = ({ children }) => {
         AutoEntrepreuneur,
         setAutoEntrepreuneur,
         Tjm,
-        setTjm
+        setTjm,
       }}
     >
       {children}

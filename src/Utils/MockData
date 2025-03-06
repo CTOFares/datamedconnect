@@ -1,0 +1,62 @@
+  // const profileData = {
+  //   Name: "Fares Safer",
+  //   Poste: "Senior Software Engineer",
+  //   Location: "Paris, France",
+  //   Mobilité: "Full Mobility",
+  //   AnnéeExperience: 8,
+  //   Age: 30,
+  //   Tarif: 500,
+  //   Skills: ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Docker"],
+  //   ExperienceProfessionnelle: [
+  //     {
+  //       NomEntreprise: "TechCorp",
+  //       Date: "2020 - Present",
+  //       Localisation: "Paris, France",
+  //       ParagrapheExperience:
+  //         "Leading a team of developers to build scalable web applications using React and Node.js. Managed cloud infrastructure on AWS, and worked on containerization with Docker.",
+  //     },
+  //     {
+  //       NomEntreprise: "DevSolutions",
+  //       Date: "2016 - 2020",
+  //       Localisation: "Lyon, France",
+  //       ParagrapheExperience:
+  //         "Developed web applications in JavaScript and supported backend development with Node.js. Implemented automated testing and CI/CD pipelines.",
+  //     },
+  //   ],
+  //   Formation: [
+  //     {
+  //       Diplome: "Master's in Computer Science",
+  //       Ecole: "University of Lyon",
+  //       Année: 2016,
+  //     },
+  //   ],
+  //   Certifications: [
+  //     {
+  //       Certif: "AWS Certified Solutions Architect",
+  //       Organisme: "Amazon",
+  //       AnnéeCertif: 2021,
+  //     },
+  //     {
+  //       Certif: "Docker Certified Associate",
+  //       Organisme: "Docker",
+  //       AnnéeCertif: 2020,
+  //     },
+  //   ],
+  //   Langues: [
+  //     {
+  //       Intitulé: "Francais",
+  //       Niveau: "Trés Bien",
+  //     },
+  //     {
+  //       Intitulé: "Anglais",
+  //       Niveau: "Trés Bien",
+  //     },
+  //   ],
+  //   Mission: [
+  //     {
+  //       TypedeContract: "CDI",
+  //     },
+  //   ],
+  // };
+
+  // Example of how to use the mock data

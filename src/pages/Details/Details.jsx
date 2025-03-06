@@ -9,7 +9,13 @@ import { useCVData } from "../../Context/CVDataContext";
 
 const Details = () => {
   const navigate = useNavigate();
-  const { setEmail, setNumero, setFile, setProfileData } = useCVData();
+  const {
+    setEmail: setContextEmail,
+    setNumero,
+    setFile: setContextFile,
+    setProfileData,
+    setId
+  } = useCVData();
   const [file, setFileState] = useState(null);
   const [fileName, setFileName] = useState("");
   const [email, setEmailState] = useState("");
@@ -27,28 +33,39 @@ const Details = () => {
       setFileState(uploadedFile);
       setFileName(uploadedFile.name);
       setFileError("");
+      console.log(
+        "File dropped:",
+        uploadedFile.name,
+        uploadedFile.type,
+        uploadedFile.size
+      );
     }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "application/pdf",
+    accept: {
+      "application/pdf": [".pdf"],
+    },
   });
 
   const handleClick = async (e) => {
     e.preventDefault();
-    let valid = true;
+
+    console.log("Current State:", { email, telephone, file, isChecked });
 
     setEmailError("");
     setTelephoneError("");
     setFileError("");
     setCheckboxError("");
 
-    if (!email) {
+    let valid = true;
+
+    if (!email.trim()) {
       setEmailError("Veuillez remplir le champ Email.");
       valid = false;
     }
-    if (!telephone) {
+    if (!telephone.trim()) {
       setTelephoneError("Veuillez remplir le champ Téléphone.");
       valid = false;
     }
@@ -61,22 +78,16 @@ const Details = () => {
       valid = false;
     }
 
-    if (!valid) return;
+    if (!valid) {
+      console.log("Validation failed:", { email, telephone, file, isChecked });
+      setLoading(false);
+      return;
+    }
 
     setLoading(true);
 
-    // Clear previous context data explicitly
-    setEmail("");
-    setNumero("");
-    setFile("");
-    // setProfileData(null); // Reset profileData before setting new data
-
-    // Update context with new user input
-    setEmail(email);
-    setNumero(telephone);
-    setFile(fileName);
-
     try {
+      // 1. Send OTP
       const otpResponse = await fetch(
         "https://datamedconnectbackend.onrender.com/api/otp/send",
         {
@@ -87,7 +98,6 @@ const Details = () => {
       );
 
       const otpData = await otpResponse.json();
-
       if (!otpResponse.ok) {
         setEmailError(otpData.message || "Une erreur s'est produite.");
         setLoading(false);
@@ -95,39 +105,71 @@ const Details = () => {
       }
 
       localStorage.setItem("verificationEmail", email);
+      console.log(email);
+      console.log(telephone);
 
-      // const formData = new FormData();
-      // formData.append("cv", file);
-      // formData.append("prompt", "Extract Data From CV");
+      // 2. Create Consultant with CV file (Send raw JSON here instead of FormData)
+      const consultantData = {
+        email: email,
+        phone: telephone,
+        // You cannot directly send the file here as JSON. You will need to handle it separately if needed.
+      };
+      console.log("Sending data:", consultantData);
 
-      // const profileResponse = await fetch(
-      //   "https://datamedconnectbackend.onrender.com/api/cv/Profile",
-      //   {
-      //     method: "POST",
-      //     body: formData,
-      //   }
-      // );
+      const consultantResponse = await fetch(
+        "https://datamedconnectbackend.onrender.com/api/consultants",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(consultantData),
+        }
+      );
 
-      // const profileData = await profileResponse.json();
+      const responseData = await consultantResponse.json();
+      console.log("Consultant Response:", responseData);
+      if (!consultantResponse.ok) {
+        throw new Error(responseData.message || "Failed to create consultant");
+      }
 
-      // if (profileResponse.ok) {
-      //   console.log("API Response:", profileData);
-      //   const extractedProfileData = JSON.parse(profileData.data);
-      //   console.log("Extracted Profile Data (Parsed):", extractedProfileData);
+      const consultantId = responseData.data._id; // Fix here: access the ID from responseData.data
+      console.log("Created consultant ID:", consultantId);
+      setId(consultantId)
+      console.log(consultantId)
+      // 3. Extract CV Profile with consultant ID
+      const profileFormData = new FormData();
+      profileFormData.append("cv", file);
+      profileFormData.append("prompt", "Extract Data From CV");
+      profileFormData.append("id", consultantId);
 
-      //   // Clear old localStorage data and set new data
-      //   localStorage.removeItem("profileData"); // Clear old data
-      //   setProfileData(extractedProfileData); // Set new data in context
-      //   localStorage.setItem(
-      //     "profileData",
-      //     JSON.stringify(extractedProfileData)
-      //   ); // Store new data
-      //   console.log("Stored Successfully");
+      const profileResponse = await fetch(
+        "https://datamedconnectbackend.onrender.com/api/cv/Profile",
+        {
+          method: "POST",
+          body: profileFormData,
+        }
+      );
 
-        navigate(`/Verification`, { state: { email } });
-      // } else {
-      //   setFileError(profileData.message || "Erreur lors de l'analyse du CV.");
-      // }
+      const profileData = await profileResponse.json();
+      if (!profileResponse.ok) {
+        throw new Error(profileData.message || "Failed to process CV");
+      }
+
+      console.log("Profile API Response:", profileData);
+      setProfileData(profileData.data);
+      localStorage.setItem("profileData", JSON.stringify(profileData.data));
+
+      // Update context
+      setContextEmail(email);
+      setNumero(telephone);
+      setContextFile(fileName);
+
+      // 4. Navigate to Verification
+      navigate("/Verification", { state: { email } });
+    } catch (error) {
+      console.error("Error:", error);
+      setFileError(
+        error.message || "Une erreur s'est produite lors du traitement."
+      );
     } finally {
       setLoading(false);
     }
@@ -136,7 +178,7 @@ const Details = () => {
   return (
     <div className="">
       <Nav />
-      <div className="sm:flex pb-11 ">
+      <div className="sm:flex pb-11">
         <LeftSide
           title="Déposer Votre CV"
           paragraphe=" Partagez vos coordonnées et votre CV pour que nous puissions vous proposer des opportunités adaptées à votre profil."
@@ -161,7 +203,7 @@ const Details = () => {
               <input
                 type="tel"
                 className="flex w-full sm:w-[641px] p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
-                placeholder="+33 25 556  8855"
+                placeholder="+33 25 556 8855"
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
               />
@@ -173,22 +215,22 @@ const Details = () => {
               <label htmlFor="pdfUpload">Télécharger le PDF*</label>
               <div
                 {...getRootProps()}
-                className={`items-center justify-center w-full h-full sm:w-[641px] p-[18px_30px] rounded-[14px] border-[1px]  border-dashed border-[#000] bg-white cursor-pointer ${
+                className={`items-center justify-center w-full h-full sm:w-[641px] p-[18px_30px] rounded-[14px] border-[1px] border-dashed border-[#000] bg-white cursor-pointer ${
                   isDragActive ? "bg-gray-200" : ""
                 }`}
               >
-                <div className="  w-full flex flex-col justify-center text-center items-center">
+                <div className="w-full flex flex-col justify-center text-center items-center">
                   <input {...getInputProps()} />
                   <img
                     src={assets.iconpdf}
                     alt="PDF Icon"
-                    className="h-12 w-12 "
+                    className="h-12 w-12"
                   />
                   <span>{fileName || "Glisser et déposer Votre PDF"}</span>
                 </div>
               </div>
               <span className="text-[#B1B1B1] text-base font-normal leading-[28px]">
-                Impoter un fichier PFD (15mo Max)
+                Importer un fichier PDF (15mo Max)
               </span>
               {fileError && <p className="text-red-500 text-sm">{fileError}</p>}
             </div>
@@ -219,7 +261,7 @@ const Details = () => {
             )}
             <button
               onClick={handleClick}
-              className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D] disabled:opacity-50"
+              className="flex w-[189px] text-white p-[13px_30px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D] disabled:opacity-50"
               disabled={loading}
             >
               {loading ? "Envoi en cours..." : "Continuer"}
@@ -233,3 +275,5 @@ const Details = () => {
 };
 
 export default Details;
+
+export { Details };

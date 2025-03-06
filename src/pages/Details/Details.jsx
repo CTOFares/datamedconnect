@@ -149,7 +149,6 @@ const Details = () => {
           body: profileFormData,
         }
       );
-
       const profileData = await profileResponse.json();
       if (!profileResponse.ok) {
         throw new Error(profileData.message || "Failed to process CV");

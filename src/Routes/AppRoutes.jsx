@@ -9,6 +9,7 @@ import Profile from "../pages/Profile/Profile";
 import Policy from "../pages/Politique/Policy";
 import Cookies from "../pages/Politique/Cookies";
 import Mention from "../pages/Politique/Mention";
+import Thankyou from "../Utils/Thankyou";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path="/Verification" element={<VerificationEmail />} />
         <Route path="/Mission" element={<Mission />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Merci" element={<Thankyou />} />
         <Route path="/Politique" element={<Policy />} />
         <Route path="/Mentionlegales" element={<Mention />} />
         <Route path="/Co  okies" element={<Cookies />} />

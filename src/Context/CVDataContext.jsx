@@ -14,6 +14,7 @@ export const CVDataProvider = ({ children }) => {
   const [Mission, setMission] = useState("");
   const [Experience, setExperience] = useState("");
   const [PretentionSalariale, setPretentionSalariale] = useState("Null");
+  const [mobility,setMobility] =useState([])
   const [Portage, setPortage] = useState("");
   const [AutoEntrepreuneur, setAutoEntrepreuneur] = useState("");
   const [Tjm, setTjm] = useState("Null");
@@ -23,6 +24,8 @@ export const CVDataProvider = ({ children }) => {
       value={{
         id,
         setId,
+        mobility,
+        setMobility,
         Email,
         setEmail,
         Numero,

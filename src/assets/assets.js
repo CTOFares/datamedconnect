@@ -44,6 +44,8 @@ import square from "./Square.svg"
 import calendar from "./calendar.svg"
 import edit from "./edit.svg"
 import trash from "./trash.svg"
+import loading from "./loading.gif"
+import checkgif from "./check.gif"
 
 // Export assets
 export const assets = {
@@ -62,7 +64,9 @@ export const assets = {
   tv,
   left,
   right,
-  lock
+  lock,
+  loading,
+  checkgif
 };
 
 export const links = {

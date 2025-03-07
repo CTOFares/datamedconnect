@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Add useEffect
 import Nav from "../../Components/Nav";
 import Footer from "../../Components/Footer";
 import LeftSide from "../../Components/LeftSide";
 import { useNavigate } from "react-router-dom";
 import { useCVData } from "../../Context/CVDataContext";
+import Select from "react-select";
+
+// Sample French cities data (expand with full list from INSEE)
+const frenchCities = [
+  { value: "Paris", label: "Paris" },
+  { value: "Marseille", label: "Marseille" },
+  { value: "Lyon", label: "Lyon" },
+  { value: "Toulouse", label: "Toulouse" },
+  { value: "Nice", label: "Nice" },
+  { value: "Nantes", label: "Nantes" },
+  { value: "Strasbourg", label: "Strasbourg" },
+  { value: "Bordeaux", label: "Bordeaux" },
+];
 
 const Mission = () => {
   const navigate = useNavigate();
@@ -14,7 +27,9 @@ const Mission = () => {
     setPortage,
     setAutoEntrepreuneur,
     setTjm,
-  } = useCVData(); // Get the setters from context
+    mobility,
+    setMobility,
+  } = useCVData();
 
   const [contractType, setContractType] = useState("");
   const [experience, setExperienceLocal] = useState("");
@@ -22,15 +37,19 @@ const Mission = () => {
   const [tjm, setTjmLocal] = useState("");
   const [portage, setPortageLocal] = useState(false);
   const [autoEntrepreneur, setAutoEntrepreneurLocal] = useState(false);
-  const [Mobilité,setMobilité] = useState("")
-
+  const [mobilityLocal, setMobilityLocal] = useState([]); // Array for selected cities
 
   const [contractTypeError, setContractTypeError] = useState("");
   const [experienceError, setExperienceError] = useState("");
   const [pretentionSalarialeError, setPretentionSalarialeError] = useState("");
   const [tjmError, setTjmError] = useState("");
   const [checkboxError, setCheckboxError] = useState("");
-  const [MobilitéError,setMobilitéError] = useState("")
+  const [mobilityError, setMobilityError] = useState("");
+
+  // UseEffect to log context mobility whenever it changes
+  useEffect(() => {
+    console.log("Context mobility updated:", mobility);
+  }, [mobility]); // Runs whenever mobility from context changes
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -77,45 +96,30 @@ const Mission = () => {
       }
     }
 
+    if (mobilityLocal.length === 0) {
+      setMobilityError("Veuillez ajouter au moins une option de mobilité.");
+      valid = false;
+    } else {
+      setMobilityError("");
+    }
+
     if (valid) {
       setMission(contractType);
       setExperience(experience);
-
       setPretentionSalariale(pretentionSalariale || "0");
       setTjm(tjm || "0");
       setPortage(portage || false);
       setAutoEntrepreuneur(autoEntrepreneur || false);
-
+      const mobilityValues = mobilityLocal.map((item) => item.value);
+      setMobility(mobilityValues); // Save only values to context
+      console.log("Mobility saved to context:", mobilityValues); // Log the value being saved
       navigate("/Profile");
     }
   };
 
-  const [tags, setTags] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [error, setError] = useState("");
-
-  const handleRemoveTag = (tagToRemove) => {
-    setTags(tags.filter((tag) => tag !== tagToRemove));
-  };
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      const newTag = inputValue.trim().toLowerCase();
-      if (newTag) {
-        if (tags.includes(newTag)) {
-          setError("This expertise is already added.");
-          return;
-        }
-        setTags([...tags, newTag]);
-        setInputValue("");
-        setError("");
-      }
-    }
+  // Handle changes in react-select
+  const handleMobilityChange = (selectedOptions) => {
+    setMobilityLocal(selectedOptions || []);
   };
 
   return (
@@ -148,7 +152,7 @@ const Mission = () => {
               )}
               {contractType === "FreeLance" && (
                 <div className="gap-4 flex justify-start">
-                  <div className="flex gap-3   items-center">
+                  <div className="flex gap-3 items-center">
                     <input
                       id="portage-checkbox"
                       type="checkbox"
@@ -163,7 +167,7 @@ const Mission = () => {
                       Portage
                     </label>
                   </div>
-                  <div className="flex gap-3   items-center">
+                  <div className="flex gap-3 items-center">
                     <input
                       id="auto-entrepreneur-checkbox"
                       type="checkbox"
@@ -187,19 +191,64 @@ const Mission = () => {
               )}
             </div>
 
-
             <div className="space-y-2">
-                <label htmlFor="tjm">Mobilité*</label>
-                <input
-                  id="Mobilité"
-                  type="text"
-                  className="flex w-full sm:w-[641px] p-[18px_30px] items-start gap-2 h-[55px] rounded-[14px] border border-[#000] bg-white"
-                  placeholder="Ex: Pays-de-la-Loire, Bretagne, Nouvelle-Aquitaine"
-                  value={Mobilité}
-                  onChange={(e) => setMobilité(e.target.value)}
-                />
-                {tjmError && <p className="text-red-500 text-sm">{tjmError}</p>}
-              </div>
+              <label htmlFor="Mobilité">Mobilité*</label>
+              <Select
+                id="Mobilité"
+                isMulti
+                options={frenchCities}
+                value={mobilityLocal}
+                onChange={handleMobilityChange}
+                className="w-full sm:w-[641px]"
+                classNamePrefix="select"
+                placeholder="Ex: Pays-de-la-Loire, Bretagne, Nouvelle-Aquitaine"
+                styles={{
+                  control: (base, { isFocused }) => ({
+                    ...base,
+                    height: "55px",
+                    borderRadius: "14px",
+                    border: isFocused ? "1px solid #000" : "1px solid #000",
+                    boxShadow: "none",
+                    backgroundColor: "white",
+                  }),
+                  option: (base, { isFocused, isSelected }) => ({
+                    ...base,
+                    backgroundColor: isSelected
+                      ? "#e9ecef"
+                      : isFocused
+                      ? "#f8f9fa"
+                      : "white",
+                    color: "black",
+                  }),
+                  multiValue: (base) => ({
+                    ...base,
+                    backgroundColor: "#e9ecef",
+                    borderRadius: "14px",
+                  }),
+                  multiValueLabel: (base) => ({
+                    ...base,
+                    color: "black",
+                  }),
+                  multiValueRemove: (base) => ({
+                    ...base,
+                    color: "black",
+                    ":hover": {
+                      backgroundColor: "#ced4da",
+                      color: "black",
+                    },
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    borderRadius: "14px",
+                    border: "1px solid #000",
+                  }),
+                }}
+              />
+              {mobilityError && (
+                <p className="text-red-500 text-sm">{mobilityError}</p>
+              )}
+            </div>
+
             {/* Experience Input */}
             <div className="space-y-2">
               <label htmlFor="experience">Expérience*</label>
@@ -231,10 +280,10 @@ const Mission = () => {
                   <option value="" disabled hidden>
                     Ex: 25k-35k
                   </option>
-                  <option value="25-50">€30,000 - €40,000</option>
-                  <option value="50-65">€40,000 - €50,000</option>
-                  <option value="65-80">€50,000 - €70,000</option>
-                  <option value="65-80">€70,000+</option>
+                  <option value="25k-50k">€30,000 - €40,000</option>
+                  <option value="50k-65k">€40,000 - €50,000</option>
+                  <option value="65k-80k">€50,000 - €70,000</option>
+                  <option value="65k-80k">€70,000+</option>
                 </select>
                 {pretentionSalarialeError && (
                   <p className="text-red-500 text-sm">
@@ -261,7 +310,7 @@ const Mission = () => {
 
             <button
               onClick={handleClick}
-              type="button" // Change from type="submit" to type="button"
+              type="button"
               className="flex w-[189px] text-white p-[13px_19px] justify-center items-center gap-[10px] rounded-[14px] bg-[#173A6D]"
             >
               Continuer

@@ -43,7 +43,7 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="space-y-4 p-1">
+      <div className="space-y-6 p-1">
         <div className="w-full sm:flex space-y-4 sm:space-y-0  items-center justify-center gap-4">
           <div className="gap-4 flex items-center justify-center">
             <img src={assets.check} alt="" />
@@ -59,7 +59,7 @@ const Hero = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-[#FFF] text-center font-montserrat text-lg font-semibold leading-[21.672px]">
+          <h1 className="text-[#FFF] text-center font-montserrat text-[50px] font-semibold leading-[21.672px]">
             DATAMED CONNECT
           </h1>
         </div>

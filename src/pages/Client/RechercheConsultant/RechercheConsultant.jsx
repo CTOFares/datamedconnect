@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RechercheConsultant = () => {
-  return (
-    <div>
-      fefefez
-    </div>
-  )
-}
+  return <div className="bg-black">cqcefezfz</div>;
+};
 
-export default RechercheConsultant
+export default RechercheConsultant;

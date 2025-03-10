@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
 import axios from "axios";
-import Footer from "../../Components/Footer";
-import Skill from "../../Components/Home/Profile/Skill";
-import Experience from "../../Components/Home/Profile/Experience";
-import Formation from "../../Components/Home/Profile/Formation";
-import Certification from "../../Components/Home/Profile/Certification";
-import Langue from "../../Components/Home/Profile/Langue";
-import { assets, icon, links } from "../../assets/assets";
-import { useCVData } from "../../Context/CVDataContext";
+import Footer from "../../../Components/Footer";
+import Skill from "../../../Components/Home/Profile/Skill";
+import Experience from "../../../Components/Home/Profile/Experience";
+import Formation from "../../../Components/Home/Profile/Formation";
+import Certification from "../../../Components/Home/Profile/Certification";
+import Langue from "../../../Components/Home/Profile/Langue";
+import { assets, icon, links } from "../../../assets/assets";
+import { useCVData } from "../../../Context/CVDataContext";
 import { useNavigate } from "react-router-dom";
-import AjoutCompetencePopUp from "../../PopUps/AjoutCompetencePopUp";
-import AjoutExperiencePopUp from "../../PopUps/AjoutExperiencePopUp";
-import AjoutForamtionPopUp from "../../PopUps/AjoutForamtionPopUp";
-import AjoutCertificationPopUp from "../../PopUps/AjoutCertificationPopUp";
-import AjoutLanguePopUp from "../../PopUps/AjoutLanguePopUp";
-import ProfileSkeleton from "../../Utils/ProfileSkeleton";
-import Nav from "../../Components/Nav";
+import AjoutCompetencePopUp from "../../../PopUps/AjoutCompetencePopUp";
+import AjoutExperiencePopUp from "../../../PopUps/AjoutExperiencePopUp";
+import AjoutForamtionPopUp from "../../../PopUps/AjoutForamtionPopUp";
+import AjoutCertificationPopUp from "../../../PopUps/AjoutCertificationPopUp";
+import AjoutLanguePopUp from "../../../PopUps/AjoutLanguePopUp";
+import ProfileSkeleton from "../../../Utils/ProfileSkeleton";
+import Nav from "../../../Components/Nav";
 
 // Constants
 const NOT_SPECIFIED = "Not Specified";

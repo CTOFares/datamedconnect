@@ -1,12 +1,12 @@
 import React, { useState, useCallback, memo } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import Nav from "../../Components/Nav";
-import LeftSide from "../../Components/LeftSide";
-import { assets } from "../../assets/assets";
-import Footer from "../../Components/Footer";
+import Nav from "../../../Components/Nav";
+import LeftSide from "../../../Components/LeftSide";
+import { assets } from "../../../assets/assets";
+import Footer from "../../../Components/Footer";
 import { useNavigate } from "react-router-dom";
-import { useCVData } from "../../Context/CVDataContext";
+import { useCVData } from "../../../Context/CVDataContext";
 
 // Axios instance
 const api = axios.create({

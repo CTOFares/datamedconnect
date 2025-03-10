@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "../../Components/Nav";
-import Footer from "../../Components/Footer";
+import Nav from "../../../Components/Nav";
+import Footer from "../../../Components/Footer";
 
 const VerificationEmail = () => {
   const inputRefs = useRef([]);

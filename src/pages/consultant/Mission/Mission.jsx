@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect, memo } from "react";
-import Nav from "../../Components/Nav";
-import LeftSide from "../../Components/LeftSide";
+import Nav from "../../../Components/Nav";
+import LeftSide from "../../../Components/LeftSide";
 import { useNavigate } from "react-router-dom";
-import { useCVData } from "../../Context/CVDataContext";
+import { useCVData } from "../../../Context/CVDataContext";
 import Select from "react-select";
 
 // Constants

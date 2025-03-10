@@ -31,9 +31,9 @@ const Testimonials = () => {
       <div className="sm:flex sm:justify-center sm:items-center p-6 sm:p-8">
         <p className="text-black text-start sm:text-center sm:flex font-montserrat text-4xl font-semibold leading-[120.402%] uppercase">
           Ce que nos 
-          <p className="bg-gradient-to-r mx-2 from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-poppins text-4xl font-semibold leading-[120.402%] uppercase">
+          <span className="bg-gradient-to-r mx-2 from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-poppins text-4xl font-semibold leading-[120.402%] uppercase">
             CONSULTANT
-          </p>
+          </span>
 
            disent de nous
         </p>

@@ -12,7 +12,6 @@ const Hero = () => {
     navigate("/");
   };
 
-
   return (
     <div className="relative rounded-b-[10px] min-h-screen mb-[500px] lg:mb-[500px]  bg-gradient-to-r from-[#173A6D] to-[#2D70D3]">
       <div className="w-full items-center justify-between flex sm:p-9">
@@ -43,7 +42,7 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="space-y-6 p-1">
+      <div className="space-y-6 h-1/2   p-11">
         <div className="w-full sm:flex space-y-4 sm:space-y-0  items-center justify-center gap-4">
           <div className="gap-4 flex items-center justify-center">
             <img src={assets.check} alt="" />
@@ -59,24 +58,25 @@ const Hero = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-[#FFF] text-center font-montserrat text-[50px] font-semibold leading-[21.672px]">
+          <h1 className="text-[#FFF] text-center font-montserrat text-[50px] font-semibold leading-[60.362px]">
             DATAMED CONNECT
           </h1>
         </div>
-        <div className="sm:flex   gap-4 w-full items-center justify-center">
-          <p className="text-[#FFF]   text-center font-montserrat text-[50px] sm:text-[90px] font-medium sm:leading-[108.362px]">
+        <div className="flex flex-col sm:flex-row gap-4 w-full items-center justify-center text-center">
+          <p className="text-[#FFF] font-montserrat text-[50px] sm:text-[90px] font-medium sm:leading-[70.362px]">
             Le
           </p>
-          <div className="flex gap-5   text-center justify-center items-center">
-            <p className="text-[#C8EDC7] font-montserrat text-[50px]  sm:text-[90px] font-bold sm:leading-[108.362px]">
+          <div className="flex flex-col sm:flex-row sm:gap-5 md:gap-3 items-center justify-center">
+            <p className="text-[#C8EDC7] font-montserrat text-[50px] sm:text-[90px] font-bold sm:leading-[70.362px]">
               Tinder
             </p>
-            <img src={assets.tinder} className="" alt="" />
+            <img src={assets.tinder} alt="" />
           </div>
-          <p className="text-[#FFF] font-montserrat text-center text-[50px] sm:text-[90px] font-medium sm:leading-[108.362px]">
+          <p className="text-[#FFF] font-montserrat text-[50px] sm:text-[90px] font-medium sm:leading-[70.362px]">
             des ESN
           </p>
         </div>
+
         <div>
           <p className="text-[#FFF] text-center font-montserrat text-[18px] font-normal leading-[21.672px]">
             Votre vitrine pour devenir visible de 2224 ESN et 923 clients
@@ -104,7 +104,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-[-500px] lg:bottom-[-450px] left-1/2 transform -translate-x-1/2 sm:p-14 flex gap-5 w-full">
+      <div className="absolute left-1/2 transform -translate-x-1/2 sm:p-14 flex gap-5 w-full">
         <div className="hidden sm:block">
           <img src={assets.left} alt="" />
         </div>

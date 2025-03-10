@@ -21,31 +21,31 @@ import sitePerso from "./SitePerso.png";
 import linkedIn from "./linkedin.png";
 
 import logowhite from "./logowhite.png";
-import iconpdf from "./iconpdf.svg";
-import grid from "./grid.svg";
-import layers from "./layers.svg";
-import star from "./star.svg";
+import iconpdf from "./icons/iconpdf.svg";
+import grid from "./icons/grid.svg";
+import layers from "./icons/layers.svg";
+import star from "./icons/star.svg";
 import macbook from "./macbook.png";
-import car from "./car.svg";
-import location from "./location.svg";
-import Building from "./Building.svg";
-import graduation from "./graduation.svg";
-import certif from "./certif.svg";
-import check from "./check.svg";
-import tinder from "./tinder.svg";
-import tv from "./tv.svg";
+import car from "./icons/car.svg";
+import location from "./icons/location.svg";
+import Building from "./icons/Building.svg";
+import graduation from "./icons/graduation.svg";
+import certif from "./icons/certif.svg";
+import check from "./icons/check.svg";
+import tinder from "./icons/tinder.svg";
+import tv from "./icons/tv.svg";
 import left from "./left.png";
 import right from "./right.png";
 import lock from "./lock.png";
 import twitter from "./twitter.png";
-import phonecall from "./phone-call.svg"
-import at from "./at.svg"
-import square from "./Square.svg"
-import calendar from "./calendar.svg"
-import edit from "./edit.svg"
-import trash from "./trash.svg"
-import loading from "./loading.gif"
-import checkgif from "./check.gif"
+import phonecall from "./icons/phone-call.svg";
+import at from "./icons/at.svg";
+import square from "./icons/Square.svg";
+import calendar from "./icons/calendar.svg";
+import edit from "./icons/edit.svg";
+import trash from "./icons/trash.svg";
+import loading from "./loading.gif";
+import checkgif from "./check.gif";
 
 // Export assets
 export const assets = {
@@ -66,7 +66,7 @@ export const assets = {
   right,
   lock,
   loading,
-  checkgif
+  checkgif,
 };
 
 export const links = {
@@ -88,7 +88,7 @@ export const icon = {
   square,
   calendar,
   edit,
-  trash
+  trash,
 };
 export const carouselclient = {
   client1,

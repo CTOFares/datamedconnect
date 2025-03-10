@@ -145,16 +145,16 @@ const Mission = memo(() => {
           title="Trouvons la mission parfaite pour vous !"
           paragraphe="Indiquez vos préférences en matière de contrat, de mission et de mobilité pour des opportunités sur mesure."
         />
-        <div className="p-5">
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="space-y-2">
+        <div className=" p-5 sm:px-9 border-2 sm:w-1/2">
+          <form className="space-y-4 " onSubmit={handleSubmit}>
+            <div className="space-y-2 w-full">
               <label htmlFor="contractType">Type de Contrat Recherché*</label>
               <select
                 id="contractType"
                 value={formState.contractType}
                 onChange={handleChange("contractType")}
                 onBlur={handleBlur("contractType")}
-                className="flex w-full sm:w-[641px] p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
+                className="flex w-full sm:w-full p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
                 disabled={loading}
               >
                 <option value="" disabled hidden>Ex: CDI, Freelance</option>
@@ -182,7 +182,7 @@ const Mission = memo(() => {
                       type="checkbox"
                       checked={formState.autoEntrepreneur}
                       onChange={handleChange("autoEntrepreneur")}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                      className="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
                       disabled={loading}
                     />
                     <label htmlFor="auto-entrepreneur-checkbox" className="text-[16px] font-montserrat">Auto Entrepreneur</label>
@@ -192,7 +192,7 @@ const Mission = memo(() => {
               {errors.checkbox && <p className="text-red-500 text-sm">{errors.checkbox}</p>}
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 w-full">
               <label htmlFor="mobility">Mobilité*</label>
               <Select
                 id="mobility"
@@ -201,7 +201,7 @@ const Mission = memo(() => {
                 value={formState.mobility}
                 onChange={handleMobilityChange}
                 onBlur={handleBlur("mobility")}
-                className="w-full sm:w-[641px]"
+                className="w-full sm:w-full"
                 placeholder="Ex: Pays-de-la-Loire, Bretagne"
                 isDisabled={loading}
                 styles={{
@@ -238,7 +238,7 @@ const Mission = memo(() => {
                 value={formState.experience}
                 onChange={handleChange("experience")}
                 onBlur={handleBlur("experience")}
-                className="flex w-full sm:w-[641px] p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
+                className="flex w-full sm:w-full p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
                 disabled={loading}
               >
                 <option value="" disabled hidden>Ex: 2 ans Experience</option>
@@ -257,7 +257,7 @@ const Mission = memo(() => {
                   value={formState.pretentionSalariale}
                   onChange={handleChange("pretentionSalariale")}
                   onBlur={handleBlur("pretentionSalariale")}
-                  className="flex w-full sm:w-[641px] p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
+                  className="flex w-full sm:w-full p-[15px_20px] h-[55px] rounded-[14px] border border-[#000] bg-white"
                   disabled={loading}
                 >
                   <option value="" disabled hidden>Ex: 25k-35k</option>
@@ -278,7 +278,7 @@ const Mission = memo(() => {
                   value={formState.tjm}
                   onChange={handleChange("tjm")}
                   onBlur={handleBlur("tjm")}
-                  className="flex w-full sm:w-[641px] p-[18px_30px] h-[55px] rounded-[14px] border border-[#000] bg-white"
+                  className="flex w-full sm:w-full p-[18px_30px] h-[55px] rounded-[14px] border border-[#000] bg-white"
                   placeholder="Ex: 600€/jour"
                   disabled={loading}
                 />

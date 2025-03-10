@@ -2,7 +2,12 @@
 import React, { useState } from "react";
 import { icon } from "../assets/assets";
 
-const AjoutCertificationPopUp = ({ isOpen, onClose, profileData, setProfileData }) => {
+const AjoutCertificationPopUp = ({
+  isOpen,
+  onClose,
+  profileData,
+  setProfileData,
+}) => {
   if (!isOpen) return null;
 
   const [certif, setCertif] = useState("");
@@ -14,7 +19,9 @@ const AjoutCertificationPopUp = ({ isOpen, onClose, profileData, setProfileData 
     const newCertification = {
       Certif: certif || "Not Specified",
       Organisme: organisme || "Not Specified",
-      AnnéeCertif: anneeCertif ? parseInt(anneeCertif.split("-")[0]) : "Not Specified", // Extract year from "YYYY-MM"
+      AnnéeCertif: anneeCertif
+        ? parseInt(anneeCertif.split("-")[0])
+        : "Not Specified", // Extract year from "YYYY-MM"
     };
 
     // Append to Certifications
@@ -60,7 +67,7 @@ const AjoutCertificationPopUp = ({ isOpen, onClose, profileData, setProfileData 
               type="text"
               value={certif}
               onChange={(e) => setCertif(e.target.value)}
-              className="flex w-full p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
+              className="flex w-full p-[18px_30px] h-[45px] rounded-[10px] border-[1px] border-gray-300 bg-gray-50 hover:border-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all placeholder:text-gray-400 placeholder:italic"
               placeholder="Ex: Certification Scrum Master"
               id="certif"
             />
@@ -72,7 +79,7 @@ const AjoutCertificationPopUp = ({ isOpen, onClose, profileData, setProfileData 
               type="text"
               value={organisme}
               onChange={(e) => setOrganisme(e.target.value)}
-              className="flex w-full p-[18px_30px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
+              className="flex w-full p-[18px_30px] h-[45px] rounded-[10px] border-[1px] border-gray-300 bg-gray-50 hover:border-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all placeholder:text-gray-400 placeholder:italic"
               placeholder="Ex: Scrum Alliance"
               id="organisme"
             />
@@ -90,7 +97,7 @@ const AjoutCertificationPopUp = ({ isOpen, onClose, profileData, setProfileData 
                 type="month"
                 value={anneeCertif}
                 onChange={(e) => setAnneeCertif(e.target.value)}
-                className="flex w-full p-[18px_30px_18px_50px] h-[45px] rounded-[14px] border-[1px] border-[#000] bg-white"
+                className="flex w-full p-[18px_30px] h-[45px] rounded-[10px] border-[1px] border-gray-300 bg-gray-50 hover:border-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all placeholder:text-gray-400 placeholder:italic"
                 id="anneeCertif"
               />
             </div>

@@ -94,6 +94,7 @@ const AppRoutes = () => {
               />
             }
           />
+          
         </Route>
 
         {/* Admin Routes */}

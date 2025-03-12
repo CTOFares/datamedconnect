@@ -20,3 +20,42 @@ html, body {
   #root {
     min-height: 100vh; /* Ensures the root div stretches to full viewport height */
   }
+
+
+  .custom-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #6B46C1; /* Purple color for the track */
+    outline: none;
+  }
+  
+  /* Style the thumb for WebKit browsers (Chrome, Safari) */
+  .custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #6B46C1; /* Same purple as the track */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  }
+  
+  /* Style the track for Mozilla Firefox */
+  .custom-range::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: #6B46C1;
+  }
+  
+  /* Style the thumb for Mozilla Firefox */
+  .custom-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #6B46C1;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }

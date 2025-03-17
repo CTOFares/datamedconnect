@@ -16,7 +16,7 @@ import Statistique from "../pages/Client/Statistique/Statistique.jsx";
 import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
-import Accueil from "../pages/admin/Acceuil/Acceuil.jsx"; // Corrected import
+import Accueil from "../pages/Admin/Acceuil.jsx"; 
 import Demandes from "../pages/admin/Demandes/Demandes.jsx";
 import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin.jsx";
 
@@ -36,7 +36,7 @@ const ProtectedRoute = ({ element, allowedRole, userRole }) => {
 };
 
 const AppRoutes = () => {
-  const userRole = "client"; // Replace with actual authentication logic
+  const userRole = "admin"; // Replace with actual authentication logic
 
   return (
     <div className="bg-[#FFFFFF]">

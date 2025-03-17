@@ -17,8 +17,8 @@ import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
 import Accueil from "../pages/Admin/Acceuil.jsx"; 
-import Demandes from "../pages/admin/Demandes/Demandes.jsx";
-import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin.jsx";
+import Demandes from "../pages/Admin/Demandes.jsx";
+import ConsultantAdmin from "../pages/Admin/ConsultantAdmin.jsx";
 
 // Shared Utils and Policy Pages
 import ScrollToTop from "../Utils/ScrollToTop.jsx";

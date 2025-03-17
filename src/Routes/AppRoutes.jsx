@@ -16,7 +16,7 @@ import Statistique from "../pages/Client/Statistique/Statistique.jsx";
 import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
-import Accueil from "../pages/admin/Accueil.jsx"; // Corrected import
+import Accueil from "../pages/admin/Acceuil/Acceuil.jsx"; // Corrected import
 import Demandes from "../pages/admin/Demandes/Demandes.jsx";
 import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin.jsx";
 

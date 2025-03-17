@@ -2,33 +2,33 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 // Consultant Pages
-import Home from "../pages/consultant/Home/Home";
-import Deposer from "../pages/consultant/Details/Details";
-import VerificationEmail from "../pages/consultant/EmailVerif/VerificationEmail";
-import Mission from "../pages/consultant/Mission/Mission";
-import Profile from "../pages/consultant/Profile/Profile";
+import Home from "../pages/consultant/Home/Home.jsx";
+import Deposer from "../pages/consultant/Details/Details.jsx";
+import VerificationEmail from "../pages/consultant/EmailVerif/VerificationEmail.jsx";
+import Mission from "../pages/consultant/Mission/Mission.jsx";
+import Profile from "../pages/consultant/Profile/Profile.jsx";
 
 // Client Pages
-import RechercherUnConsultant from "../pages/Client/RechercheConsultant/RechercheConsultant";
-import DemandeDEchange from "../pages/Client/DemandeEchange/DemandeEchange";
-import ConsultantSauvegarder from "../pages/Client/ConsultantSauvegarder/ConsultantSauvegarder";
-import Statistique from "../pages/Client/Statistique/Statistique";
-import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant";
+import RechercherUnConsultant from "../pages/Client/RechercheConsultant/RechercheConsultant.jsx";
+import DemandeDEchange from "../pages/Client/DemandeEchange/DemandeEchange.jsx";
+import ConsultantSauvegarder from "../pages/Client/ConsultantSauvegarder/ConsultantSauvegarder.jsx";
+import Statistique from "../pages/Client/Statistique/Statistique.jsx";
+import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
-import Acceuil from "../pages/admin/Acceuil/Acceuil";
-import Demandes from "../pages/admin/Demandes/Demandes";
-import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin";
+import Accueil from "../pages/admin/Accueil.jsx"; // Fixed import
+import Demandes from "../pages/admin/Demandes/Demandes.jsx";
+import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin.jsx";
 
 // Shared Utils and Policy Pages
-import ScrollToTop from "../Utils/ScrollToTop";
-import Thankyou from "../Utils/Thankyou";
-import Policy from "../pages/Politique/Policy";
-import Cookies from "../pages/Politique/Cookies";
-import Mention from "../pages/Politique/Mention";
-import Layout from "../pages/Client/Layout";
-import ReserverCreneau from "../pages/Client/Profile/ReserverCreneau";
-import Contact from "../pages/Client/Contact/Contact";
+import ScrollToTop from "../Utils/ScrollToTop.jsx";
+import Thankyou from "../Utils/Thankyou.jsx";
+import Policy from "../pages/Politique/Policy.jsx";
+import Cookies from "../pages/Politique/Cookies.jsx";
+import Mention from "../pages/Politique/Mention.jsx";
+import Layout from "../pages/Client/Layout.jsx";
+import ReserverCreneau from "../pages/Client/Profile/ReserverCreneau.jsx";
+import Contact from "../pages/Client/Contact/Contact.jsx";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -54,9 +54,7 @@ const AppRoutes = () => {
         <Route path="/cookies" element={<Cookies />} />
 
         {/* Client Routes with Layout */}
-        <Route
-          element={<Layout />} // 🟢 Apply Layout Here
-        >
+        <Route element={<Layout />}>
           <Route
             path="/rechercher-un-consultant/"
             element={
@@ -137,7 +135,7 @@ const AppRoutes = () => {
               />
             }
           />
-           <Route
+          <Route
             path="/contactez-nous"
             element={
               <ProtectedRoute
@@ -149,14 +147,13 @@ const AppRoutes = () => {
           />
         </Route>
 
-
         {/* Admin Routes */}
         <Route path="/admin" element={<Layout />}>
           <Route
-            path="acceuil"
+            path="accueil" // Updated to correct spelling (optional)
             element={
               <ProtectedRoute
-                element={<Acceuil />}
+                element={<Accueil />}
                 allowedRole="admin"
                 userRole={userRole}
               />

@@ -6,56 +6,92 @@
 
 /* Apply to the root html or body element to hide scrollbar globally */
 html, body {
-    overflow-y: scroll; /* Ensures content remains scrollable */
-    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
-  }
-  
-  /* Hide scrollbar in Webkit browsers (Chrome, Safari, Edge) */
-  html::-webkit-scrollbar, body::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Optional: Ensure the Home page container takes full height if needed */
-  #root {
-    min-height: 100vh; /* Ensures the root div stretches to full viewport height */
-  }
+  overflow-y: scroll; /* Ensures content remains scrollable */
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Hide scrollbar in Webkit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Optional: Ensure the Home page container takes full height if needed */
+#root {
+  min-height: 100vh; /* Ensures the root div stretches to full viewport height */
+}
+
+.range-slider {
+  position: relative;
+  width: 100%;
+  height: 20px;
+}
+
+/* Highlighted track between the handles */
+.range-slider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc((var(--min-value) / 200) * 100%);
+  width: calc(((var(--max-value) - var(--min-value)) / 200) * 100%);
+  height: 4px;
+  background: #3b82f6; /* Tailwind blue-500 */
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Style for the handles (thumbs) */
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3b82f6; /* Tailwind blue-500 */
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #e5e7eb; /* Tailwind gray-200 */
+  border-radius: 2px;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3b82f6; /* Tailwind blue-500 */
+  cursor: pointer;
+  border: none;
+  z-index: 2;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #e5e7eb; /* Tailwind gray-200 */
+  border-radius: 2px;
+}
+
+/* Style for the displayed values */
+.range-value {
+  min-width: auto; /* Ensure enough space for the number */
+  border-radius: 4px;
+  text-align: start;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937; /* Tailwind gray-800 */
+}
 
 
-  .custom-range {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 4px;
-    background: #6B46C1; /* Purple color for the track */
-    outline: none;
-  }
-  
-  /* Style the thumb for WebKit browsers (Chrome, Safari) */
-  .custom-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: #6B46C1; /* Same purple as the track */
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
-  }
-  
-  /* Style the track for Mozilla Firefox */
-  .custom-range::-moz-range-track {
-    width: 100%;
-    height: 4px;
-    background: #6B46C1;
-  }
-  
-  /* Style the thumb for Mozilla Firefox */
-  .custom-range::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #6B46C1;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

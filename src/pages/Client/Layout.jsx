@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Link, useParams, Outlet, useLocation } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  Outlet,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 import {
   Menu,
   Bell,
@@ -9,146 +15,174 @@ import {
   User2,
   Bookmark,
   ChartColumnIncreasing,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
+
 const Layout = () => {
   const { page } = useParams();
-  const location = useLocation(); // Added to get the current path
-  console.log("Params page:", page); // Debug
-  console.log("Current path:", location.pathname); // De
+  const location = useLocation();
+  console.log("Params page:", page);
+  console.log("Current path:", location.pathname);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
-  // Function to format the path into a title
   const formatPageTitle = () => {
-    // Get the path and remove the leading slash
-    const path = location.pathname.slice(1);
-
-    // If path is empty, return "Home"
-    if (!path) return "Home";
-
-    // Replace hyphens with spaces and capitalize each word
-    return path
+    const pathSegments = location.pathname.slice(1).split("/"); // Remove leading '/' and split by '/'
+    const basePath = pathSegments[0] || "home"; // Take the first segment, default to "home" if empty
+    return basePath
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
       <aside
-        className={` text-white md:w-60 sm:w-64 lg:w-60 fixed h-full transition-transform bg-[#173A6D] ${
+        className={`text-white fixed h-full transition-all bg-[#173A6D] w-60 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-64"
-        } md:translate-x-0`}
+        } md:translate-x-0 ${isSidebarExpanded ? "md:w-60" : "md:w-16"}`}
       >
-        <div>
-          <img src={assets.logowhite} className="p-4" alt="logo white" />
+        <div className="flex flex-col h-full">
+          {/* Logo Section */}
+          <div className="flex justify-center items-center p-4">
+            <img
+              src={isSidebarExpanded ? assets.logowhite : assets.Frame}
+              className="w-full max-w-[300px]"
+              alt="logo"
+            />
+          </div>
+          {/* Main Menu */}
+          <ul className="space-y-2 py-6">
+            <li>
+              <NavLink
+                to="/rechercher-un-consultant"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 text-[16px] hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <LayoutPanelLeft size={20} />
+                {isSidebarExpanded && <span>Rechercher Un Consultant</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/demande-echange"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 text-[16px] hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <ScrollText size={20} />
+                {isSidebarExpanded && <span>Demande D'Echange</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/consultant-sauvegarde"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 text-[16px] hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <Bookmark size={20} />
+                {isSidebarExpanded && <span>Consultant Sauvegarder</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/statistique"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 text-[16px] hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <ChartColumnIncreasing size={20} />
+                {isSidebarExpanded && <span>Statistique</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/settings"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <User2 size={20} />
+                {isSidebarExpanded && <span>Contacter Nous</span>}
+              </NavLink>
+            </li>
+          </ul>
+
+          {/* Toggle Button */}
+
+          {/* Spacer */}
+          <div className="flex-grow"></div>
+
+          {/* Logout Section */}
+          <ul className="pb-4">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `py-2 px-4 rounded flex gap-4 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <LogOut strokeWidth={1.75} size={20} />
+                {isSidebarExpanded && <span>Se Deconnecter</span>}
+              </NavLink>
+            </li>
+          </ul>
         </div>
-        <ul className="space-y-2 py-6">
-          <li>
-            <Link
-              to="/rechercher-un-consultant"
-              className="py-2 px-3 rounded flex gap-4 text-[14px] hover:bg-gray-400 hover:rounded-md"
-            >
-              <LayoutPanelLeft size={20} />
-              Rechercher Un Consultant
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/demande-echange"
-              className="py-2 px-3 rounded flex gap-4 text-[14px] hover:bg-gray-400 hover:rounded-md"
-            >
-              <ScrollText size={20} />
-              Demande D'Echange
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/consultant-sauvegarde"
-              className="py-2 px-3 rounded flex gap-4 text-[14px] hover:bg-gray-400 hover:rounded-md"
-            >
-              <Bookmark size={20} />
-              Consultant Sauvegarder
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/statistique"
-              className="py-2 px-4 rounded flex gap-4 text-[14px] hover:bg-gray-400 hover:rounded-md"
-            >
-              <ChartColumnIncreasing size={20} />
-              Statistique
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/settings"
-              className="py-2  px-4 rounded flex gap-4 hover:bg-gray-400 hover:rounded-md"
-            >
-              <User2 />
-              Contacter Nous
-            </Link>
-          </li>
-        </ul>
       </aside>
 
       {/* Main Content Container */}
       <div className="flex-1 flex flex-col h-screen">
         {/* Fixed Header */}
-        <header className="bg-white p-4 flex justify-between items-center fixed top-0 w-[calc(100%-15rem)] left-60">
-          <button
+        <header
+          className={`bg-white p-4 flex justify-between border-b-2 items-center fixed top-0 ${
+            isSidebarExpanded
+              ? "left-60 w-[calc(100%-15rem)]"
+              : "left-16 w-[calc(100%-4rem)]"
+          } right-0`}
+        >
+          {/* <button
             className="md:hidden p-2 text-gray-600"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             <Menu size={18} />
-          </button>
-          <h1 className="text-[20px] leading-[38px] text-[#324DA9] font-montserrat font-normal">
-            {formatPageTitle()}
-          </h1>
+          </button> */}
+          <div className="py-2 px-4 flex justify-end">
+            <button onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}>
+              <Menu size={20}/>
+            </button>
+          </div>
           <div className="flex gap-4">
-            <Bell size={18} className="text-gray-600 cursor-pointer" />
-            <User size={18} className="text-gray-600 cursor-pointer" />
+            <Bell size={20} className="text-gray-600 cursor-pointer" />
+            <User size={20} className="text-gray-600 cursor-pointer" />
           </div>
         </header>
 
         {/* Scrollable Main Content */}
-        <main className="flex-1 overflow-y-auto p-4 mt-[4rem] mb-4 bg-[#feeded] ml-60 border-2">
-          <Outlet />
+        <main
+          className={`flex-1 overflow-y-auto overflow-visible p-4 mt-[4rem] h-full bg-[#fdfdfd] ${
+            isSidebarExpanded ? "md:ml-60" : "md:ml-16"
+          } border-2`}
+        >
+          <Outlet  />
         </main>
-
-        {/* Fixed Footer */}
-        <footer className="bg-white border-2  p-4 flex justify-between items-center fixed bottom-0 w-[calc(100%-15rem)] left-60 z-10">
-          <div className="flex gap-4">
-            <p className="text-[14px] text-[#565758] font-montserrat font-normal">
-              © 2025 DATAMED Consulting
-            </p>
-
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              2025/08/12 •
-            </p>
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              16:45 (GMT+1)
-            </p>
-          </div>
-          <div className="flex gap-5">
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              Help center
-            </p>
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              •
-            </p>
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              Terms of use
-            </p>
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              •
-            </p>
-
-            <p className="text-[14px] text-[#173A6D] font-montserrat font-normal">
-              Privacy policy
-            </p>
-          </div>
-        </footer>
       </div>
     </div>
   );

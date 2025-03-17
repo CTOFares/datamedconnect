@@ -1,5 +1,5 @@
 import { BadgeInfo, Bookmark, CarFront, MapPinned } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const Card = ({
   id,
@@ -7,13 +7,15 @@ const Card = ({
   name,
   age,
   experience,
-  roles,
-  skills,
+  mission,
+  roles = [],
+  skills = [],
   location,
   region,
   rate,
-  icons,
 }) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const availabilityStyle =
     availability <= 5
       ? "text-[#40892A]"
@@ -21,22 +23,38 @@ const Card = ({
       ? "text-red-500"
       : "";
 
+  const missionStyle =
+    mission === "Freelance"
+      ? "bg-[#89EEFF] text-[#65558F]"
+      : "bg-[#89FF9D] text-[#65558F]";
+
+  const handleBookmarkClick = () => {
+    setIsBookmarked(!isBookmarked);
+  };
+
   return (
-    <div className="flex h-au p-4 flex-col gap-2.5 flex-shrink-0 self-stretch rounded-[8px] border border-[#E6E7E9] bg-white">
+    <div className="flex h-auto p-4 flex-col gap-2.5 flex-shrink-0 self-stretch rounded-[8px] border border-[#E6E7E9] bg-white cursor-pointer transition-shadow hover:shadow-lg">
       <div className="flex justify-between">
         <p className="text-[#696A6B] font-montserrat text-xs font-medium leading-[24px]">
           {id}
         </p>
-        <div className="flex gap-2 items-center ">
+        <div className="flex gap-2 items-center">
           <p className={`font-lato text-base font-normal ${availabilityStyle}`}>
             Disponible dans {availability} Jours
           </p>
           <BadgeInfo size={16} className="text-[#40892A]" />
-          <Bookmark size={16} />
+          <Bookmark
+            size={16}
+            className={isBookmarked ? "text-[#65558F]" : ""}
+            fill={isBookmarked ? "currentColor" : "none"}
+            onClick={handleBookmarkClick}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       </div>
+      {/* Rest of your component remains the same */}
       <div className="flex gap-3">
-        <h4 className="text-[#38383A] font-montserrat text-3xl font-semibold leading-[24px]">
+        <h4 className="bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-montserrat text-3xl font-semibold leading-[24px]">
           {name}
         </h4>
         <div>
@@ -50,8 +68,8 @@ const Card = ({
           </p>
         </div>
       </div>
-      <div className="flex gap-2">
-        {roles.map((role, index) => (
+      <div className="flex gap-2 flex-wrap">
+        {roles?.map((role, index) => (
           <p
             key={index}
             className="flex w-[176px] p-[5px] justify-center items-center gap-2.5 rounded-[10px] bg-[#EDF3F4]"
@@ -61,7 +79,7 @@ const Card = ({
         ))}
       </div>
       <div className="flex gap-[6px] items-center flex-wrap">
-        {skills.map((skill, index) => (
+        {skills?.map((skill, index) => (
           <React.Fragment key={index}>
             <p className="text-[#2E2E2E] w-auto px-2 font-lato text-center font-normal">
               {skill}
@@ -70,27 +88,29 @@ const Card = ({
           </React.Fragment>
         ))}
       </div>
-      <div className="flex gap-4 items-center justify-between ">
+      <div className="flex gap-4 items-center flex-wrap justify-between">
         <div className="flex gap-3 items-center">
-          <p className="flex p-2 justify-center items-center gap-2 rounded-[10px] bg-[#89EEFF]">
-            FreeLance
+          <p
+            className={`flex p-2 justify-center items-center gap-2 rounded-[10px] ${missionStyle}`}
+          >
+            {mission}
           </p>
-          <>
+          <div className="flex items-center gap-1">
             <MapPinned size={16} className="text-[rgba(34,153,195,0.60)]" />
             <p className="text-[rgba(34,153,195,0.60)] font-montserrat text-[12px] font-semibold leading-6">
               {location}
             </p>
-          </>
-          <>
-            <CarFront size={16} className="text-[rgba(34,153,195,0.60)]" />
+          </div>
+          <div className="flex items-center gap-1">
+            <CarFront size={20} className="text-[rgba(34,153,195,0.60)]" />
             <p className="text-[rgba(34,153,195,0.60)] font-montserrat text-[12px] font-semibold leading-6">
               {region}
             </p>
-          </>
+          </div>
         </div>
-        <div>
-          <h1 className="text-[#65558F] font-montserrat text-[30px] font-semibold leading-[0.8]">
-            {rate}/Jour
+        <div className="">
+          <h1 className="text-[#65558F] font-montserrat sm:text-[30px] font-semibold leading-[0.8]">
+            {rate} €/Jour
           </h1>
         </div>
       </div>

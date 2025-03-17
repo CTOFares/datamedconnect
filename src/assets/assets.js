@@ -46,6 +46,7 @@ import edit from "./icons/edit.svg";
 import trash from "./icons/trash.svg";
 import loading from "./loading.gif";
 import checkgif from "./check.gif";
+import Frame from "./Frame.png";
 
 // Export assets
 export const assets = {
@@ -67,6 +68,7 @@ export const assets = {
   lock,
   loading,
   checkgif,
+  Frame
 };
 
 export const links = {

@@ -13,6 +13,7 @@ import RechercherUnConsultant from "../pages/Client/RechercheConsultant/Recherch
 import DemandeDEchange from "../pages/Client/DemandeEchange/DemandeEchange";
 import ConsultantSauvegarder from "../pages/Client/ConsultantSauvegarder/ConsultantSauvegarder";
 import Statistique from "../pages/Client/Statistique/Statistique";
+import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant";
 
 // Admin Pages
 import Acceuil from "../pages/admin/Acceuil/Acceuil";
@@ -26,6 +27,7 @@ import Policy from "../pages/Politique/Policy";
 import Cookies from "../pages/Politique/Cookies";
 import Mention from "../pages/Politique/Mention";
 import Layout from "../pages/Client/Layout";
+import ReserverCreneau from "../pages/Client/Profile/ReserverCreneau";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -55,10 +57,30 @@ const AppRoutes = () => {
           element={<Layout />} // 🟢 Apply Layout Here
         >
           <Route
-            path="/rechercher-un-consultant"
+            path="/rechercher-un-consultant/"
             element={
               <ProtectedRoute
                 element={<RechercherUnConsultant />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="/rechercher-un-consultant/:id"
+            element={
+              <ProtectedRoute
+                element={<ProfileConsultant />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="/rechercher-un-consultant/:id/creneau"
+            element={
+              <ProtectedRoute
+                element={<ReserverCreneau />}
                 allowedRole="client"
                 userRole={userRole}
               />
@@ -69,6 +91,26 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<DemandeDEchange />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="/demande-echange/:id"
+            element={
+              <ProtectedRoute
+                element={<ProfileConsultant />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="/demande-echange/:id/creneau"
+            element={
+              <ProtectedRoute
+                element={<ProfileConsultant />}
                 allowedRole="client"
                 userRole={userRole}
               />
@@ -94,11 +136,10 @@ const AppRoutes = () => {
               />
             }
           />
-          
         </Route>
 
         {/* Admin Routes */}
-        <Route path="/admin" element={<Layout/>}>
+        <Route path="/admin" element={<Layout />}>
           <Route
             path="acceuil"
             element={

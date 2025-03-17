@@ -10,7 +10,7 @@ const Experience = ({
   context,
 }) => {
   return (
-    <div className="flex gap-5 w-full items-start   p-4 rounded-lg">
+    <div className="flex gap-5  w-full items-start   p-4 rounded-lg">
       <img src={icon.Building} className="h-auto" alt="Building Icon" />
       <div className="w-full">
         <h1 className="text-[#2E2E2E] font-montserrat text-[18px] font-semibold leading-[24.08px]">

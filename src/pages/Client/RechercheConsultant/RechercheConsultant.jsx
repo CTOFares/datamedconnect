@@ -1,99 +1,100 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  CircleDotDashed,
+  AlignJustify,
   CircleDotDashedIcon,
+  LayoutGrid,
   MapPin,
-  Search, 
+  Search,
 } from "lucide-react";
-import Range from "../../../Components/Client/Range";
-import Card from "../../../Components/Client/Card";
+import Range from "../../../Components/Client/Range"; // Ensure this path is correct
+import Card from "../../../Components/Client/Card"; // Ensure this path is correct
+import { consultants } from "../../../Utils/mockdata";
+import { useNavigate } from "react-router-dom";
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
+
+const FRENCH_CITIES = [
+  { value: "Paris", label: "Paris" },
+  { value: "Marseille", label: "Marseille" },
+  { value: "Lyon", label: "Lyon" },
+  // Add more cities as needed
+];
 
 const RechercheConsultant = () => {
-  const [value, setValue] = useState(16);
-  const [salaryRange, setSalaryRange] = useState({ min: 0, max: 40 }); // State for salary range
+  const [experience, setExperience] = useState({ min: 0, max: 30 });
+  const [dailyRate, setDailyRate] = useState({ min: 0, max: 17 }); // New state for Tarif Journalier (in thousands)
+  const [viewMode, setViewMode] = useState("list");
+  const [annualSalary, setAnnualSalary] = useState({ min: 30, max: 70 }); // Renamed 'tarif' to 'annualSalary' for clarity
 
-  const handleSalaryRangeChange = (newValue) => {
-    setSalaryRange(newValue);
-    console.log("Salary Range Updated:", newValue); // Debug log
+  const navigate = useNavigate();
+
+  // Debug state updates
+  useEffect(() => {
+    console.log("Updated daily rate state:", dailyRate);
+    console.log("Updated annual salary state:", annualSalary);
+  }, [dailyRate, annualSalary]);
+
+  const handleExperienceChange = (e) => {
+    setExperience(parseInt(e.target.value, 10));
   };
 
-  const handleChange = (e) => {
-    setValue(parseInt(e.target.value, 10)); // Convert string to integer
+  // Function to format the value as thousands of euros
+  const formatTarif = (value) => {
+    return `${(value * 100).toLocaleString("fr-FR")} `;
   };
-  const cardData = {
-    id: "#CON-1249",
-    availability: "5",
-    name: "FS",
-    age: 23,
-    experience: "5+",
-    roles: ["Developeur Full Stack", "Chef De Project IT", "Product Owner"],
-    skills: [
-      "Docker",
-      "React",
-      "Node.js",
-      "AWS",
-      "Python",
-      "Terraform",
-      "JavaScript",
-      "Jenkins",
-      "Git",
-      "MongoDB",
-      "TypeScript",
-      "PostgreSQL",
-      "Ansible",
-      "Vue.js",
-      "Azure",
-      "GraphQL",
-      "Redis",
-      "Go",
-      "Jenkins",
-      "Git",
-      "MongoDB",
-      "TypeScript",
-      "PostgreSQL",
-      "Ansible",
-      "Vue.js",
-      "Azure",
-      "GraphQL",
-      "Redis",
-      "Go",
-    ],
-    location: "Marmagne(71710)v",
-    region: "Mobile : Pays-de-la-Loire, Bretagne, Nouvelle-Aquitaine",
-    rate: 700,
-    icons: {
-      location: true,
-      car: true,
-    },
+  const formatSalary = (value) => {
+    return `${(value * 1000).toLocaleString("fr-FR")} `;
   };
+
   return (
-    <div className="">
-      <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto p-4">
+    <div className="pb-12">
+      <h1 className="text-[35px] leading-[30px] py-3 px-4 text-[#324DA9] font-montserrat font-normal">
+        Rechercher Un Consultant
+      </h1>
+      <div className="bg-white  border-[#E6E7E9] rounded-md w-full h-auto">
         <form action="filter" className="space-y-4">
           <div className="flex justify-between gap-4 items-center">
-            <div className="border-[#E6E7E9] flex gap-4 p-4 rounded-md bg-[#F8F8FA]">
-              <div className="flex gap-4">
-                <input type="checkbox" className="rounded-sm border-2" />
-                <p className="text-[16px]">CDI</p>
+            <div className="border-[#E6E7E9] flex gap-4 px-4 py-2 rounded-md bg-[#F8F8FA]">
+              <div className="flex gap-3 items-center">
+                <input
+                  id="cdi-checkbox"
+                  type="checkbox"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="cdi-checkbox"
+                  className="text-[16px] font-montserrat"
+                >
+                  CDI
+                </label>
               </div>
-              <div className="flex gap-4 text-[16px]">
-                <input type="checkbox" />
-                <p className="text-[16px]">FreeLance</p>
+              <div className="flex gap-3 items-center">
+                <input
+                  id="freelance-checkbox"
+                  type="checkbox"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="freelance-checkbox"
+                  className="text-[16px] font-montserrat"
+                >
+                  FreeLance
+                </label>
               </div>
             </div>
             <input
               type="text"
               placeholder="Full Stack Developer"
-              className="w-full rounded border border-[#E6E7E9] h-auto px-4 py-4 text-[16px] font-montserrat font-normal leading-6 text-[#38383A] placeholder-[#E6E7E9]"
+              className="w-full rounded border border-[#E6E7E9] h-auto px-4 py-2 text-[16px] font-montserrat font-normal leading-6 text-[#38383A] placeholder-[#E6E7E9]"
             />
-            <button className="flex w-[151px] h-full items-center justify-center gap-2 rounded-[10px] bg-[#173A6D] px-[19px] py-4 text-white">
+            <button className="flex w-[151px] h-full items-center justify-center gap-2 rounded-md bg-[#173A6D] px-[19px] py-2 text-white">
               <Search size={20} />
               <span className="text-[16px]">Rechercher</span>
             </button>
           </div>
           <div className="flex justify-between gap-6">
-            <div className="border-[#E6E7E9] justify-between w-full flex gap-2 p-4 rounded-md bg-[#F8F8FA]">
-              <div className="flex gap-4 text-[16px]">
+            <div className="border-[#E6E7E9] justify-between w-full flex gap-2 px-4 py-2 rounded-md bg-[#F8F8FA]">
+              <div className="flex gap-4 items-center justify-start text-[16px]">
                 <CircleDotDashedIcon className="h-5 w-5" />
                 <input
                   type="text"
@@ -101,109 +102,192 @@ const RechercheConsultant = () => {
                   className="text-[16px] border-none w-1/2 bg-transparent text-[#38383A] focus:outline-none"
                 />
               </div>
-              <div className="flex gap-4 text-[16px] w-1/2 justify-between">
-                <div className="relative  flex gap-4">
-                  <MapPin className="h-5 w-5" />
-                  <select
-                    defaultValue="France"
-                    className="text-[16px] border-none bg-transparent focus:outline-none appearance-none pr-8"
-                  >
-                    <option value="France">France</option>
-                    <option value="Paris">Paris</option>
-                    <option value="Marseille">Marseille</option>
-                    <option value="Lyon">Lyon</option>
-                    <option value="Toulouse">Toulouse</option>
-                    <option value="Nice">Nice</option>
-                    <option value="Nantes">Nantes</option>
-                    <option value="Strasbourg">Strasbourg</option>
-                    <option value="Montpellier">Montpellier</option>
-                    <option value="Bordeaux">Bordeaux</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <svg
-                      className="w-4 h-4 text-gray-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+              <div className="flex items-center">
+                <MapPin color="#000000" strokeWidth={1.5} />
+                <select
+                  id="contractType"
+                  className="flex w-[300px] px-4 py-2 rounded-md bg-[#F8F8FA] hover:bg-none focus:outline-none"
+                >
+                  <option value="" className="text-[#38383A]" disabled hidden>
+                    Ex: Confirmé, En Attente
+                  </option>
+                  {FRENCH_CITIES.map((type) => (
+                    <option
+                      className="text-[#38383A]"
+                      key={type.value}
+                      value={type.value}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                      {type.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-            <div className="bg-gray-50 border w-full border-blue-500 p-4 rounded-md">
+            <div className="w-full px-4 py-2">
               <div className="flex items-center gap-4">
                 <span className="text-black font-medium">Expérience :</span>
                 <div className="flex items-center gap-2 flex-1">
-                  <div className="flex items-center  w-full gap-3">
-                    <span className="text-black">0</span>
-                    <input
-                      type="range"
-                      min="0"
-                      max="40"
-                      value={value}
-                      onChange={handleChange}
-                      className="w-full h-2 bg-gray-200  rounded-lg  appearance-none cursor-pointer accent-blue-500 focus:outline-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-blue-500 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-md"
+                  <div className="flex items-center w-full gap-3">
+                    <p className="range-value">{experience.min}</p>
+                    <RangeSlider
+                      min={0}
+                      max={37} // Adjusted max to 100 (representing 100,000 €)
+                      value={[experience.min, experience.max]}
+                      onInput={(value) => {
+                        console.log("Daily rate onInput event:", value);
+                        if (Array.isArray(value) && value.length === 2) {
+                          const newMin = Math.min(value[0], value[1]);
+                          const newMax = Math.max(value[0], value[1]);
+                          console.log("New daily rate values:", [
+                            newMin,
+                            newMax,
+                          ]);
+                          setExperience({ min: newMin, max: newMax });
+                        } else {
+                          console.error(
+                            "Invalid daily rate value received:",
+                            value
+                          );
+                        }
+                      }}
+                      className="range-slider"
+                      style={{
+                        "--min-value": dailyRate.min,
+                        "--max-value": dailyRate.max,
+                      }}
                     />
-                    <span className="text-black font-medium w-8">{value}</span>
-                    <span className="text-black text-sm">Ans</span>
+                    <p className="range-value">{experience.max}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <div className="w-full p-4 rounded-md">
+            <div className="w-full px-4 py-2">
               <div className="space-y-2">
                 <span className="text-black font-medium">
-                  Tarif Journalier:
+                  Tarif Journalier en €:{" "}
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="text-black">0</span>
-                  <input
-                    type="range"
-                    min="0"
-                    max="20"
-                    className="custom-range flex-1"
+                  <p className="range-value border-2">
+                    {formatTarif(dailyRate.min)}
+                  </p>
+                  <RangeSlider
+                    min={0}
+                    max={17} // Adjusted max to 100 (representing 100,000 €)
+                    value={[dailyRate.min, dailyRate.max]}
+                    onInput={(value) => {
+                      console.log("Daily rate onInput event:", value);
+                      if (Array.isArray(value) && value.length === 2) {
+                        const newMin = Math.min(value[0], value[1]);
+                        const newMax = Math.max(value[0], value[1]);
+                        console.log("New daily rate values:", [newMin, newMax]);
+                        setDailyRate({ min: newMin, max: newMax });
+                      } else {
+                        console.error(
+                          "Invalid daily rate value received:",
+                          value
+                        );
+                      }
+                    }}
+                    className="range-slider"
+                    style={{
+                      "--min-value": dailyRate.min,
+                      "--max-value": dailyRate.max,
+                    }}
                   />
-                  <span className="text-black">20 k€</span>
+                  <p className="range-value">{formatTarif(dailyRate.max)}</p>
                 </div>
               </div>
             </div>
             <p className="items-center justify-center p-4">ou</p>
-            <div className="bg-gray-50 border w-full border-blue-500 p-4 rounded-md">
+            <div className="w-full px-4 py-2">
               <div className="space-y-2">
-                <span className="text-black font-medium">Salaire Annuel:</span>
-                <div className="flex items-center gap-3">
-                  <Range
-                    min={0}
-                    max={40}
-                    value={salaryRange}
-                    onChange={handleSalaryRangeChange}
+                <span className="text-black font-medium">
+                  Salaire Annuel en €:
+                </span>
+                <div className="flex items-center gap-2">
+                  <p className="range-value">
+                    {formatSalary(annualSalary.min)}
+                  </p>
+                  <RangeSlider
+                    min={30}
+                    max={70}
+                    value={[annualSalary.min, annualSalary.max]}
+                    onInput={(value) => {
+                      console.log("Annual salary onInput event:", value);
+                      if (Array.isArray(value) && value.length === 2) {
+                        const newMin = Math.min(value[0], value[1]);
+                        const newMax = Math.max(value[0], value[1]);
+                        console.log("New annual salary values:", [
+                          newMin,
+                          newMax,
+                        ]);
+                        setAnnualSalary({ min: newMin, max: newMax });
+                      } else {
+                        console.error(
+                          "Invalid annual salary value received:",
+                          value
+                        );
+                      }
+                    }}
+                    className="range-slider"
+                    style={{
+                      "--min-value": annualSalary.min,
+                      "--max-value": annualSalary.max,
+                    }}
                   />
-                  <span className="text-black font-medium w-16">{`${salaryRange.min} - ${salaryRange.max}`}</span>
-                  <span className="text-black text-sm">k€/Brut</span>
+                  <p className="range-value">
+                    {formatSalary(annualSalary.max)}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </form>
       </div>
-      <div className="mt-4">
-        <p className="text-[#696A6B] font-montserrat text-base font-medium leading-[24px]">
-          0 a 15 sur 110 résultats filtrés
-        </p>
-        <div className="space-y-3">
-          <Card {...cardData} />
-          <Card {...cardData} />
-          <Card {...cardData} />
+      <div className="mt-4 space-y-4">
+        <div className="justify-between flex items-center">
+          <p className="text-[#696A6B] font-montserrat text-base font-medium leading-[24px]">
+            0 a 15 sur 110 résultats filtrés
+          </p>
+          <div className="flex p-1 gap-2 bg-[#F8F8FA] rounded-md">
+            <button
+              className={`p-1 rounded-sm ${
+                viewMode === "list" ? "bg-[#e5e5ed]" : ""
+              } hover:bg-[#e5e5ed]`}
+              onClick={() => setViewMode("list")}
+            >
+              <AlignJustify color="#000000" strokeWidth={1.5} />
+            </button>
+            <button
+              className={`p-1 rounded-sm ${
+                viewMode === "grid" ? "bg-[#e5e5ed]" : ""
+              } hover:bg-[#e5e5ed]`}
+              onClick={() => setViewMode("grid")}
+            >
+              <LayoutGrid color="#000000" strokeWidth={1.5} />
+            </button>
+          </div>
+        </div>
+        <div
+          className={
+            viewMode === "list" ? "space-y-3" : "grid grid-cols-2 gap-4"
+          }
+        >
+          {consultants.map((consultant) => (
+            <div
+              key={consultant.id}
+              onClick={() =>
+                navigate(
+                  `/rechercher-un-consultant/${consultant.id.replace("#", "")}`
+                )
+              }
+              className="cursor-pointer"
+            >
+              <Card {...consultant} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

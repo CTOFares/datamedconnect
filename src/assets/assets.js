@@ -28,7 +28,7 @@ import star from "./icons/star.svg";
 import macbook from "./macbook.png";
 import car from "./icons/car.svg";
 import location from "./icons/location.svg";
-import Building from "./icons/Building.svg";
+import Building from "./icons/building.svg";
 import graduation from "./icons/graduation.svg";
 import certif from "./icons/certif.svg";
 import check from "./icons/check.svg";

@@ -16,7 +16,7 @@ import Statistique from "../pages/Client/Statistique/Statistique.jsx";
 import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
-import Accueil from "../pages/admin/Accueil.jsx"; // Fixed import
+import Accueil from "../pages/admin/Accueil.jsx"; // Corrected import
 import Demandes from "../pages/admin/Demandes/Demandes.jsx";
 import ConsultantAdmin from "../pages/admin/ConsultantAdmin/ConsultantAdmin.jsx";
 
@@ -150,7 +150,7 @@ const AppRoutes = () => {
         {/* Admin Routes */}
         <Route path="/admin" element={<Layout />}>
           <Route
-            path="accueil" // Updated to correct spelling (optional)
+            path="accueil" // Corrected spelling
             element={
               <ProtectedRoute
                 element={<Accueil />}

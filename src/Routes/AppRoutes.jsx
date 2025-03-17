@@ -28,6 +28,7 @@ import Cookies from "../pages/Politique/Cookies";
 import Mention from "../pages/Politique/Mention";
 import Layout from "../pages/Client/Layout";
 import ReserverCreneau from "../pages/Client/Profile/ReserverCreneau";
+import Contact from "../pages/Client/Contact/Contact";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -131,6 +132,16 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Statistique />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+           <Route
+            path="/contactez-nous"
+            element={
+              <ProtectedRoute
+                element={<Contact />}
                 allowedRole="client"
                 userRole={userRole}
               />

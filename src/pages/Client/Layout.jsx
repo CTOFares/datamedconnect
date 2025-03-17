@@ -111,7 +111,7 @@ const Layout = () => {
             </li>
             <li>
               <NavLink
-                to="/settings"
+                to="/contactez-nous"
                 className={({ isActive }) =>
                   `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
                     isActive ? "opacity-100" : "opacity-50"
@@ -171,7 +171,7 @@ const Layout = () => {
           </div>
           <div className="flex gap-4">
             <Bell size={20} className="text-gray-600 cursor-pointer" />
-            <User size={20} className="text-gray-600 cursor-pointer" />
+            {/* <User size={20} className="text-gray-600 cursor-pointer" /> */}
           </div>
         </header>
 

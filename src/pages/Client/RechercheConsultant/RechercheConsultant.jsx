@@ -6,7 +6,6 @@ import {
   MapPin,
   Search,
 } from "lucide-react";
-import Range from "../../../Components/Client/Range"; // Ensure this path is correct
 import Card from "../../../Components/Client/Card"; // Ensure this path is correct
 import { consultants } from "../../../Utils/mockdata";
 import { useNavigate } from "react-router-dom";
@@ -169,7 +168,7 @@ const RechercheConsultant = () => {
                   Tarif Journalier en €:{" "}
                 </span>
                 <div className="flex items-center gap-2">
-                  <p className="range-value border-2">
+                  <p className="range-value">
                     {formatTarif(dailyRate.min)}
                   </p>
                   <RangeSlider

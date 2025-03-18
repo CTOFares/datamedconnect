@@ -18,6 +18,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  ShieldQuestion,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
 
@@ -105,7 +106,7 @@ const LayoutAdmin = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <User2 size={20} />
+                <ShieldQuestion size={20} />
                 {isSidebarExpanded && <span>FAQ</span>}
               </NavLink>
             </li>

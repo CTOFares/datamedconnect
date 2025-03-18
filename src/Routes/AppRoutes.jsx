@@ -32,6 +32,7 @@ import Contact from "../pages/Client/Contact/Contact.jsx";
 import LayoutAdmin from "../pages/Admin/LayoutAdmin.jsx";
 import ConsultantProfile from "../pages/Admin/ConsultantProfile.jsx";
 import DemandeDetails from "../pages/Admin/DemandeDetails.jsx";
+import FrequentlyaskedQuestions from "../pages/Admin/FrequentlyaskedQuestions.jsx";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -39,7 +40,7 @@ const ProtectedRoute = ({ element, allowedRole, userRole }) => {
 };
 
 const AppRoutes = () => {
-  const userRole = "client"; // Replace with actual authentication logic
+  const userRole = "admin"; // Replace with actual authentication logic
 
   return (
     <div className="bg-[#FFFFFF]">
@@ -206,7 +207,7 @@ const AppRoutes = () => {
             path="faq"
             element={
               <ProtectedRoute
-                element={<ConsultantAdmin />}
+                element={<FrequentlyaskedQuestions />}
                 allowedRole="admin"
                 userRole={userRole}
               />

@@ -4,9 +4,9 @@ import {
   CircleDotDashedIcon,
   LayoutGrid,
   MapPin,
-  Search,
+  X,
 } from "lucide-react";
-import Card from "../../../Components/Client/Card"; // Ensure this path is correct
+import Card from "../../../Components/Client/Card";
 import { consultants } from "../../../Utils/mockdata";
 import { useNavigate } from "react-router-dom";
 import RangeSlider from "react-range-slider-input";
@@ -16,42 +16,123 @@ const FRENCH_CITIES = [
   { value: "Paris", label: "Paris" },
   { value: "Marseille", label: "Marseille" },
   { value: "Lyon", label: "Lyon" },
-  // Add more cities as needed
+  { value: "Bordeaux", label: "Bordeaux" },
+  { value: "Toulouse", label: "Toulouse" },
+  { value: "Nice", label: "Nice" },
 ];
 
 const RechercheConsultant = () => {
-  const [experience, setExperience] = useState({ min: 0, max: 30 });
-  const [dailyRate, setDailyRate] = useState({ min: 0, max: 17 }); // New state for Tarif Journalier (in thousands)
   const [viewMode, setViewMode] = useState("list");
-  const [annualSalary, setAnnualSalary] = useState({ min: 30, max: 70 }); // Renamed 'tarif' to 'annualSalary' for clarity
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isCDI, setIsCDI] = useState(false);
+  const [isFreelance, setIsFreelance] = useState(false);
+  const [selectedCity, setSelectedCity] = useState("All");
+  const [experience, setExperience] = useState({ min: 0, max: 30 });
+  const [dailyRate, setDailyRate] = useState({ min: 0, max: 2000 }); // Broadened to include all rates
+  const [annualSalary, setAnnualSalary] = useState({ min: 0, max: 1000 }); // Broadened to include all estimated salaries
 
   const navigate = useNavigate();
 
   // Debug state updates
   useEffect(() => {
-    console.log("Updated daily rate state:", dailyRate);
-    console.log("Updated annual salary state:", annualSalary);
-  }, [dailyRate, annualSalary]);
+    console.log("Experience:", experience);
+    console.log("Daily Rate:", dailyRate);
+    console.log("Annual Salary:", annualSalary);
+    console.log("Filtered Consultants:", filteredConsultants);
+  }, [experience, dailyRate, annualSalary]);
 
-  const handleExperienceChange = (e) => {
-    setExperience(parseInt(e.target.value, 10));
+  // Parse experience string to number (e.g., "7+" -> 7)
+  const parseExperience = (exp) => {
+    return parseInt(exp.replace("+", ""), 10) || 0;
   };
 
-  // Function to format the value as thousands of euros
-  const formatTarif = (value) => {
-    return `${(value * 100).toLocaleString("fr-FR")} `;
+  // Filter consultants based on all criteria
+  const filteredConsultants = consultants.filter((consultant) => {
+    // Keyword filter (ID, Name, Role, Skills)
+    const matchesSearch =
+      searchTerm === "" ||
+      consultant.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      consultant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      consultant.roles.some((role) =>
+        role.toLowerCase().includes(searchTerm.toLowerCase())
+      ) ||
+      consultant.skills.some((skill) =>
+        skill.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+    // Mission filter (CDI, Freelance)
+    const matchesMission =
+      (!isCDI && !isFreelance) ||
+      (isCDI && consultant.mission === "CDI") ||
+      (isFreelance && consultant.mission === "Freelance");
+
+    // City filter
+    const matchesCity =
+      selectedCity === "All" ||
+      consultant.location.toLowerCase().includes(selectedCity.toLowerCase());
+
+    // Experience filter
+    const consultantExperience = parseExperience(consultant.experience);
+    const matchesExperience =
+      consultantExperience >= experience.min &&
+      consultantExperience <= experience.max;
+
+    // Daily Rate filter
+    const consultantRate = Number(consultant.rate); // Ensure rate is a number
+    const matchesDailyRate =
+      consultantRate >= dailyRate.min && consultantRate <= dailyRate.max;
+
+    // Annual Salary filter (estimated from daily rate: rate * 220 days / 1000 for thousands)
+    const estimatedAnnualSalary = (consultantRate * 220) / 1000;
+    const matchesAnnualSalary =
+      estimatedAnnualSalary >= annualSalary.min &&
+      estimatedAnnualSalary <= annualSalary.max;
+
+    // Log filtering steps for debugging
+    console.log(`Consultant ${consultant.id}:`, {
+      matchesSearch,
+      matchesMission,
+      matchesCity,
+      matchesExperience,
+      matchesDailyRate,
+      matchesAnnualSalary,
+      consultantExperience,
+      consultantRate,
+      estimatedAnnualSalary,
+    });
+
+    return (
+      matchesSearch &&
+      matchesMission &&
+      matchesCity &&
+      matchesExperience &&
+      matchesDailyRate &&
+      matchesAnnualSalary
+    );
+  });
+
+  // Reset all filters
+  const handleResetFilters = () => {
+    setSearchTerm("");
+    setIsCDI(false);
+    setIsFreelance(false);
+    setSelectedCity("All");
+    setExperience({ min: 0, max: 30 });
+    setDailyRate({ min: 0, max: 2000 });
+    setAnnualSalary({ min: 0, max: 1000 });
   };
-  const formatSalary = (value) => {
-    return `${(value * 1000).toLocaleString("fr-FR")} `;
-  };
+
+  // Format values for display
+  const formatTarif = (value) => `${value.toLocaleString("fr-FR")} €`;
+  const formatSalary = (value) => `${(value * 1000).toLocaleString("fr-FR")} €`;
 
   return (
     <div className="pb-12">
       <h1 className="text-[35px] leading-[30px] py-3 px-4 text-[#324DA9] font-montserrat font-normal">
-        Rechercher Un Consultant
+        Rechercher un Consultant
       </h1>
-      <div className="bg-white  border-[#E6E7E9] rounded-md w-full h-auto">
-        <form action="filter" className="space-y-4">
+      <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto p-4">
+        <div className="space-y-4">
           <div className="flex justify-between gap-4 items-center">
             <div className="border-[#E6E7E9] flex gap-4 px-4 py-2 rounded-md bg-[#F8F8FA]">
               <div className="flex gap-3 items-center">
@@ -59,6 +140,8 @@ const RechercheConsultant = () => {
                   id="cdi-checkbox"
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                  checked={isCDI}
+                  onChange={(e) => setIsCDI(e.target.checked)}
                 />
                 <label
                   htmlFor="cdi-checkbox"
@@ -72,23 +155,30 @@ const RechercheConsultant = () => {
                   id="freelance-checkbox"
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500"
+                  checked={isFreelance}
+                  onChange={(e) => setIsFreelance(e.target.checked)}
                 />
                 <label
                   htmlFor="freelance-checkbox"
                   className="text-[16px] font-montserrat"
                 >
-                  FreeLance
+                  Freelance
                 </label>
               </div>
             </div>
             <input
               type="text"
-              placeholder="Full Stack Developer"
+              placeholder="Rechercher par ID, nom, rôle ou compétence (ex: React, Java)"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded border border-[#E6E7E9] h-auto px-4 py-2 text-[16px] font-montserrat font-normal leading-6 text-[#38383A] placeholder-[#E6E7E9]"
             />
-            <button className="flex w-[151px] h-full items-center justify-center gap-2 rounded-md bg-[#173A6D] px-[19px] py-2 text-white">
-              <Search size={20} />
-              <span className="text-[16px]">Rechercher</span>
+            <button
+              onClick={handleResetFilters}
+              className="flex w-[151px] h-full items-center justify-center gap-2 rounded-md bg-[#173A6D] px-[19px] py-2 text-white"
+            >
+              <X size={20} />
+              <span className="text-[16px]">Réinitialiser</span>
             </button>
           </div>
           <div className="flex justify-between gap-6">
@@ -104,19 +194,21 @@ const RechercheConsultant = () => {
               <div className="flex items-center">
                 <MapPin color="#000000" strokeWidth={1.5} />
                 <select
-                  id="contractType"
+                  id="city"
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
                   className="flex w-[300px] px-4 py-2 rounded-md bg-[#F8F8FA] hover:bg-none focus:outline-none"
                 >
-                  <option value="" className="text-[#38383A]" disabled hidden>
-                    Ex: Confirmé, En Attente
+                  <option value="All" className="text-[#38383A]">
+                    Toutes les villes
                   </option>
-                  {FRENCH_CITIES.map((type) => (
+                  {FRENCH_CITIES.map((city) => (
                     <option
+                      key={city.value}
+                      value={city.value}
                       className="text-[#38383A]"
-                      key={type.value}
-                      value={type.value}
                     >
-                      {type.label}
+                      {city.label}
                     </option>
                   ))}
                 </select>
@@ -127,35 +219,20 @@ const RechercheConsultant = () => {
                 <span className="text-black font-medium">Expérience :</span>
                 <div className="flex items-center gap-2 flex-1">
                   <div className="flex items-center w-full gap-3">
-                    <p className="range-value">{experience.min}</p>
+                    <p className="range-value">{experience.min} ans</p>
                     <RangeSlider
                       min={0}
-                      max={37} // Adjusted max to 100 (representing 100,000 €)
+                      max={30}
                       value={[experience.min, experience.max]}
-                      onInput={(value) => {
-                        console.log("Daily rate onInput event:", value);
-                        if (Array.isArray(value) && value.length === 2) {
-                          const newMin = Math.min(value[0], value[1]);
-                          const newMax = Math.max(value[0], value[1]);
-                          console.log("New daily rate values:", [
-                            newMin,
-                            newMax,
-                          ]);
-                          setExperience({ min: newMin, max: newMax });
-                        } else {
-                          console.error(
-                            "Invalid daily rate value received:",
-                            value
-                          );
-                        }
-                      }}
+                      onInput={(value) =>
+                        setExperience({
+                          min: Math.min(value[0], value[1]),
+                          max: Math.max(value[0], value[1]),
+                        })
+                      }
                       className="range-slider"
-                      style={{
-                        "--min-value": dailyRate.min,
-                        "--max-value": dailyRate.max,
-                      }}
                     />
-                    <p className="range-value">{experience.max}</p>
+                    <p className="range-value">{experience.max} ans</p>
                   </div>
                 </div>
               </div>
@@ -165,35 +242,21 @@ const RechercheConsultant = () => {
             <div className="w-full px-4 py-2">
               <div className="space-y-2">
                 <span className="text-black font-medium">
-                  Tarif Journalier en €:{" "}
+                  Tarif Journalier en € :
                 </span>
                 <div className="flex items-center gap-2">
-                  <p className="range-value">
-                    {formatTarif(dailyRate.min)}
-                  </p>
+                  <p className="range-value">{formatTarif(dailyRate.min)}</p>
                   <RangeSlider
                     min={0}
-                    max={17} // Adjusted max to 100 (representing 100,000 €)
+                    max={2000}
                     value={[dailyRate.min, dailyRate.max]}
-                    onInput={(value) => {
-                      console.log("Daily rate onInput event:", value);
-                      if (Array.isArray(value) && value.length === 2) {
-                        const newMin = Math.min(value[0], value[1]);
-                        const newMax = Math.max(value[0], value[1]);
-                        console.log("New daily rate values:", [newMin, newMax]);
-                        setDailyRate({ min: newMin, max: newMax });
-                      } else {
-                        console.error(
-                          "Invalid daily rate value received:",
-                          value
-                        );
-                      }
-                    }}
+                    onInput={(value) =>
+                      setDailyRate({
+                        min: Math.min(value[0], value[1]),
+                        max: Math.max(value[0], value[1]),
+                      })
+                    }
                     className="range-slider"
-                    style={{
-                      "--min-value": dailyRate.min,
-                      "--max-value": dailyRate.max,
-                    }}
                   />
                   <p className="range-value">{formatTarif(dailyRate.max)}</p>
                 </div>
@@ -203,38 +266,23 @@ const RechercheConsultant = () => {
             <div className="w-full px-4 py-2">
               <div className="space-y-2">
                 <span className="text-black font-medium">
-                  Salaire Annuel en €:
+                  Salaire Annuel en € :
                 </span>
                 <div className="flex items-center gap-2">
                   <p className="range-value">
                     {formatSalary(annualSalary.min)}
                   </p>
                   <RangeSlider
-                    min={30}
-                    max={70}
+                    min={0}
+                    max={1000}
                     value={[annualSalary.min, annualSalary.max]}
-                    onInput={(value) => {
-                      console.log("Annual salary onInput event:", value);
-                      if (Array.isArray(value) && value.length === 2) {
-                        const newMin = Math.min(value[0], value[1]);
-                        const newMax = Math.max(value[0], value[1]);
-                        console.log("New annual salary values:", [
-                          newMin,
-                          newMax,
-                        ]);
-                        setAnnualSalary({ min: newMin, max: newMax });
-                      } else {
-                        console.error(
-                          "Invalid annual salary value received:",
-                          value
-                        );
-                      }
-                    }}
+                    onInput={(value) =>
+                      setAnnualSalary({
+                        min: Math.min(value[0], value[1]),
+                        max: Math.max(value[0], value[1]),
+                      })
+                    }
                     className="range-slider"
-                    style={{
-                      "--min-value": annualSalary.min,
-                      "--max-value": annualSalary.max,
-                    }}
                   />
                   <p className="range-value">
                     {formatSalary(annualSalary.max)}
@@ -243,12 +291,12 @@ const RechercheConsultant = () => {
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <div className="mt-4 space-y-4">
         <div className="justify-between flex items-center">
           <p className="text-[#696A6B] font-montserrat text-base font-medium leading-[24px]">
-            0 a 15 sur 110 résultats filtrés
+            {filteredConsultants.length} sur {consultants.length} résultats
           </p>
           <div className="flex p-1 gap-2 bg-[#F8F8FA] rounded-md">
             <button
@@ -274,19 +322,28 @@ const RechercheConsultant = () => {
             viewMode === "list" ? "space-y-3" : "grid grid-cols-2 gap-4"
           }
         >
-          {consultants.map((consultant) => (
-            <div
-              key={consultant.id}
-              onClick={() =>
-                navigate(
-                  `/rechercher-un-consultant/${consultant.id.replace("#", "")}`
-                )
-              }
-              className="cursor-pointer"
-            >
-              <Card {...consultant} />
-            </div>
-          ))}
+          {filteredConsultants.length > 0 ? (
+            filteredConsultants.map((consultant) => (
+              <div
+                key={consultant.id}
+                onClick={() =>
+                  navigate(
+                    `/rechercher-un-consultant/${consultant.id.replace(
+                      "#",
+                      ""
+                    )}`
+                  )
+                }
+                className="cursor-pointer"
+              >
+                <Card {...consultant} />
+              </div>
+            ))
+          ) : (
+            <p className="text-[#696A6B] font-montserrat text-base">
+              Aucun consultant trouvé
+            </p>
+          )}
         </div>
       </div>
     </div>

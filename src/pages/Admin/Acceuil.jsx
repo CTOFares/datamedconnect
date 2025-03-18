@@ -1,11 +1,364 @@
-import React from 'react'
+import { Check, X } from "lucide-react";
+import React, { useState } from "react";
+
+const ECHANGE_STATUS = [
+  { value: "En Attente", label: "En Attente" },
+  { value: "Reporté", label: "Reporté" },
+  { value: "Confirmé", label: "Confirmé" },
+];
 
 const Acceuil = () => {
-  return (
-    <div>
-      Acceuil
-    </div>
-  )
-}
+  const [selectedRows, setSelectedRows] = useState([]);
 
-export default Acceuil
+  // Function to handle checkbox toggle
+  const handleCheckboxChange = (id) => {
+    setSelectedRows((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((rowId) => rowId !== id) // Deselect
+        : [...prevSelected, id] // Select
+    );
+  };
+
+  // Function to handle "Select All" checkbox
+  const handleSelectAllChange = (e) => {
+    if (e.target.checked) {
+      setSelectedRows(aprobation.map((item) => item.id));
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
+  const demandeechange = [
+    {
+      id: "CLI-01",
+      NomDentreprise: "Société Générale",
+      Email: "contact@societegenerale.com",
+      NombreDeRdv: "10",
+      Date: "10/11/2025",
+      status: "En Attente",
+    },
+    {
+      id: "CLI-02",
+      NomDentreprise: "Orange Business",
+      Email: "support@orange.com",
+      NombreDeRdv: "7",
+      Date: "05/10/2025",
+      status: "Reporté",
+    },
+    {
+      id: "CLI-03",
+      NomDentreprise: "BNP Paribas",
+      Email: "info@bnpparibas.com",
+      NombreDeRdv: "20",
+      Date: "20/12/2025",
+      status: "Confirmé",
+    },
+    {
+      id: "CLI-04",
+      NomDentreprise: "LE MACIF",
+      Email: "fares.safer@gamdjak",
+      NombreDeRdv: "15",
+      Date: "14/12/2025",
+      status: "Confirmé",
+    },
+    {
+      id: "CLI-05",
+      NomDentreprise: "Renault Group",
+      Email: "admin@renault.com",
+      NombreDeRdv: "12",
+      Date: "25/09/2025",
+      status: "En Attente",
+    },
+    {
+      id: "CLI-06",
+      NomDentreprise: "L'Oréal",
+      Email: "hr@loreal.com",
+      NombreDeRdv: "8",
+      Date: "30/11/2025",
+      status: "Reporté",
+    },
+    {
+      id: "CLI-07",
+      NomDentreprise: "Air France",
+      Email: "booking@airfrance.com",
+      NombreDeRdv: "18",
+      Date: "22/10/2025",
+      status: "Confirmé",
+    },
+    {
+      id: "CLI-08",
+      NomDentreprise: "TotalEnergies",
+      Email: "contact@totalenergies.com",
+      NombreDeRdv: "5",
+      Date: "12/12/2025",
+      status: "En Attente",
+    },
+  ];
+
+  const aprobation = [
+    {
+      id: "CONS-01",
+      NomDeConsultant: "Jean Dupont",
+      Email: "jean.dupont@example.com",
+      Numero: "0123456789",
+      Date: "15/10/2025",
+      status: "En Attente",
+    },
+    {
+      id: "CONS-02",
+      NomDeConsultant: "Marie Curie",
+      Email: "marie.curie@example.com",
+      Numero: "0987654321",
+      Date: "20/10/2025",
+      status: "Confirmé",
+    },
+    {
+      id: "CONS-03",
+      NomDeConsultant: "Albert Einstein",
+      Email: "albert.einstein@example.com",
+      Numero: "1122334455",
+      Date: "25/10/2025",
+      status: "Reporté",
+    },
+  ];
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Confirmé":
+        return "bg-green-100 text-green-800";
+      case "En Attente":
+        return "bg-pink-100 text-pink-800";
+      case "Reporté":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  // Derive isAnyRowSelected from selectedRows.length
+  const isAnyRowSelected = selectedRows.length > 0;
+
+  return (
+    <div className="p-4">
+      <div className="flex gap-9">
+        <div>
+          <h1 className="text-[#173A6D] font-montserrat text-[60px] font-semibold leading-[120.402%]">
+            5500+
+          </h1>
+          <p className="text-[#979797] font-poppins text-[16px] font-semibold leading-[120.402%] uppercase">
+            Nombre de rdv
+          </p>
+        </div>
+        <div>
+          <h1 className="text-[#DB4A4C] font-montserrat text-[60px] font-semibold leading-[120.402%]">
+            5500+
+          </h1>
+          <p className="text-[#979797] font-poppins text-[16px] font-semibold leading-[120.402%] uppercase">
+            Consultant qualifiée
+          </p>
+        </div>
+        <div>
+          <h1 className="text-[#37C2E8] font-montserrat text-[60px] font-semibold leading-[120.402%]">
+            5500+
+          </h1>
+          <p className="text-[#979797] font-poppins text-[16px] font-semibold leading-[120.402%] uppercase">
+            Client
+          </p>
+        </div>
+        <div>
+          <h1 className="text-[#173A6D] font-montserrat text-[60px] font-semibold leading-[120.402%]">
+            5500+
+          </h1>
+          <p className="text-[#979797] font-poppins text-[16px] font-semibold leading-[120.402%] uppercase">
+            Consultant non Validée
+          </p>
+        </div>
+      </div>
+      <div className="mt-4 bg-white rounded-md">
+        <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
+          <p className="text-[#38383A] font-montserrat py-2 text-[16px] font-semibold leading-[24px] capitalize">
+            Demande D’échange
+          </p>
+          <a
+            href="/admin/demandes"
+            className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
+          >
+            Voir Plus
+          </a>
+        </div>
+
+        <div className="rounded-md">
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    ID Client
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Nom d'Entreprise
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Email
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Nombre de Rdv
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Date
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Statut
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {demandeechange.map((exchange, index) => (
+                  <tr key={index} className={`hover:bg-gray-50`}>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {exchange.id}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {exchange.NomDentreprise}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {exchange.Email}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {exchange.NombreDeRdv}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {exchange.Date}
+                    </td>
+                    <td className="py-3 px-4 border-b">
+                      <span
+                        className={`inline-flex px-2 py-2 rounded-full text-xs font-montserrat font-medium ${getStatusColor(
+                          exchange.status
+                        )}`}
+                      >
+                        {exchange.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 bg-white rounded-md">
+        <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
+          <p className="text-[#38383A] font-montserrat py-2 text-[16px] font-semibold leading-[24px] capitalize">
+            en attente d'approbations ({aprobation.length})
+          </p>
+          {/* Conditional rendering of buttons */}
+          {isAnyRowSelected ? (
+            <div className="flex gap-2">
+              <a
+                href="/admin/demandes"
+                className="flex w-[153px] px-[10px] py-[5px] text-white  bg-[#ED6567] justify-center items-center gap-[5px] rounded-full border"
+              >
+                Refusé
+                <X/>
+              </a>
+              <a
+                href="/admin/demandes"
+                className="flex w-[153px] text-white px-[10px] py-[5px] bg-[#173A6D] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
+              >
+                Approuver
+                <Check/>
+              </a>
+            </div>
+          ) : (
+            <a
+              href="/admin/demandes"
+              className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
+            >
+              Voir Plus
+            </a>
+          )}
+        </div>
+
+        <div className="rounded-md">
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded"
+                      onChange={handleSelectAllChange}
+                      checked={
+                        selectedRows.length === aprobation.length &&
+                        aprobation.length > 0
+                      }
+                    />
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    ID
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Nom de Consultant
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Email
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Numero
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Date
+                  </th>
+                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                    Statut
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {aprobation.map((approval, index) => (
+                  <tr key={index} className={`hover:bg-gray-50`}>
+                    <td className="py-3 px-4 border-b">
+                      <input
+                        type="checkbox"
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded"
+                        checked={selectedRows.includes(approval.id)}
+                        onChange={() => handleCheckboxChange(approval.id)}
+                      />
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {approval.id}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {approval.NomDeConsultant}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {approval.Email}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {approval.Numero}
+                    </td>
+                    <td className="py-3 px-4 border-b font-montserrat">
+                      {approval.Date}
+                    </td>
+                    <td className="py-3 px-4 border-b">
+                      <span
+                        className={`inline-flex px-2 py-2 rounded-full text-xs font-montserrat font-medium ${getStatusColor(
+                          approval.status
+                        )}`}
+                      >
+                        {approval.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Acceuil;

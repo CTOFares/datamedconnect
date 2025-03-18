@@ -68,7 +68,7 @@ export const assets = {
   lock,
   loading,
   checkgif,
-  Frame
+  Frame,
 };
 
 export const links = {

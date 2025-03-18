@@ -16,7 +16,7 @@ import Statistique from "../pages/Client/Statistique/Statistique.jsx";
 import ProfileConsultant from "../pages/Client/Profile/ProfileConsultant.jsx";
 
 // Admin Pages
-import Accueil from "../pages/Admin/Acceuil.jsx"; 
+import Accueil from "../pages/Admin/Acceuil.jsx";
 import Demandes from "../pages/Admin/Demandes.jsx";
 import ConsultantAdmin from "../pages/Admin/ConsultantAdmin.jsx";
 
@@ -29,6 +29,9 @@ import Mention from "../pages/Politique/Mention.jsx";
 import Layout from "../pages/Client/Layout.jsx";
 import ReserverCreneau from "../pages/Client/Profile/ReserverCreneau.jsx";
 import Contact from "../pages/Client/Contact/Contact.jsx";
+import LayoutAdmin from "../pages/Admin/LayoutAdmin.jsx";
+import ConsultantProfile from "../pages/Admin/ConsultantProfile.jsx";
+import DemandeDetails from "../pages/Admin/DemandeDetails.jsx";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -148,7 +151,7 @@ const AppRoutes = () => {
         </Route>
 
         {/* Admin Routes */}
-        <Route path="/admin" element={<Layout />}>
+        <Route path="/admin" element={<LayoutAdmin />}>
           <Route
             path="accueil" // Corrected spelling
             element={
@@ -170,7 +173,37 @@ const AppRoutes = () => {
             }
           />
           <Route
+            path="demandes/:id"
+            element={
+              <ProtectedRoute
+                element={<DemandeDetails />}
+                allowedRole="admin"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
             path="consultant"
+            element={
+              <ProtectedRoute
+                element={<ConsultantAdmin />}
+                allowedRole="admin"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="consultant/:id"
+            element={
+              <ProtectedRoute
+                element={<ConsultantProfile />}
+                allowedRole="admin"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="faq"
             element={
               <ProtectedRoute
                 element={<ConsultantAdmin />}

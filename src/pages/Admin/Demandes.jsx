@@ -180,7 +180,7 @@ const Demandes = () => {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="flex w-[150px] py-2 px-4 rounded-md border border-[#E6E7E9] bg-white"
+              className="flex w-[300px] py-2 px-4 rounded-md border border-[#E6E7E9] bg-white"
             >
               <option value="All">Tous les statuts</option>
               <option value="En Attente">En Attente</option>

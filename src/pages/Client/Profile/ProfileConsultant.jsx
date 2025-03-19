@@ -7,7 +7,12 @@ import Certification from "../../../Components/Home/Profile/Certification";
 import Experience from "../../../Components/Home/Profile/Experience";
 import Formation from "../../../Components/Home/Profile/Formation";
 import Skill from "../../../Components/Home/Profile/Skill";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  CircleChevronLeft,
+  Slash,
+} from "lucide-react";
 
 const ProfileConsultant = () => {
   const { id } = useParams(); // Get the consultant ID from the URL
@@ -29,16 +34,34 @@ const ProfileConsultant = () => {
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+  // Function to convert path back to URL format (e.g., "Rechercher Un Consultant" -> "/rechercher-un-consultant")
+  const pathToUrl = () => {
+    return `/${path.toLowerCase().replace(/\s+/g, "-")}`;
+  };
+
+  // Handle click to navigate to the computed path
+  const handleNavigateBack = () => {
+    navigate(pathToUrl());
+  };
   return (
     <div className="space-y-4 my-2 p-5">
       <div className="flex gap-2">
-        <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
-          {path}
-        </p>
-        <ChevronRight color="#04B4E2" size={20} />
-        <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
-          Consultant ID: {consultant.id}
-        </p>
+        <div
+          className="flex gap-2 items-center cursor-pointer"
+          onClick={handleNavigateBack}
+        >
+          <CircleChevronLeft size={20} color="#04B4E2" />
+          <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
+            {path}
+          </p>
+        </div>
+        <div className="flex gap-2 items-center">
+          <ChevronRight color="#04B4E2" size={20} />
+          <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
+            Consultant ID: {consultant.id}
+          </p>
+        </div>
       </div>
 
       <div className="flex gap-6">

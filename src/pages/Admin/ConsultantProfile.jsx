@@ -1,6 +1,13 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Check, ChevronLeft, ChevronRight, Locate, X } from "lucide-react";
+import {
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  CircleChevronLeft,
+  Locate,
+  X,
+} from "lucide-react";
 import consultants from "../../Utils/mockdata";
 import { icon } from "../../assets/assets";
 import Skill from "../../Components/Home/Profile/Skill";
@@ -26,16 +33,33 @@ const ConsultantProfile = () => {
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+  const pathToUrl = () => {
+    return `/admin/${path.toLowerCase().replace(/\s+/g, "-")}`;
+  };
+
+  // Handle click to navigate to the computed path
+  const handleNavigateBack = () => {
+    navigate(pathToUrl());
+  };
   return (
     <div className="space-y-4 my-2 p-5">
       <div className="flex gap-2">
-        <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
-          {path}
-        </p>
-        <ChevronRight color="#04B4E2" size={20} />
-        <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
-          Consultant ID: {consultant.id}
-        </p>
+        <div
+          className="flex gap-2 items-center cursor-pointer"
+          onClick={handleNavigateBack}
+        >
+          <CircleChevronLeft size={20} color="#04B4E2" />
+          <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
+            {path}
+          </p>
+        </div>
+        <div className="flex gap-2 items-center">
+          <ChevronRight color="#04B4E2" size={20} />
+          <p className="text-[#04B4E2] font-montserrat text-[16px] font-medium leading-[120.402%]">
+            Consultant ID: {consultant.id}
+          </p>
+        </div>
       </div>
 
       <div className="flex gap-6">

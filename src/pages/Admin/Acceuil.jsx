@@ -1,5 +1,6 @@
 import { Check, X } from "lucide-react";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Card from "../../Components/admin/Card";
 
 const ECHANGE_STATUS = [
@@ -11,6 +12,7 @@ const ECHANGE_STATUS = [
 const Acceuil = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [period, setPeriod] = useState("30days");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Handle checkbox toggle for approvals table
   const handleCheckboxChange = (id) => {
@@ -139,6 +141,14 @@ const Acceuil = () => {
 
   const isAnyRowSelected = selectedRows.length > 0;
 
+  const handleNavigateQualif = () => {
+    navigate("/admin/consultant");
+  };
+  // Handle navigation to /admin/demandes
+  const handleNavigateToDemandes = () => {
+    navigate("/admin/demandes");
+  };
+
   return (
     <div className="p-4">
       <div className="grid grid-cols-4 gap-4">
@@ -173,12 +183,12 @@ const Acceuil = () => {
           <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             Demande D’échange
           </p>
-          <a
-            href="/admin/demandes"
+          <button
+            onClick={handleNavigateToDemandes} // Add onClick handler
             className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
           >
             Voir Plus
-          </a>
+          </button>
         </div>
         <div className="rounded-md">
           <div className="overflow-x-auto">
@@ -220,7 +230,7 @@ const Acceuil = () => {
                     <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.NombreDeRdv}
                     </td>
-                    <td className="py-3 px-4 border-b text-[14px]  font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.Date}
                     </td>
                     <td className="py-3 px-4 border-b">
@@ -264,12 +274,12 @@ const Acceuil = () => {
               </a>
             </div>
           ) : (
-            <a
-              href="/admin/demandes"
+            <button
+              onClick={handleNavigateQualif} // Add onClick handler
               className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
             >
               Voir Plus
-            </a>
+            </button>
           )}
         </div>
         <div className="rounded-md">
@@ -325,7 +335,7 @@ const Acceuil = () => {
                     <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {approval.NomDeConsultant}
                     </td>
-                    <td className="py-3 px-4 border-b  text-[14px] font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {approval.Email}
                     </td>
                     <td className="py-3 px-4 border-b text-[14px] font-montserrat">

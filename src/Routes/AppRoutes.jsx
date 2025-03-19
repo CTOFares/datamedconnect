@@ -40,7 +40,7 @@ const ProtectedRoute = ({ element, allowedRole, userRole }) => {
 };
 
 const AppRoutes = () => {
-  const userRole = "client"; // Replace with actual authentication logic
+  const userRole = "admin"; // Replace with actual authentication logic
 
   return (
     <div className="bg-[#FFFFFF]">

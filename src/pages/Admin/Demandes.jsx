@@ -152,7 +152,7 @@ const Demandes = () => {
     <div>
       <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto">
         <div className="justify-between border p-2 rounded-[5px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat py-5 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-4 text-[18px] font-semibold leading-[24px] capitalize">
             Options de recherche
           </p>
           <div className="flex justify-between gap-4 items-center">
@@ -161,7 +161,7 @@ const Demandes = () => {
               placeholder="Rechercher par ID, Nom d'Entreprise ou Courriel"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded border border-[#E6E7E9] h-auto px-4 py-2 text-[16px] font-montserrat font-normal leading-6 text-[#38383A] placeholder-[#E6E7E9]"
+              className="w-full rounded border border-[#E6E7E9] h-auto px-4 py-2 text-[14px] font-montserrat font-normal leading-6 text-[#38383A] placeholder-[#E6E7E9]"
             />
             <DatePicker
               selected={dateFrom}
@@ -192,7 +192,7 @@ const Demandes = () => {
               onClick={handleResetFilters}
               className="flex w-[300px] h-full items-center justify-center gap-2 rounded-md bg-[#173A6D] px-[19px] py-2 text-white"
             >
-              <span className="text-[16px]">Réinitialiser</span>
+              <span className="text-[14px]">Réinitialiser</span>
               <RotateCcw size={20} />
             </button>
           </div>
@@ -200,7 +200,7 @@ const Demandes = () => {
       </div>
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat p-2 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             Demande D'échange
           </p>
           {isAnyRowSelected && (
@@ -265,19 +265,19 @@ const Demandes = () => {
                         onChange={() => handleCheckboxChange(exchange.id)}
                       />
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {exchange.id}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {exchange.NomDentreprise}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {exchange.Email}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {exchange.NombreDeRdv}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {exchange.Date}
                     </td>
                     <td className="py-3 px-4 border-b">

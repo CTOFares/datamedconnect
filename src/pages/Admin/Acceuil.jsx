@@ -139,39 +139,38 @@ const Acceuil = () => {
 
   const isAnyRowSelected = selectedRows.length > 0;
 
-
   return (
     <div className="p-4">
       <div className="grid grid-cols-4 gap-4">
         <Card
           number="135"
-          description="Nombre de rdv"
+          description="Demande Active"
           color="text-[#173A6D]"
           change="up"
         />
         <Card
           number="18"
           description="Consultant qualifiée"
-          color="text-[#DB4A4C]"
+          color="text-[#173A6D]"
           change="down"
         />
         <Card
-          number="976"
+          number="12"
           description="Client"
           color="text-[#37C2E8]"
           change="up"
         />
         <Card
           number="567"
-          description="Consultant non Validée"
-          color="text-[#173A6D]"
-          change="down"
+          description="Consultant non qualifiée"
+          color="text-[#DB4A4C]"
+          change="up"
         />
       </div>
 
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat py-2 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             Demande D’échange
           </p>
           <a
@@ -186,7 +185,7 @@ const Acceuil = () => {
             <table className="min-w-full bg-white border border-gray-200">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
+                  <th className="py-4 px-4 border-b text-left text-[16px] text-sm font-medium text-gray-600">
                     ID Client
                   </th>
                   <th className="py-4 px-4 border-b text-left text-sm font-medium text-gray-600">
@@ -209,19 +208,19 @@ const Acceuil = () => {
               <tbody>
                 {demandeechange.map((exchange, index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.id}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.NomDentreprise}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.Email}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {exchange.NombreDeRdv}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px]  font-montserrat">
                       {exchange.Date}
                     </td>
                     <td className="py-3 px-4 border-b">
@@ -244,7 +243,7 @@ const Acceuil = () => {
       {/* En Attente d'Approbations Table */}
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat py-2 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             en attente d'approbations ({aprobation.length})
           </p>
           {isAnyRowSelected ? (
@@ -320,16 +319,16 @@ const Acceuil = () => {
                         onChange={() => handleCheckboxChange(approval.id)}
                       />
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {approval.id}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {approval.NomDeConsultant}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b  text-[14px] font-montserrat">
                       {approval.Email}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 border-b text-[14px] font-montserrat">
                       {approval.Numero}
                     </td>
                     <td className="py-3 px-4 border-b font-montserrat">

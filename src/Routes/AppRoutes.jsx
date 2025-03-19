@@ -215,7 +215,7 @@ const AppRoutes = () => {
             }
           />
           <Route
-            path="faq"
+            path="Questions-frequentes"
             element={
               <ProtectedRoute
                 element={<FrequentlyaskedQuestions />}

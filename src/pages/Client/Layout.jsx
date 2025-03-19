@@ -112,19 +112,6 @@ const Layout = () => {
             </li>
             <li>
               <NavLink
-                to="/contactez-nous"
-                className={({ isActive }) =>
-                  `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
-                    isActive ? "opacity-100" : "opacity-50"
-                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
-                }
-              >
-                <User2 size={20} />
-                {isSidebarExpanded && <span>Contacter Nous</span>}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/Questions-frequentes"
                 className={({ isActive }) =>
                   `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
@@ -134,6 +121,19 @@ const Layout = () => {
               >
                 <ShieldQuestion size={20} />
                 {isSidebarExpanded && <span>Questions Frequentes</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contactez-nous"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <User2 size={20} />
+                {isSidebarExpanded && <span>Contacter Nous</span>}
               </NavLink>
             </li>
           </ul>
@@ -180,7 +180,7 @@ const Layout = () => {
           </button> */}
           <div className="py-2 px-4 flex justify-end">
             <button onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}>
-              <Menu size={20}/>
+              <Menu size={20} />
             </button>
           </div>
           <div className="flex gap-4">
@@ -195,7 +195,7 @@ const Layout = () => {
             isSidebarExpanded ? "md:ml-60" : "md:ml-16"
           } border-2`}
         >
-          <Outlet  />
+          <Outlet />
         </main>
       </div>
     </div>

@@ -25,8 +25,8 @@ const FrequentlyaskedQuestions = () => {
         />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
-        <div className="h-[150px] border-2">
+      <div className="grid grid-cols-2 md:grid-cols-2 py-8 gap-8">
+        <div className="h-[150px] ">
           <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Numquam molestias pariatur quam nisi fugit vero voluptas ?
           </h1>
@@ -37,7 +37,7 @@ const FrequentlyaskedQuestions = () => {
             dolores quisquam.
           </p>
         </div>
-        <div className="h-[150px] border-2">
+        <div className="h-[150px] ">
           <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Numquam molestias pariatur quam nisi fugit vero voluptas ?
           </h1>
@@ -48,7 +48,7 @@ const FrequentlyaskedQuestions = () => {
             dolores quisquam.
           </p>
         </div>
-        <div className="h-[150px] border-2">
+        <div className="h-[150px] ">
           <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Quisquam doloribus eligendi expedita ullam rem?
           </h1>
@@ -59,7 +59,7 @@ const FrequentlyaskedQuestions = () => {
           </p>
         </div>
 
-        <div className="h-[150px] border-2">
+        <div className="h-[150px] ">
           <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Facere corrupti eum voluptate, perspiciatis reiciendis?
           </h1>
@@ -70,7 +70,7 @@ const FrequentlyaskedQuestions = () => {
           </p>
         </div>
 
-        <div className="h-[150px] border-2">
+        <div className="h-[150px] ">
           <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Adipisci culpa distinctio nesciunt sint natus?
           </h1>

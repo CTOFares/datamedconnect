@@ -116,8 +116,7 @@ const ReserverCreneau = () => {
       </div>
 
       {isPopupOpen && (
-        <div className="fixed top-0 left-0 w-screen min-h-screen bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+        <div className="fixed top-0 left-0  w-screen min-h-screen bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
             <TimePopUp
               onClose={(date, startTime, endTime) =>
                 handleClosePopup(date, startTime, endTime)
@@ -128,7 +127,7 @@ const ReserverCreneau = () => {
               initialStartTime={slots[selectedSlot]?.startTime}
               initialEndTime={slots[selectedSlot]?.endTime}
             />
-          </div>
+
         </div>
       )}
     </div>

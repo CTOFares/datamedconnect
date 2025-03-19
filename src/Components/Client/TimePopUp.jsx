@@ -48,7 +48,7 @@ const TimePopUp = ({ onClose, slotIndex, consultantId, initialDate, initialStart
   };
 
   return (
-    <div className="flex flex-col space-y-4 w-[600px] h-auto mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div className="flex flex-col space-y-4 w-[600px]  h-auto mx-auto bg-white p-6 rounded-lg shadow-lg">
       <div className="flex items-center justify-between">
         <h2 className="text-black font-montserrat text-[16px] font-normal leading-[120.402%]">
           Sélectionner une heure

@@ -90,7 +90,7 @@ const TimePopUp = ({ onClose, slotIndex, consultantId, initialDate, initialStart
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 gap-4 ">
         <button
           onClick={handleCancel}
           className="px-4 py-2 bg-gray-200 text-black rounded-md hover:bg-gray-300 transition-colors font-montserrat text-[14px] font-normal flex-1"

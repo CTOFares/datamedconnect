@@ -5,7 +5,8 @@
 /* App.css */
 
 /* Apply to the root html or body element to hide scrollbar globally */
-html, body {
+html,
+body {
   overflow-y: scroll; /* Ensures content remains scrollable */
   -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
   scrollbar-width: none; /* Hide scrollbar in Firefox */
@@ -77,16 +78,22 @@ body::-webkit-scrollbar {
   border-radius: 2px;
 }
 
-/* Style for the displayed values */
 .range-value {
-  min-width: auto; /* Ensure enough space for the number */
+  min-width: 30px; /* Ensure enough space for the number */
   border-radius: 4px;
   text-align: start;
   font-size: 14px;
   font-weight: 500;
   color: #1f2937; /* Tailwind gray-800 */
 }
-
+.range-value-max {
+  min-width: 70px; /* Ensure enough space for the number */
+  border-radius: 4px;
+  text-align: start;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937; /* Tailwind gray-800 */
+}
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

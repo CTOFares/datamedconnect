@@ -258,7 +258,7 @@ const RechercheConsultant = () => {
                     }
                     className="range-slider"
                   />
-                  <p className="range-value">{formatTarif(dailyRate.max)}</p>
+                  <p className="range-value-max">{formatTarif(dailyRate.max)}</p>
                 </div>
               </div>
             </div>
@@ -284,7 +284,7 @@ const RechercheConsultant = () => {
                     }
                     className="range-slider"
                   />
-                  <p className="range-value">
+                  <p className="range-value-max">
                     {formatSalary(annualSalary.max)}
                   </p>
                 </div>

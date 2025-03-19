@@ -150,7 +150,7 @@ const Acceuil = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="">
       <div className="grid grid-cols-4 gap-4">
         <Card
           number="135"
@@ -177,7 +177,6 @@ const Acceuil = () => {
           change="up"
         />
       </div>
-
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
           <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
@@ -249,8 +248,6 @@ const Acceuil = () => {
           </div>
         </div>
       </div>
-
-      {/* En Attente d'Approbations Table */}
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
           <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">

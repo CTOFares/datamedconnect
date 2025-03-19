@@ -41,7 +41,7 @@ const ProtectedRoute = ({ element, allowedRole, userRole }) => {
 };
 
 const AppRoutes = () => {
-  const userRole = "client"; // Replace with actual authentication logic
+  const userRole = "fares"; // Replace with actual authentication logic
 
   return (
     <div className="bg-[#FFFFFF]">
@@ -65,7 +65,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<RechercherUnConsultant />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -75,7 +75,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ProfileConsultant />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -85,7 +85,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ReserverCreneau />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -95,7 +95,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<DemandeDEchange />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -105,7 +105,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ProfileConsultant />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -115,7 +115,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ProfileConsultant />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -125,7 +125,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ConsultantSauvegarder />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -135,7 +135,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Statistique />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -145,17 +145,17 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Contact />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
           />
-           <Route
+          <Route
             path="/Questions-frequentes"
             element={
               <ProtectedRoute
                 element={<QuestionFrequentes />}
-                allowedRole="client"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -169,7 +169,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Accueil />}
-                allowedRole="admin"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -179,7 +179,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Demandes />}
-                allowedRole="admin"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -189,7 +189,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<DemandeDetails />}
-                allowedRole="admin"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -199,7 +199,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ConsultantAdmin />}
-                allowedRole="admin"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -209,7 +209,7 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<ConsultantProfile />}
-                allowedRole="admin"
+                allowedRole="fares"
                 userRole={userRole}
               />
             }
@@ -219,7 +219,17 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<FrequentlyaskedQuestions />}
-                allowedRole="admin"
+                allowedRole="fares"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="contactez-nous"
+            element={
+              <ProtectedRoute
+                element={<Contact />}
+                allowedRole="fares"
                 userRole={userRole}
               />
             }

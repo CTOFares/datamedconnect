@@ -33,7 +33,7 @@ const Card = ({
   };
 
   return (
-    <div className="flex h-auto p-4 flex-col gap-2.5 flex-shrink-0 self-stretch rounded-[8px] border border-[#E6E7E9] bg-white cursor-pointer transition-shadow hover:shadow-lg">
+    <div className="flex flex-col justify-between h-full p-4  gap-2.5 flex-shrink-0 self-stretch rounded-[8px] border border-[#E6E7E9] bg-white cursor-pointer transition-shadow hover:shadow-lg min-h-[300px]">
       <div className="flex justify-between">
         <p className="text-[#696A6B] font-montserrat text-xs font-medium leading-[24px]">
           {id}
@@ -52,7 +52,6 @@ const Card = ({
           />
         </div>
       </div>
-      {/* Rest of your component remains the same */}
       <div className="flex gap-3">
         <h4 className="bg-gradient-to-r from-[#173A6D] to-[#2D70D3] bg-clip-text text-transparent font-montserrat text-3xl font-semibold leading-[24px]">
           {name}
@@ -78,7 +77,7 @@ const Card = ({
           </p>
         ))}
       </div>
-      <div className="flex gap-[6px] items-center flex-wrap">
+      <div className="flex gap-[6px] items-center flex-wrap max-h-[60px] overflow-hidden">
         {skills?.map((skill, index) => (
           <React.Fragment key={index}>
             <p className="text-[#2E2E2E] w-auto px-2 font-lato text-center font-normal">
@@ -108,12 +107,14 @@ const Card = ({
             </p>
           </div>
         </div>
-        <div className="">
+        <div>
           <h1 className="text-[#65558F] font-montserrat sm:text-[30px] font-semibold leading-[0.8]">
             {rate} €/Jour
           </h1>
         </div>
       </div>
+
+
     </div>
   );
 };

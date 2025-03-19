@@ -19,6 +19,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldQuestion,
+  BookUser,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
 
@@ -38,6 +39,9 @@ const Layout = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+
+  // Mock notification count for ScrollText (replace with actual data in a real app)
+  const scrollTextNotifications = 5;
 
   return (
     <div className="flex h-screen">
@@ -80,7 +84,15 @@ const Layout = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <ScrollText size={20} />
+                {/* Wrap ScrollText in a relative container */}
+                <div className="relative">
+                  <ScrollText size={20} />
+                  {scrollTextNotifications > 0 && (
+                    <div className="absolute -top-1 -right-1 bg-[#02B2E1] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {scrollTextNotifications}
+                    </div>
+                  )}
+                </div>
                 {isSidebarExpanded && <span>Demande D'Echange</span>}
               </NavLink>
             </li>
@@ -132,13 +144,11 @@ const Layout = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <User2 size={20} />
+                <BookUser size={20} />
                 {isSidebarExpanded && <span>Contacter Nous</span>}
               </NavLink>
             </li>
           </ul>
-
-          {/* Toggle Button */}
 
           {/* Spacer */}
           <div className="flex-grow"></div>
@@ -172,12 +182,6 @@ const Layout = () => {
               : "left-16 w-[calc(100%-4rem)]"
           } right-0`}
         >
-          {/* <button
-            className="md:hidden p-2 text-gray-600"
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          >
-            <Menu size={18} />
-          </button> */}
           <div className="py-2 px-4 flex justify-end">
             <button onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}>
               <Menu size={20} />
@@ -185,7 +189,6 @@ const Layout = () => {
           </div>
           <div className="flex gap-4">
             <Bell size={20} className="text-gray-600 cursor-pointer" />
-            {/* <User size={20} className="text-gray-600 cursor-pointer" /> */}
           </div>
         </header>
 

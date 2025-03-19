@@ -21,31 +21,31 @@ const DemandeEchange = () => {
       status: "Confirmé",
     },
     {
-      id: "ECH-512",
-      acronym: "MK",
+      id: "ECH-513",
+      acronym: "JL",
       title: "Développeur Full Stack",
       date: "-",
       time: "-",
       status: "En Attente",
     },
     {
-      id: "ECH-512",
-      acronym: "MK",
+      id: "ECH-514",
+      acronym: "PB",
       title: "Développeur Full Stack",
       date: "-",
       time: "-",
       status: "En Attente",
     },
     {
-      id: "ECH-512",
-      acronym: "MK",
+      id: "ECH-515",
+      acronym: "NV",
       title: "Développeur Full Stack",
       date: "22/07/2024",
       time: "09:15",
       status: "Confirmé",
     },
     {
-      id: "ECH-512",
+      id: "ECH-516",
       acronym: "RD",
       title: "Ingénieur IA",
       date: "-",
@@ -53,24 +53,24 @@ const DemandeEchange = () => {
       status: "Reporté",
     },
     {
-      id: "ECH-512",
-      acronym: "RD",
+      id: "ECH-517",
+      acronym: "AS",
       title: "Ingénieur IA",
       date: "-",
       time: "-",
       status: "Reporté",
     },
     {
-      id: "ECH-512",
-      acronym: "RD",
+      id: "ECH-518",
+      acronym: "LC",
       title: "Ingénieur IA",
       date: "-",
       time: "-",
       status: "Reporté",
     },
     {
-      id: "ECH-512",
-      acronym: "RD",
+      id: "ECH-519",
+      acronym: "XF",
       title: "Ingénieur IA",
       date: "-",
       time: "-",
@@ -116,8 +116,8 @@ const DemandeEchange = () => {
       <h1 className="text-[35px] leading-[30px] py-4 text-[#324DA9] font-montserrat font-normal">
         Demandes d'Échange
       </h1>
-      <div className="bg-white border-[#E6E7E9] rounded-md w-full space-y-2 h-auto p-2">
-        <p className="text-[#38383A] font-montserrat text-[16px] font-semibold leading-[24px]">
+      <div className="bg-white border border-[#E6E7E9] rounded-md w-full space-y-2 h-auto p-2">
+        <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
           Options de recherche
         </p>
         <div className="flex justify-between gap-4 items-center">
@@ -157,9 +157,17 @@ const DemandeEchange = () => {
         </div>
       </div>
       <div className="mt-4 bg-white rounded-md">
-        <p className="text-[#38383A] font-montserrat py-2 text-[16px] font-semibold leading-[24px] capitalize">
-          Demandes d’Échange ({filteredExchanges.length})
-        </p>
+        <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
+          <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
+            Demandes d’Échange ({filteredExchanges.length})
+          </p>
+          <a
+            href="/admin/demandes"
+            className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
+          >
+            Voir Plus
+          </a>
+        </div>
         <div className="rounded-md">
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-200">

@@ -12,13 +12,20 @@ import { useNavigate } from "react-router-dom";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
-const FRENCH_CITIES = [
-  { value: "Paris", label: "Paris" },
-  { value: "Marseille", label: "Marseille" },
-  { value: "Lyon", label: "Lyon" },
-  { value: "Bordeaux", label: "Bordeaux" },
-  { value: "Toulouse", label: "Toulouse" },
-  { value: "Nice", label: "Nice" },
+const FRENCH_REGIONS = [
+  { value: "Île-de-France", label: "Île-de-France" },
+  { value: "Provence-Alpes-Côte d'Azur", label: "Provence-Alpes-Côte d'Azur" },
+  { value: "Auvergne-Rhône-Alpes", label: "Auvergne-Rhône-Alpes" },
+  { value: "Bretagne", label: "Bretagne" },
+  { value: "Normandie", label: "Normandie" },
+  { value: "Nouvelle-Aquitaine", label: "Nouvelle-Aquitaine" },
+  { value: "Occitanie", label: "Occitanie" },
+  { value: "Hauts-de-France", label: "Hauts-de-France" },
+  { value: "Grand Est", label: "Grand Est" },
+  { value: "Pays de la Loire", label: "Pays de la Loire" },
+  { value: "Bourgogne-Franche-Comté", label: "Bourgogne-Franche-Comté" },
+  { value: "Centre-Val de Loire", label: "Centre-Val de Loire" },
+  { value: "Corse", label: "Corse" }
 ];
 
 const RechercheConsultant = () => {
@@ -202,7 +209,7 @@ const RechercheConsultant = () => {
                   <option value="All" className="text-[#38383A]">
                     Toutes les villes
                   </option>
-                  {FRENCH_CITIES.map((city) => (
+                  {FRENCH_REGIONS .map((city) => (
                     <option
                       key={city.value}
                       value={city.value}

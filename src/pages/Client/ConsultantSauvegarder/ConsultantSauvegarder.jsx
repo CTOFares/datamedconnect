@@ -8,18 +8,15 @@ const ConsultantSauvegarder = () => {
   const [viewMode, setViewMode] = useState("list");
   const [searchTerm, setSearchTerm] = useState("");
   const [isCDI, setIsCDI] = useState(false);
-  const [isFreelance, setIsFreelance] = useState(false); // Changed to isFreelance for consistency
+  const [isFreelance, setIsFreelance] = useState(false);
   const navigate = useNavigate();
 
-  // Split search term into keywords (by spaces or commas)
   const keywords = searchTerm
     .toLowerCase()
     .split(/[\s,]+/)
     .filter((keyword) => keyword.length > 0);
 
-  // Filter consultants based on keywords and mission type
   const filteredConsultants = consultants.filter((consultant) => {
-    // Keyword filter (ID, Name, Role, Skills)
     const matchesSearch =
       keywords.length === 0 ||
       keywords.every((keyword) =>
@@ -27,20 +24,18 @@ const ConsultantSauvegarder = () => {
           consultant.id.toLowerCase(),
           consultant.name.toLowerCase(),
           ...consultant.roles.map((role) => role.toLowerCase()),
-          ...(consultant.skills || []).map((skill) => skill.toLowerCase()), // Fallback to empty array if no skills
+          ...(consultant.skills || []).map((skill) => skill.toLowerCase()),
         ].some((field) => field.includes(keyword))
       );
 
-    // Mission type filter (CDI, Freelance)
     const matchesMission =
-      (!isCDI && !isFreelance) || // If neither is checked, include all
+      (!isCDI && !isFreelance) ||
       (isCDI && consultant.mission === "CDI") ||
-      (isFreelance && consultant.mission === "Freelance"); // Match exact case
+      (isFreelance && consultant.mission === "Freelance");
 
     return matchesSearch && matchesMission;
   });
 
-  // Reset all filters
   const handleResetFilters = () => {
     setSearchTerm("");
     setIsCDI(false);
@@ -52,7 +47,10 @@ const ConsultantSauvegarder = () => {
       <h1 className="text-[35px] leading-[30px] py-4 text-[#324DA9] font-montserrat font-normal">
         Consultants Sauvegardés
       </h1>
-      <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto p-2">
+      <div className="bg-white border border-[#E6E7E9] rounded-md w-full space-y-2 h-auto p-2">
+        <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
+          Options de recherche
+        </p>
         <div className="space-y-4">
           <div className="flex justify-between gap-4 items-center">
             <div className="border-[#E6E7E9] flex gap-4 px-4 py-2 rounded-md bg-[#F8F8FA]">
@@ -72,7 +70,7 @@ const ConsultantSauvegarder = () => {
                   checked={isFreelance}
                   onChange={(e) => setIsFreelance(e.target.checked)}
                 />
-                <p className="text-[16px] font-montserrat">Freelance</p> {/* Updated label */}
+                <p className="text-[16px] font-montserrat">Freelance</p>
               </div>
             </div>
             <input
@@ -92,7 +90,7 @@ const ConsultantSauvegarder = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4 space-y-4">
+      <div className="mt-4">
         <div className="justify-between flex items-center">
           <p className="text-[#696A6B] font-montserrat text-base font-medium leading-[24px]">
             {filteredConsultants.length} sur {consultants.length} résultats
@@ -118,7 +116,9 @@ const ConsultantSauvegarder = () => {
         </div>
         <div
           className={
-            viewMode === "list" ? "space-y-3" : "grid grid-cols-2 gap-4"
+            viewMode === "list"
+              ? "space-y-3"
+              : "grid grid-cols-2 gap-4 auto-rows-[minmax(300px,_auto)]"
           }
         >
           {filteredConsultants.map((consultant) => (

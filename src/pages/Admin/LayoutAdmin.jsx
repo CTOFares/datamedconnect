@@ -19,6 +19,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldQuestion,
+  BookUser,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
 
@@ -38,6 +39,10 @@ const LayoutAdmin = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+
+  // Mock notification counts (replace with actual data in a real app)
+  const userNotifications = 3; // For <User />
+  const scrollTextNotifications = 5; // For <ScrollText />
 
   return (
     <div className="flex h-screen">
@@ -80,8 +85,16 @@ const LayoutAdmin = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <ScrollText size={20} />
-                {isSidebarExpanded && <span>Demandes </span>}
+                {/* Wrap ScrollText in a relative container */}
+                <div className="relative">
+                  <ScrollText size={20} />
+                  {scrollTextNotifications > 0 && (
+                    <div className="absolute -top-1 -right-1 bg-[#02B2E1] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {scrollTextNotifications}
+                    </div>
+                  )}
+                </div>
+                {isSidebarExpanded && <span>Demandes</span>}
               </NavLink>
             </li>
             <li>
@@ -93,8 +106,29 @@ const LayoutAdmin = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <Bookmark size={20} />
+                {/* Wrap User in a relative container */}
+                <div className="relative">
+                  <User size={20} />
+                  {userNotifications > 0 && (
+                    <div className="absolute -top-1 -right-1 bg-[#02B2E1] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {userNotifications}
+                    </div>
+                  )}
+                </div>
                 {isSidebarExpanded && <span>Consultants</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/admin/contactez-nous"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <BookUser size={20} />
+                {isSidebarExpanded && <span>Contacter Nous</span>}
               </NavLink>
             </li>
             <li>
@@ -111,8 +145,6 @@ const LayoutAdmin = () => {
               </NavLink>
             </li>
           </ul>
-
-          {/* Toggle Button */}
 
           {/* Spacer */}
           <div className="flex-grow"></div>
@@ -146,12 +178,6 @@ const LayoutAdmin = () => {
               : "left-16 w-[calc(100%-4rem)]"
           } right-0`}
         >
-          {/* <button
-            className="md:hidden p-2 text-gray-600"
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          >
-            <Menu size={18} />
-          </button> */}
           <div className="py-2 px-4 flex justify-end">
             <button onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}>
               <Menu size={20} />
@@ -159,7 +185,6 @@ const LayoutAdmin = () => {
           </div>
           <div className="flex gap-4">
             <Bell size={20} className="text-gray-600 cursor-pointer" />
-            {/* <User size={20} className="text-gray-600 cursor-pointer" /> */}
           </div>
         </header>
 

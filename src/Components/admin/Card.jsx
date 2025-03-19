@@ -9,10 +9,10 @@ const Card = ({ number, description, color, change }) => {
   return (
     <div className="flex flex-col items-start bg-white shadow-lg rounded-md p-4 w-full">
       <div className="flex items-center gap-2 justify-between w-full">
-        <h1 className={`font-montserrat text-[50px] font-bold ${color}`}>{number}</h1>
+        <h1 className={`font-montserrat text-[36px] font-bold ${color}`}>{number}</h1>
         <span className={`${arrowColor}`}>{arrowIcon}</span>
       </div>
-      <p className="text-gray-500 font-poppins text-[18px] font-medium uppercase text-start">
+      <p className="text-gray-500 font-poppins text-[14px] font-medium uppercase text-start">
         {description}
       </p>
     </div>

@@ -18,6 +18,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  ShieldQuestion,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
 
@@ -120,6 +121,19 @@ const Layout = () => {
               >
                 <User2 size={20} />
                 {isSidebarExpanded && <span>Contacter Nous</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/Questions-frequentes"
+                className={({ isActive }) =>
+                  `py-2 px-3 rounded flex gap-2 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <ShieldQuestion size={20} />
+                {isSidebarExpanded && <span>Questions Frequentes</span>}
               </NavLink>
             </li>
           </ul>

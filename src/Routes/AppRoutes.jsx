@@ -33,6 +33,7 @@ import LayoutAdmin from "../pages/Admin/LayoutAdmin.jsx";
 import ConsultantProfile from "../pages/Admin/ConsultantProfile.jsx";
 import DemandeDetails from "../pages/Admin/DemandeDetails.jsx";
 import FrequentlyaskedQuestions from "../pages/Admin/FrequentlyaskedQuestions.jsx";
+import QuestionFrequentes from "../pages/Client/QuestionFrequentes.jsx";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -144,6 +145,16 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<Contact />}
+                allowedRole="client"
+                userRole={userRole}
+              />
+            }
+          />
+           <Route
+            path="/Questions-frequentes"
+            element={
+              <ProtectedRoute
+                element={<QuestionFrequentes />}
                 allowedRole="client"
                 userRole={userRole}
               />

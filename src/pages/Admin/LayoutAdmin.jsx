@@ -107,7 +107,7 @@ const LayoutAdmin = () => {
                 }
               >
                 <ShieldQuestion size={20} />
-                {isSidebarExpanded && <span>FAQ</span>}
+                {isSidebarExpanded && <span>Questions Frequentes</span>}
               </NavLink>
             </li>
           </ul>

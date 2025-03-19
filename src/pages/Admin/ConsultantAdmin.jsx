@@ -134,7 +134,7 @@ const ConsultantAdmin = () => {
     <div>
       <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto">
         <div className="justify-between border p-2 rounded-[5px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat py-5 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-4 text-[18px] font-semibold leading-[24px] capitalize">
             Options de recherche
           </p>
           <div className="flex justify-between gap-4 items-center">
@@ -176,14 +176,14 @@ const ConsultantAdmin = () => {
               className="flex w-[151px] h-full items-center justify-center gap-2 rounded-md bg-[#173A6D] px-[19px] py-2 text-white"
             >
               <X size={20} />
-              <span className="text-[16px]">Réinitialiser</span>
+              <span className="text-[14px]">Réinitialiser</span>
             </button>
           </div>
         </div>
       </div>
       <div className="mt-4 bg-white rounded-md">
         <div className="flex justify-between border p-2 rounded-tl-[10px] rounded-tr-[10px] border-[#E6E7E9]">
-          <p className="text-[#38383A] font-montserrat p-2 text-[16px] font-semibold leading-[24px] capitalize">
+          <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             En attente d'approbations ({filteredAprobation.length})
           </p>
           {isAnyRowSelected && (
@@ -247,7 +247,7 @@ const ConsultantAdmin = () => {
               <tbody>
                 {filteredAprobation.map((approval, index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="py-3 px-4 border-b">
+                    <td className="py-2 px-4 border-b">
                       <input
                         type="checkbox"
                         className="w-4 h-4 text-blue-600 border-gray-300 rounded"
@@ -255,19 +255,19 @@ const ConsultantAdmin = () => {
                         onChange={() => handleCheckboxChange(approval.id)}
                       />
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {approval.id}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {approval.NomDeConsultant}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {approval.Email}
                     </td>
                     <td className="py-3 px-4 border-b font-montserrat">
                       {approval.Numero}
                     </td>
-                    <td className="py-3 px-4 border-b font-montserrat">
+                    <td className="py-3 px-4 text-[14px] border-b font-montserrat">
                       {approval.Date}
                     </td>
                     <td className="py-3 px-4 border-b">

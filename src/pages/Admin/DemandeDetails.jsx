@@ -11,37 +11,62 @@ const DemandeDetails = () => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  // State with slot data added to consultants
   const [condidat, setCondidat] = useState([
     {
-      id: "CONS-01",
-      NomDeConsultant: "Jean Dupont",
-      Email: "jean.dupont@example.com",
-      Numero: "0123456789",
-      Date: "15/10/2025",
+      id: "#CON-1250",
+      NomDeConsultant: "Antoine Bernard",
+      Email: "antoine.bernard@gmail.com",
+      Numero: "+217962616282",
+      Date: "25/03/2025",
       status: "Point Fixé",
-      slot: { date: "2023-10-15", start: "09:00", end: "10:00" },
+      slot: { date: "2025-03-25", start: "09:00", end: "10:00" },
     },
     {
-      id: "CONS-02",
-      NomDeConsultant: "Marie Curie",
-      Email: "marie.curie@example.com",
-      Numero: "0987654321",
-      Date: "20/10/2025",
+      id: "#CON-1251",
+      NomDeConsultant: "Marie Thomas",
+      Email: "marie.thomas@outlook.com",
+      Numero: "+217962616282",
+      Date: "27/03/2025",
       status: "En Cours",
-      slot: { date: "2023-10-20", start: "10:00", end: "11:00" },
+      slot: { date: "2025-03-27", start: "10:30", end: "11:30" },
     },
     {
-      id: "CONS-03",
-      NomDeConsultant: "Albert Einstein",
-      Email: "albert.einstein@example.com",
-      Numero: "1122334455",
-      Date: "25/10/2025",
+      id: "#CON-1252",
+      NomDeConsultant: "Sophie Renault",
+      Email: "sophie.renault@yahoo.fr",
+      Numero: "+217962616282",
+      Date: "28/03/2025",
       status: "Reporté",
-      slot: { date: "2023-10-25", start: "14:00", end: "15:00" },
+      slot: { date: "2025-03-28", start: "14:00", end: "15:00" },
+    },
+    {
+      id: "#CON-1253",
+      NomDeConsultant: "David Leclerc",
+      Email: "david.leclerc@gmail.com",
+      Numero: "+217962616282",
+      Date: "29/03/2025",
+      status: "Point Fixé",
+      slot: { date: "2025-03-29", start: "11:00", end: "12:00" },
+    },
+    {
+      id: "#CON-1254",
+      NomDeConsultant: "Elodie Caron",
+      Email: "elodie.caron@proton.me",
+      Numero: "+217962616282",
+      Date: "30/03/2025",
+      status: "En Cours",
+      slot: { date: "2025-03-30", start: "15:00", end: "16:00" },
+    },
+    {
+      id: "#CON-1255",
+      NomDeConsultant: "Lucas Perrin",
+      Email: "lucas.perrin@hotmail.com",
+      Numero: "+217962616282",
+      Date: "01/04/2025",
+      status: "Reporté",
+      slot: { date: "2025-04-01", start: "09:30", end: "10:30" },
     },
   ]);
-
   const [showPopup, setShowPopup] = useState(false);
   const [selectedConsultant, setSelectedConsultant] = useState(null);
 

@@ -135,10 +135,10 @@ const RechercheConsultant = () => {
 
   return (
     <div className="pb-12">
-      <h1 className="text-[35px] leading-[30px] py-3 px-4 text-[#324DA9] font-montserrat font-normal">
+      <h1 className="text-[35px] leading-[30px] py-4 text-[#324DA9] font-montserrat font-normal">
         Rechercher un Consultant
       </h1>
-      <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto p-4">
+      <div className="bg-white border-[#E6E7E9] rounded-md w-full h-auto py-4">
         <div className="space-y-4">
           <div className="flex justify-between gap-4 items-center">
             <div className="border-[#E6E7E9] flex gap-4 px-4 py-2 rounded-md bg-[#F8F8FA]">

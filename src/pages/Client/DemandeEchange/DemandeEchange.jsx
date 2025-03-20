@@ -161,12 +161,6 @@ const DemandeEchange = () => {
           <p className="text-[#38383A] font-montserrat p-2 text-[18px] font-semibold leading-[24px] capitalize">
             Demandes d’Échange ({filteredExchanges.length})
           </p>
-          <a
-            href="/admin/demandes"
-            className="flex w-[153px] px-[10px] py-[5px] justify-center items-center gap-[5px] rounded-full border border-[#3855B3]"
-          >
-            Voir Plus
-          </a>
         </div>
         <div className="rounded-md">
           <div className="overflow-x-auto">

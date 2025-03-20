@@ -45,7 +45,7 @@ const ProfileConsultant = () => {
     navigate(pathToUrl());
   };
   return (
-    <div className="space-y-4 my-2 p-5">
+    <div className="space-y-4 my-2 p-4 border-2">
       <div className="flex gap-2">
         <div
           className="flex gap-2 items-center cursor-pointer"

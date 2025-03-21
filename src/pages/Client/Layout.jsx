@@ -20,13 +20,13 @@ import {
   ChevronRight,
   ShieldQuestion,
   BookUser,
+  Link2,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
+import { IoIosLink } from "react-icons/io";
 
 const Layout = () => {
-  const { page } = useParams();
   const location = useLocation();
-  console.log("Params page:", page);
   console.log("Current path:", location.pathname);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
@@ -48,7 +48,7 @@ const Layout = () => {
       {/* Sidebar */}
       <aside
         className={`text-white fixed h-full transition-all bg-[#173A6D] w-60 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-64"
+          isSidebarOpen ? "translate-x-0" : "-translate-x-60"
         } md:translate-x-0 ${isSidebarExpanded ? "md:w-60" : "md:w-16"}`}
       >
         <div className="flex flex-col h-full">
@@ -56,7 +56,9 @@ const Layout = () => {
           <div className="flex justify-center items-center p-4">
             <img
               src={isSidebarExpanded ? assets.logowhite : assets.Frame}
-              className="w-full max-w-[300px]"
+              className={`w-full ${
+                isSidebarExpanded ? "max-w-[300px]" : "max-w-[40px]"
+              }`}
               alt="logo"
             />
           </div>
@@ -84,11 +86,10 @@ const Layout = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                {/* Wrap ScrollText in a relative container */}
                 <div className="relative">
                   <ScrollText size={20} />
                   {scrollTextNotifications > 0 && (
-                    <div className="absolute -top-1 -right-1 bg-[#02B2E1] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-[#02B2E1] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                       {scrollTextNotifications}
                     </div>
                   )}
@@ -157,6 +158,19 @@ const Layout = () => {
           <ul className="pb-4">
             <li>
               <NavLink
+                to="/integration"
+                className={({ isActive }) =>
+                  `py-2 px-4 rounded flex gap-4 hover:opacity-100 hover:rounded-md ${
+                    isActive ? "opacity-100" : "opacity-50"
+                  } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
+                }
+              >
+                <IoIosLink strokeWidth={1.75} size={20} />
+                {isSidebarExpanded && <span>Integration</span>}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `py-2 px-4 rounded flex gap-4 hover:opacity-100 hover:rounded-md ${
@@ -176,14 +190,20 @@ const Layout = () => {
       <div className="flex-1 flex flex-col h-screen">
         {/* Fixed Header */}
         <header
-          className={`bg-white p-4 flex justify-between border-b-2 items-center fixed top-0 ${
-            isSidebarExpanded
-              ? "left-60 w-[calc(100%-15rem)]"
-              : "left-16 w-[calc(100%-4rem)]"
-          } right-0`}
+          className={`bg-white p-4 flex justify-between border-b-2 items-center fixed top-0 right-0 left-0 ${
+            isSidebarExpanded ? "md:ml-60" : "md:ml-16"
+          }`}
         >
           <div className="py-2 px-4 flex justify-end">
-            <button onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}>
+            <button
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setIsSidebarOpen(!isSidebarOpen);
+                } else {
+                  setIsSidebarExpanded(!isSidebarExpanded);
+                }
+              }}
+            >
               <Menu size={20} />
             </button>
           </div>
@@ -194,7 +214,7 @@ const Layout = () => {
 
         {/* Scrollable Main Content */}
         <main
-          className={`flex-1 overflow-y-auto overflow-visible p-4 mt-[4rem] h-full bg-[#fdfdfd] ${
+          className={`flex-1 overflow-auto p-4 mt-[4rem] h-full bg-[#fdfdfd] ${
             isSidebarExpanded ? "md:ml-60" : "md:ml-16"
           } border-2`}
         >

@@ -47,6 +47,10 @@ import trash from "./icons/trash.svg";
 import loading from "./loading.gif";
 import checkgif from "./check.gif";
 import Frame from "./Frame.png";
+import googleagenda from "./googleagenda.png";
+import slack from "./slack.png";
+import appelcalendar from "./appelcalendar.png";
+import zoom from "./zoom.png";
 
 // Export assets
 export const assets = {
@@ -69,6 +73,10 @@ export const assets = {
   loading,
   checkgif,
   Frame,
+  googleagenda,
+  slack,
+  appelcalendar,
+  zoom
 };
 
 export const links = {

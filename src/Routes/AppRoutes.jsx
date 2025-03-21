@@ -34,6 +34,7 @@ import ConsultantProfile from "../pages/Admin/ConsultantProfile.jsx";
 import DemandeDetails from "../pages/Admin/DemandeDetails.jsx";
 import FrequentlyaskedQuestions from "../pages/Admin/FrequentlyaskedQuestions.jsx";
 import QuestionFrequentes from "../pages/Client/QuestionFrequentes.jsx";
+import Integration from "../pages/Client/Integration.jsx";
 
 // Role-based route protection
 const ProtectedRoute = ({ element, allowedRole, userRole }) => {
@@ -155,6 +156,16 @@ const AppRoutes = () => {
             element={
               <ProtectedRoute
                 element={<QuestionFrequentes />}
+                allowedRole="fares"
+                userRole={userRole}
+              />
+            }
+          />
+          <Route
+            path="integration"
+            element={
+              <ProtectedRoute
+                element={<Integration />}
                 allowedRole="fares"
                 userRole={userRole}
               />

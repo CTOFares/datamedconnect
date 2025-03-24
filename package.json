@@ -16,6 +16,7 @@
     "@lottiefiles/dotlottie-react": "^0.13.0",
     "@mui/material": "^6.4.7",
     "@mui/x-date-pickers": "^7.27.3",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.1",
     "chart.js": "^4.4.8",
     "chartjs-adapter-date-fns": "^3.0.0",

@@ -17,11 +17,8 @@ import AjoutLanguePopUp from "../../../PopUps/AjoutLanguePopUp";
 import ProfileSkeleton from "../../../Utils/ProfileSkeleton";
 import Nav from "../../../Components/Nav";
 
-// Constants
 const NOT_SPECIFIED = "Not Specified";
-const DEFAULT_CONSULTANT_ID = "67c842a4d03f8e2864cab3e5";
 
-// Axios instance with base config
 const api = axios.create({
   baseURL: "https://datamedconnectbackend.onrender.com",
   timeout: 10000, // 10s timeout
@@ -86,7 +83,7 @@ const useProfileData = (id) => {
   }, []);
 
   useEffect(() => {
-    const effectiveId = id || localStorage.getItem("consultantId") || DEFAULT_CONSULTANT_ID;
+    const effectiveId = id || localStorage.getItem("consultantId");
     fetchProfileData(effectiveId);
   }, [id, fetchProfileData]);
 
@@ -163,7 +160,7 @@ const Profile = memo(() => {
   }, [profileData, togglePopup]);
 
   const handleSave = useCallback(async () => {
-    const effectiveId = id || localStorage.getItem("consultantId") || DEFAULT_CONSULTANT_ID;
+    const effectiveId = id || localStorage.getItem("consultantId");
     const success = await saveProfileData(effectiveId, profileData);
     if (success) {
       navigate("/Merci");

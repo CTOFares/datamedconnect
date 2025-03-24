@@ -21,6 +21,7 @@ import {
   ShieldQuestion,
   BookUser,
   Link2,
+  Search,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
 import { IoIosLink } from "react-icons/io";
@@ -73,7 +74,7 @@ const Layout = () => {
                   } ${isSidebarExpanded ? "justify-start" : "justify-center"}`
                 }
               >
-                <LayoutPanelLeft size={20} />
+                <Search size={20} />
                 {isSidebarExpanded && <span>Rechercher Un Consultant</span>}
               </NavLink>
             </li>

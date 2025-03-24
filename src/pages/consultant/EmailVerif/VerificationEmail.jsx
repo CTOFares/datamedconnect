@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import Nav from "../../../Components/Nav";
 import Footer from "../../../Components/Footer";
 
 const api = axios.create({
-  baseURL: 'https://datamedconnectbackend.onrender.com/api',
+  baseURL: "https://datamedconnectbackend.onrender.com/api",
 });
 
 const VerificationEmail = () => {
@@ -44,11 +44,13 @@ const VerificationEmail = () => {
     }
     setIsVerifying(true);
     try {
-      await api.post('/otp/verify', { email, otp });
+      await api.post("/otp/verify", { email, otp });
       navigate("/Mission");
     } catch (error) {
       if (error.response) {
-        setError(error.response.data.message || "Code incorrect. Veuillez réessayer.");
+        setError(
+          error.response.data.message || "Code incorrect. Veuillez réessayer."
+        );
       } else {
         setError("Une erreur est survenue. Veuillez réessayer.");
       }
@@ -66,11 +68,13 @@ const VerificationEmail = () => {
     setError("");
     setResendMessage("");
     try {
-      await api.post('/otp/send', { email });
+      await api.post("/otp/send", { email });
       setResendMessage("Code renvoyé avec succès ! Vérifiez votre email.");
     } catch (error) {
       if (error.response) {
-        setError(error.response.data.message || "Erreur lors de l'envoi du code.");
+        setError(
+          error.response.data.message || "Erreur lors de l'envoi du code."
+        );
       } else {
         setError("Une erreur est survenue lors de la tentative de renvoi.");
       }

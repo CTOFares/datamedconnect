@@ -19,6 +19,9 @@ export const CVDataProvider = ({ children }) => {
   const [AutoEntrepreuneur, setAutoEntrepreuneur] = useState("");
   const [Tjm, setTjm] = useState("Null");
 
+
+
+  // object  Porfile
   return (
     <CVDataContext.Provider
       value={{

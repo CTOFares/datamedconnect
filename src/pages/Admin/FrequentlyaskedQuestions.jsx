@@ -27,7 +27,7 @@ const FrequentlyaskedQuestions = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-2 py-8 gap-8">
         <div className="h-[150px] ">
-          <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
+          <h1 className="text-[#38383A] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Numquam molestias pariatur quam nisi fugit vero voluptas ?
           </h1>
           <p className="text-[#565758] font-montserrat text-[16px] font-normal leading-[24px]">
@@ -38,7 +38,7 @@ const FrequentlyaskedQuestions = () => {
           </p>
         </div>
         <div className="h-[150px] ">
-          <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
+          <h1 className="text-[#38383A] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Numquam molestias pariatur quam nisi fugit vero voluptas ?
           </h1>
           <p className="text-[#565758] font-montserrat text-[16px] font-normal leading-[24px]">
@@ -49,7 +49,7 @@ const FrequentlyaskedQuestions = () => {
           </p>
         </div>
         <div className="h-[150px] ">
-          <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
+          <h1 className="text-[#38383A] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Quisquam doloribus eligendi expedita ullam rem?
           </h1>
           <p className="text-[#565758] font-montserrat text-[16px] font-normal leading-[24px]">
@@ -60,7 +60,7 @@ const FrequentlyaskedQuestions = () => {
         </div>
 
         <div className="h-[150px] ">
-          <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
+          <h1 className="text-[#38383A] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Facere corrupti eum voluptate, perspiciatis reiciendis?
           </h1>
           <p className="text-[#565758] font-montserrat text-[16px] font-normal leading-[24px]">
@@ -71,7 +71,7 @@ const FrequentlyaskedQuestions = () => {
         </div>
 
         <div className="h-[150px] ">
-          <h1 className="text-[#324DA9] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
+          <h1 className="text-[#38383A] pb-5 font-montserrat text-[20px] font-semibold leading-[28px]">
             Adipisci culpa distinctio nesciunt sint natus?
           </h1>
           <p className="text-[#565758] font-montserrat text-[16px] font-normal leading-[24px]">
